@@ -18,6 +18,9 @@ Title::~Title()
 
 AbstractScene* Title::Update()
 {
+	if (PAD_INPUT::OnButton(XINPUT_BUTTON_B)) {
+		return new GameMain();
+	}
 
 	return this;
 }
@@ -25,5 +28,6 @@ AbstractScene* Title::Update()
 void Title::Draw() const
 {
 	DrawFormatString(640, 360, 0xffffff, "TiTle");
+	DrawFormatString(630, 600, 0xffffff, "BでGameMain");
 	/*DrawGraph();*/	// タイトル画像表示
 }
