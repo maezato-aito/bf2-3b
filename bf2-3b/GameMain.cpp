@@ -3,10 +3,12 @@
 
 GameMain::GameMain()
 {
+	stage = new Stage();
 }
 
 GameMain::~GameMain()
 {
+	delete stage;
 }
 
 AbstractScene* GameMain::Update()
@@ -16,6 +18,7 @@ AbstractScene* GameMain::Update()
 
 void GameMain::Draw() const
 {
+	stage->Stage1();
 	DrawFormatString(640, 360, 0xffffff, "GameMain");
 }
 
