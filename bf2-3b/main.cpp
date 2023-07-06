@@ -31,7 +31,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetAlwaysRunFlag(true);	// 常にアクティブ
 
-	SetGraphMode(1280, 720, 32);	// 画面サイズ
+	SetGraphMode(640, 480, 32);	// 画面サイズ
 
 	
 	if (DxLib_Init() == -1) return -1;	// DX ライブラリの初期化処理:エラーが起きたら直ちに終了

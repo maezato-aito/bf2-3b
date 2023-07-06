@@ -5,6 +5,7 @@ private:
     int FlootingImg[7];  // 空中床の画像
     int LandImg[4];     // 地面の画像
     int SeaImg;    // 海の画像
+    int CloudImg[3];     // 雲の画像 
     
 public:
     Stage();    //コンストラクタ

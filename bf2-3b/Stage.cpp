@@ -13,13 +13,18 @@ Stage::Stage() {
 	FlootingImg[6] = LoadGraph("images/Stage/Stage_Footing07.png");
 	
 
-	//	’n–Ê‚Ì‰æ‘œ“Ç
+	// ’n–Ê‚Ì‰æ‘œ“Ç
 	LandImg[0] = LoadGraph("images/Stage/Stage_Land_left01.png");
 	LandImg[1] = LoadGraph("images/Stage/Stage_Land_left02.png");
 	LandImg[2] = LoadGraph("images/Stage/Stage_Land_right01.png");
 	LandImg[3] = LoadGraph("images/Stage/Stage_Land_right02.png");
 
+	// ŠC‚Ì‰æ‘œ“Ç
 	SeaImg = LoadGraph("images/Stage/Stage_Sea01.png");
+
+	// ‰_‚Ì‰æ‘œ•ªŠ„“Ç
+	LoadDivGraph("images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
+	
 }
 
 Stage::~Stage() {
@@ -36,6 +41,8 @@ Stage::~Stage() {
 	DeleteGraph(LandImg[1]);
 	DeleteGraph(LandImg[2]);
 	DeleteGraph(LandImg[3]);
+
+	DeleteGraph(CloudImg[0]);
 }
 
 void Stage::Update() {
@@ -47,16 +54,17 @@ void Stage::Draw() const {
 }
 
 void Stage::Stage1() {
-	DrawGraph(350, 400, FlootingImg[0], TRUE);
-	DrawGraph(400, 400, FlootingImg[0], TRUE);
-	DrawGraph(650, 400, FlootingImg[0], TRUE);
+	// ‹ó’†°‚Ì•`‰æ
+	DrawGraph(180, 280, FlootingImg[0], TRUE);
 	
-	DrawGraph(300, 680, SeaImg, TRUE);
-	DrawGraph(600, 680, SeaImg, TRUE);
-	DrawGraph(900, 680, SeaImg, TRUE);
+	// ŠC‚Ì•`‰æ
+	DrawGraph(0, 440, SeaImg, TRUE);
+	DrawGraph(320, 440, SeaImg, TRUE);
 
-	DrawGraph(0, 655, LandImg[0], TRUE);
-	DrawGraph(150, 655, LandImg[0], TRUE);
-	DrawGraph(975, 655, LandImg[2], TRUE);
-	DrawGraph(1130, 655, LandImg[2], TRUE);
+	// ’n–Ê‚Ì•`‰æ
+	DrawGraph(0, 410, LandImg[0], TRUE);
+	DrawGraph(480, 410, LandImg[2], TRUE);
+
+	// ‰_‚Ì•`‰æ
+	DrawGraph(300, 100, CloudImg[0], TRUE);
 }
