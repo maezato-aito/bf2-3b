@@ -24,4 +24,5 @@ public:
 
 	//•`‰æˆ—
 	void Draw();
+	Player* player;
 };
