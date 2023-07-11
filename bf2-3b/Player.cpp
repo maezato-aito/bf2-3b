@@ -12,7 +12,7 @@ Player::~Player()
 }
 AbstractScene* Player::Update()
 {
-
+	return this;
 }
 
 void Player::Draw() const
