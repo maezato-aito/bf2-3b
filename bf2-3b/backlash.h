@@ -7,7 +7,11 @@
 class Backlash
 {
 private:
-	
+	int Speed;
+	int BallAngle;
+	int MoveX;
+	int	MoveY;
+
 public:
 
 	// コンストラクタ

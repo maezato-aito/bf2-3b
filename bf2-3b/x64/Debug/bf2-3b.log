@@ -1,3 +1,3 @@
 ﻿  Backlash.cpp
-  LINK : 前回のインクリメンタル リンクで C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+C:\PG\bf2-3b\bf2-3b\Backlash.cpp(9,14): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe

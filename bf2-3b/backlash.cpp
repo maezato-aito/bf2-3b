@@ -1,20 +1,25 @@
 #include "Backlash.h"
-#define e 0.800
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 Backlash::Backlash()
 {
-
+	// スピードとアングルによる移動量計算
+	Speed = 5;
+	BallAngle = 0.575f;
 }
 
 Backlash::~Backlash()
 {
+
 }
 
 void Backlash::Update()
 {
-	v0 = sqrt(2.000 * g * y_max);
-	for (i = 0; i < j; i++)
-		v0 *= e;
+
+	float rad = BallAngle * (float)M_PI * 2;
+	MoveX = (int)(Speed * cosf(rad));
+	MoveY = (int)(Speed * sinf(rad));
 }
 
 void Backlash::Draw()
