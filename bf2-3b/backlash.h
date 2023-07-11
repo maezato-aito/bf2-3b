@@ -1,21 +1,23 @@
 #pragma once
 
-#include"backlash.h"
+#include"Backlash.h"
+#include"PadInput.h"
+#include"Player.h"
 
-class backlash
+class Backlash
 {
 private:
 	
 public:
 
 	// コンストラクタ
-	backlash();
+	Backlash();
 	// デストラクタ
-	~backlash();
+	~Backlash();
 
 	//描画以外の処理
-	void Update()override;
+	void Update();
 
 	//描画処理
-	void Draw() const override;
+	void Draw();
 };
