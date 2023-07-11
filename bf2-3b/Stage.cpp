@@ -2,6 +2,22 @@
 #include "DxLib.h"
 
 Stage::Stage() {
+	// ステージ１・２の空中床座標
+	S1_Flooting_X = 180;
+	S1_Flooting_Y = 280;
+	// ステージ１・２の地面座標
+	S1_Landright_X = 480;
+	S1_Landright_Y = 410;
+	S1_Landleft_X = 0;
+	S1_Landleft_Y = 410;
+	// ステージ１の雲座標
+	S1_Cloud_X = 300;
+	S1_Cloud_Y = 100;
+	// 海の座標
+	Searight_X = 0;
+	Searight_Y = 440;
+	Sealeft_X = 320;
+	Sealeft_Y = 440;
 
 	// 空中床の画像読込
 	FlootingImg[0] = LoadGraph("x64/Release/images/Stage/Stage_Footing01.png");
@@ -12,7 +28,6 @@ Stage::Stage() {
 	FlootingImg[5] = LoadGraph("x64/Release/images/Stage/Stage_Footing06.png");
 	FlootingImg[6] = LoadGraph("x64/Release/images/Stage/Stage_Footing07.png");
 	
-
 	// 地面の画像読込
 	LandImg[0] = LoadGraph("x64/Release/images/Stage/Stage_Land_left01.png");
 	LandImg[1] = LoadGraph("x64/Release/images/Stage/Stage_Land_left02.png");
@@ -36,7 +51,6 @@ Stage::~Stage() {
 	DeleteGraph(FlootingImg[5]);
 	DeleteGraph(FlootingImg[6]);
 	
-
 	DeleteGraph(LandImg[0]);
 	DeleteGraph(LandImg[1]);
 	DeleteGraph(LandImg[2]);
@@ -55,16 +69,16 @@ void Stage::Draw() const {
 
 void Stage::Stage1() {
 	// 空中床の描画
-	DrawGraph(180, 280, FlootingImg[0], TRUE);
+	DrawGraph(S1_Flooting_X, S1_Flooting_Y, FlootingImg[0], TRUE);
 	
 	// 海の描画
-	DrawGraph(0, 440, SeaImg, TRUE);
-	DrawGraph(320, 440, SeaImg, TRUE);
+	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
+	DrawGraph(Sealeft_X, Sealeft_Y, SeaImg, TRUE);
 
 	// 地面の描画
-	DrawGraph(0, 410, LandImg[0], TRUE);
-	DrawGraph(480, 410, LandImg[2], TRUE);
+	DrawGraph(S1_Landright_X, S1_Landright_Y, LandImg[0], TRUE);
+	DrawGraph(S1_Landleft_X, S1_Landleft_Y, LandImg[2], TRUE);
 
 	// 雲の描画
-	DrawGraph(300, 100, CloudImg[0], TRUE);
+	DrawGraph(S1_Cloud_X, S1_Cloud_Y, CloudImg[0], TRUE);
 }
