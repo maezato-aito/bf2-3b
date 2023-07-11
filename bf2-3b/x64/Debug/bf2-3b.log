@@ -1,2 +1,18 @@
-﻿  Stage.cpp
+﻿  FpsController.cpp
+  GameMain.cpp
+  main.cpp
+C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4476: 'fprintf_s' : 形式指定子に不明な種類フィールド文字 '\xe6' があります
+C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4477: 'fprintf_s' : 書式文字列 '% s' には、型 'char *' の引数が必要ですが、可変個引数 5 は型 'int' です
+C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4313: 'fprintf_s': 書式文字列内の '%s' が引数 5 ('int' 型) と競合しています
+C:\PG\bf2-3b\bf2-3b\main.cpp(59,151): warning C4474: 'fprintf_s': 書式文字列に渡された引数の数が多すぎます
+C:\PG\bf2-3b\bf2-3b\main.cpp(59,151): message : プレースホルダーとそのパラメーターには 5 の可変個引数が必要ですが、7 が指定されています。
+  PadInput.cpp
+  Pause.cpp
+  Player.cpp
+  Result.cpp
+  SceneManager.cpp
+  Stage.cpp
+  Title.cpp
+  コードを生成中...
+  LINK : 前回のインクリメンタル リンクで C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe

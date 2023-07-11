@@ -20,25 +20,25 @@ Stage::Stage() {
 	Sealeft_Y = 440;
 
 	// ‹ó’†°‚Ì‰æ‘œ“Ç
-	FlootingImg[0] = LoadGraph("images/Stage/Stage_Footing01.png");
-	FlootingImg[1] = LoadGraph("images/Stage/Stage_Footing02.png");
-	FlootingImg[2] = LoadGraph("images/Stage/Stage_Footing03.png");
-	FlootingImg[3] = LoadGraph("images/Stage/Stage_Footing04.png");
-	FlootingImg[4] = LoadGraph("images/Stage/Stage_Footing05.png");
-	FlootingImg[5] = LoadGraph("images/Stage/Stage_Footing06.png");
-	FlootingImg[6] = LoadGraph("images/Stage/Stage_Footing07.png");
+	FlootingImg[0] = LoadGraph("x64/Release/images/Stage/Stage_Footing01.png");
+	FlootingImg[1] = LoadGraph("x64/Release/images/Stage/Stage_Footing02.png");
+	FlootingImg[2] = LoadGraph("x64/Release/images/Stage/Stage_Footing03.png");
+	FlootingImg[3] = LoadGraph("x64/Release/images/Stage/Stage_Footing04.png");
+	FlootingImg[4] = LoadGraph("x64/Release/images/Stage/Stage_Footing05.png");
+	FlootingImg[5] = LoadGraph("x64/Release/images/Stage/Stage_Footing06.png");
+	FlootingImg[6] = LoadGraph("x64/Release/images/Stage/Stage_Footing07.png");
 	
 	// ’n–Ê‚Ì‰æ‘œ“Ç
-	LandImg[0] = LoadGraph("images/Stage/Stage_Land_left01.png");
-	LandImg[1] = LoadGraph("images/Stage/Stage_Land_left02.png");
-	LandImg[2] = LoadGraph("images/Stage/Stage_Land_right01.png");
-	LandImg[3] = LoadGraph("images/Stage/Stage_Land_right02.png");
+	LandImg[0] = LoadGraph("x64/Release/images/Stage/Stage_Land_left01.png");
+	LandImg[1] = LoadGraph("x64/Release/images/Stage/Stage_Land_left02.png");
+	LandImg[2] = LoadGraph("x64/Release/images/Stage/Stage_Land_right01.png");
+	LandImg[3] = LoadGraph("x64/Release/images/Stage/Stage_Land_right02.png");
 
 	// ŠC‚Ì‰æ‘œ“Ç
-	SeaImg = LoadGraph("images/Stage/Stage_Sea01.png");
+	SeaImg = LoadGraph("x64/Release/images/Stage/Stage_Sea01.png");
 
 	// ‰_‚Ì‰æ‘œ•ªŠ„“Ç
-	LoadDivGraph("images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
+	LoadDivGraph("x64/Release/images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
 	
 }
 
