@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="backlash.cpp" />
     <ClCompile Include="FpsController.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="main.cpp" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="backlash.h" />
     <ClInclude Include="FpsController.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="PadInput.h" />
