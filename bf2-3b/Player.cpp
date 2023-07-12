@@ -4,11 +4,7 @@
 
 Player::Player()
 {
-	LoadDivGraph("x64/Release/images/Player_Animation.png",30,8,4,64,64,Playerimg);
-	boxX=100;
-	boxX2=150;
-	boxY=100;
-	boxY2=150;
+	Image = LoadDivGraph("x64/Release/images/Player_Animation.png",30,8,4,64,64,Playerimg);
 
 }
 Player::~Player()
@@ -40,5 +36,5 @@ void Player::Draw() const
 	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
 	
 	DrawBox(boxX, boxY,boxX2, boxY2, 0xff22ff, TRUE);
-	DrawGraph(boxX, boxY, Playerimg[0], TRUE);
+	DrawGraph(boxX, boxY, Playerimg[0], true);
 }

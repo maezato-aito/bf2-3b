@@ -3,9 +3,9 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+
 Backlash::Backlash()
 {
-	player = new Player;
 	// スピードとアングルによる移動量計算
 	Speed = 5;
 	BallAngle = 0.575f;
