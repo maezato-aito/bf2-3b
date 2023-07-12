@@ -1,23 +1,8 @@
 #include "Stage.h"
 #include "DxLib.h"
+#include"common.h"
 
 Stage::Stage() {
-	// ステージ１・２の空中床座標
-	S1_Flooting_X = 180;
-	S1_Flooting_Y = 280;
-	// ステージ１・２の地面座標
-	S1_Landright_X = 480;
-	S1_Landright_Y = 410;
-	S1_Landleft_X = 0;
-	S1_Landleft_Y = 410;
-	// ステージ１の雲座標
-	S1_Cloud_X = 300;
-	S1_Cloud_Y = 100;
-	// 海の座標
-	Searight_X = 0;
-	Searight_Y = 440;
-	Sealeft_X = 320;
-	Sealeft_Y = 440;
 
 	// 空中床の画像読込
 	FlootingImg[0] = LoadGraph("x64/Release/images/Stage/Stage_Footing01.png");

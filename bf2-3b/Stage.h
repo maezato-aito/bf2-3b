@@ -17,11 +17,4 @@ public:
 
     void Stage1();      // ステージ１
 
-    int S1_Flooting_X, S1_Flooting_Y;   // ステージ１・２の空中床の座標
-    int S1_Landright_X, S1_Landright_Y;     // ステージ１～３の地面（右）の座標
-    int S1_Landleft_X, S1_Landleft_Y;     // ステージ１～３の地面（左）の座標
-    int S1_Cloud_X, S1_Cloud_Y;     // ステージ１の雲の座標
-
-    int Searight_X, Searight_Y;   // 海（右）の座標
-    int Sealeft_X, Sealeft_Y;   // 海（左）の座標
 };

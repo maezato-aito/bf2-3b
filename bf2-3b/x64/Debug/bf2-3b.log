@@ -1,5 +1,9 @@
-﻿  GameMain.cpp
-  Stage.cpp
+﻿  Backlash.cpp
+C:\PG\bf2-3b\bf2-3b\Backlash.cpp(11,14): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Backlash.cpp(21,30): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Backlash.cpp(22,34): warning C4244: '-=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  GameMain.cpp
+  Player.cpp
   Title.cpp
   main.cpp
 C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4476: 'fprintf_s' : 形式指定子に不明な種類フィールド文字 '\xe6' があります
