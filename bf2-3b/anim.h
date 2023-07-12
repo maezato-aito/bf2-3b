@@ -21,8 +21,6 @@ public:
 
     void PlayerInit();
 
-    void LoadImages();
-
     //•`‰æˆÈŠO‚Ìˆ—
     AbstractScene* Update()override;
 

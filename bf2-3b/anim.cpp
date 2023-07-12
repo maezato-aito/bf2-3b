@@ -4,7 +4,11 @@
 
 Anim::Anim()
 {
-
+	LoadDivGraph("Player_Animation.png", 32, 8, 4, 64, 64, PlayerImage);
+	AnimWork = 0;
+	AnimFlg = 0b0000;
+	UpdateTime = 0;
+	balloon = 0;
 }
 
 Anim::~Anim()
@@ -21,17 +25,11 @@ enum class STATE {
 STATE state;
 
 void Anim::PlayerInit() {
-	AnimWork = 0;
-	AnimFlg = 0b0000;
-	UpdateTime = 0;
-	balloon = 0;
-}
-void Anim::LoadImages() {
-	LoadDivGraph("Player_Animation.png", 32, 8, 4, 64, 64, PlayerImage);
+	
 }
 AbstractScene* Anim::Update()
 {
-	switch(state) {
+	/*switch (state) {
 	 case STATE::stay:
 			if (AnimFlg == 0b0000) {
 				if (balloon == 2) {
@@ -42,6 +40,7 @@ AbstractScene* Anim::Update()
 				}
 				UpdateTime = 0;
 				AnimFlg = 0b0100;
+
 			}
 	 case STATE::walk:
 		if (AnimFlg == 0b0000) {
@@ -52,7 +51,7 @@ AbstractScene* Anim::Update()
 		break;
 	 case STATE::fly:
 		 if(AnimFlg == 0b0000)
-}
+}*/
 	return this;
 }
 
