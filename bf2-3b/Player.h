@@ -5,9 +5,10 @@ class Player : public AbstractScene
 {
 private:
 	int InputX = 0, InputY = 0;
-	int boxX, boxY, boxX2, boxY2;
+	int Playerimg[30];
+	int Image;
 public:
-
+	int boxX=100, boxY=100, boxX2=150, boxY2=150;
 	// コンストラクタ
 	Player();
 	// デストラクタ

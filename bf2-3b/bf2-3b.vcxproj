@@ -151,7 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Backlash.cpp" />
     <ClCompile Include="FpsController.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="main.cpp" />
@@ -165,7 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Backlash.h" />
     <ClInclude Include="FpsController.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="PadInput.h" />
@@ -175,6 +175,7 @@
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="common.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
