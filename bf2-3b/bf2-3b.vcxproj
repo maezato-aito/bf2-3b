@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="anim.cpp" />
     <ClCompile Include="Backlash.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FpsController.cpp" />
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="anim.h" />
     <ClInclude Include="Backlash.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FpsController.h" />
