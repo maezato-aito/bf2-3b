@@ -11,9 +11,10 @@ private:
 	int BallAngle;
 	int MoveX;
 	int	MoveY;
-
+	int HitBox;
+	int x1, y1,x2,y2;
 public:
-
+	int Left, Right, North, South;
 	// コンストラクタ
 	Backlash();
 	// デストラクタ

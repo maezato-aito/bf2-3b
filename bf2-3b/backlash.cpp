@@ -6,9 +6,12 @@
 
 Backlash::Backlash()
 {
-	// スピードとアングルによる移動量計算
-	Speed = 5;
-	BallAngle = 0.575f;
+	Left = x1 + -x2;
+	Right = -x1 + x2;
+	North = y1 + -y2;
+	South = -y1 + y2;
+	HitBox = 0;
+	
 }
 
 Backlash::~Backlash()
@@ -18,11 +21,23 @@ Backlash::~Backlash()
 
 void Backlash::Update()
 {
-	BallAngle = (1 - BallAngle) + 0.5f;
-	if (BallAngle > 1) BallAngle -= 1.0f;
-	float rad = BallAngle * (float)M_PI * 2;
-	MoveX = (int)(Speed * cosf(rad));
-	MoveY = (int)(Speed * sinf(rad));
+	//上に当たったとき
+	if (HitBox == 1) {
+		/*boxX = boxX - 8;
+		boxX2 = boxX - 8;*/
+	}
+	//下に当たったとき
+	if (HitBox == 2) {
+
+	}
+	//右に当たったとき
+	if (HitBox == 3) {
+
+	}
+	//左に当たったとき
+	if (HitBox == 4) {
+
+	}
 }
 
 void Backlash::Draw()
