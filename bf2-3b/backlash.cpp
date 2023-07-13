@@ -11,9 +11,7 @@ Backlash::Backlash()
 	North = y1 + -y2;
 	South = -y1 + y2;
 	HitBox = 0;
-	// スピードとアングルによる移動量計算
-	Speed = 5;
-	BallAngle = 0.575f;
+	
 }
 
 Backlash::~Backlash()
@@ -25,7 +23,8 @@ void Backlash::Update()
 {
 	//上に当たったとき
 	if (HitBox == 1) {
-		
+		/*boxX = boxX - 8;
+		boxX2 = boxX - 8;*/
 	}
 	//下に当たったとき
 	if (HitBox == 2) {
