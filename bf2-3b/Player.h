@@ -8,7 +8,9 @@ private:
 	int Playerimg[30];
 	int Image;
 public:
-	int boxX=100, boxY=100, boxX2=150, boxY2=150;
+	int PlayerStus=0; //地面の状態を0　空中なら1をいれる
+
+	int boxX=100, boxY=100, boxX2=boxX+50, boxY2=boxY+50;
 	// コンストラクタ
 	Player();
 	// デストラクタ
