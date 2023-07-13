@@ -18,11 +18,11 @@ Backlash::~Backlash()
 
 void Backlash::Update()
 {
-	BallAngle = (1 - BallAngle) + 0.5f;
-	if (BallAngle > 1) BallAngle -= 1.0f;
-	float rad = BallAngle * (float)M_PI * 2;
+	/*boxX = (1 - boxX) + 0.5f;
+	if (boxX > 1) boxX -= 1.0f;
+	float rad = boxX * (float)M_PI * 2;
 	MoveX = (int)(Speed * cosf(rad));
-	MoveY = (int)(Speed * sinf(rad));
+	MoveY = (int)(Speed * sinf(rad));*/
 }
 
 void Backlash::Draw()
