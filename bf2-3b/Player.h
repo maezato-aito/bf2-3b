@@ -8,6 +8,7 @@ private:
 	int Playerimg[30];
 	int Image;
 public:
+
 	int PlayerStus=0; //’n–Ê‚Ìó‘Ô‚ğ0@‹ó’†‚È‚ç1‚ğ‚¢‚ê‚é
 
 	int boxX=100, boxY=100, boxX2=boxX+50, boxY2=boxY+50;

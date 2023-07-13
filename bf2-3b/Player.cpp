@@ -1,5 +1,6 @@
 #include"DxLib.h"
 #include"Player.h"
+#include"PadInput.h"
 #include"common.h"
 
 int Gvy = 0;
@@ -15,20 +16,33 @@ Player::~Player()
 }
 AbstractScene* Player::Update()
 {
-	if (boxY2 < S1_Landright_Y) {
-		// ジャンプが押されていない
-		Gvy = 3;
-		boxY += Gvy;
-		boxY2 += Gvy;
-	}
-	if ((GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_UP) != 0)
+	if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)))
 	{
-		if (boxY > 4) {
+		if (boxY > 4) 
+		{
 			Gvy = 3;
 			// 押されている
 			boxY -= Gvy;
 			boxY2 -= Gvy;
 		}
+	}
+	else if ((PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
+	{
+		if (boxY > 4)
+		{
+			Gvy = 20;
+			// 押されている
+			boxY -= Gvy;
+			boxY2 -= Gvy;
+		}
+	}
+
+	if (boxY2 < S1_Landleft_Y)
+	{
+		// ジャンプが押されていない
+		Gvy = 1;
+		boxY += Gvy;
+		boxY2 += Gvy;
 	}
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
 	if (boxX > 0) {
