@@ -11,6 +11,7 @@ private:
     int UpdateTime;
     int balloon;
     int PlayerImage[32];
+    int AnimImg;
 public:
     
     //コンストラクタ

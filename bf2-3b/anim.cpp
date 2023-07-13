@@ -1,6 +1,7 @@
 #include "Pause.h"
 #include "Anim.h"
 #include "DxLib.h"
+#include "Player.h"
 
 Anim::Anim()
 {
@@ -9,6 +10,7 @@ Anim::Anim()
 	AnimFlg = 0b0000;
 	UpdateTime = 0;
 	balloon = 0;
+	AnimImg = 1;
 }
 
 Anim::~Anim()
@@ -29,33 +31,33 @@ void Anim::PlayerInit() {
 }
 AbstractScene* Anim::Update()
 {
-	/*switch (state) {
+	switch (state) {
 	 case STATE::stay:
 			if (AnimFlg == 0b0000) {
 				if (balloon == 2) {
-					PlayerImage = 1;
+					AnimImg = 1;
 				}
 				if (balloon == 1) {
-					PlayerImage = 1 + 4;
+					AnimImg = 1 + 4;
 				}
 				UpdateTime = 0;
 				AnimFlg = 0b0100;
 
 			}
-	 case STATE::walk:
+	 /*case STATE::walk:
 		if (AnimFlg == 0b0000) {
 			if () {
 
 			}
 		}
 		break;
-	 case STATE::fly:
-		 if(AnimFlg == 0b0000)
-}*/
+		case STATE::fly:
+		 if(AnimFlg == 0b0000)*/
+}
 	return this;
 }
 
 void Anim::Draw() const
 {
-	
+	//DrawRotaGraph(boxX, boxY, 4.0f, 0, PlayerImage[AnimImg], TRUE, FALSE);
 }
