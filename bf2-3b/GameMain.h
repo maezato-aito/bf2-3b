@@ -10,7 +10,7 @@ class GameMain :
 private:
     Stage* stage;
     Player* PlayChar;
-    Enemy* EnemyChar;
+    //Enemy* EnemyChar;
 public:
     //コンストラクタ
     GameMain();
