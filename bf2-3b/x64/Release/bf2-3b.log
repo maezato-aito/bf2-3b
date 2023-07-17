@@ -1,7 +1,7 @@
-﻿  Stage.cpp
+﻿  Player.cpp
   コード生成しています。
-  2 of 47 functions ( 4.3%) were compiled, the rest were copied from previous compilation.
+  1 of 47 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Release\bf2-3b.exe

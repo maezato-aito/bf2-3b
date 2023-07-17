@@ -81,6 +81,7 @@ void Player::Draw() const
 {
 	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
 	
-	DrawBox(boxX, boxY,boxX2, boxY2+5, 0xff22ff, TRUE);
+	/*DrawBox(boxX, boxY,boxX2, boxY2+5, 0xffffff, TRUE);*/
+	DrawBox(boxX, boxY, boxX2, boxY2 + 5, 0xff2255, FALSE);
 	DrawGraph(boxX, boxY, Playerimg[0], true);
 }
