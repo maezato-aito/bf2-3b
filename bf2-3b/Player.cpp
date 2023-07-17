@@ -41,15 +41,15 @@ AbstractScene* Player::Update()
 	//地面に立っていないとき
 	if(//右地面
 		S1_Landright_X <= boxX2 && S1_Landright_X + 160 >= boxX &&
-		S1_Landright_Y <= boxY2 && S1_Landright_Y + 90 >= boxY
+		S1_Landright_Y <= boxY2 && S1_Landright_Y + 90 >= boxY  
 		||
 		//左地面
 		S1_Landleft_X <= boxX2 && S1_Landleft_X + 160 >= boxX &&
 		S1_Landleft_Y <= boxY2 && S1_Landleft_Y+90 >= boxY
 		||
 		//空中床
-		S1_Flooting_X <= boxX2 && S1_Flooting_X + 280 >= boxX &&
-		S1_Flooting_Y <= boxY2 && S1_Flooting_Y + 20 >= boxY
+		S1_Flooting_LEFT <= boxX2 && S1_Flooting_X + 280 >= boxX &&
+		S1_Flooting_LEFT <= boxY2 && S1_Flooting_Y + 20 >= boxY
 		)
 	{ }
 	else

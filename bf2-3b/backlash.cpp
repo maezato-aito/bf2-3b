@@ -6,11 +6,7 @@
 
 Backlash::Backlash()
 {
-	Left = x1 + -x2;
-	Right = -x1 + x2;
-	North = y1 + -y2;
-	South = -y1 + y2;
-	HitBox = 0;
+	
 	
 }
 
