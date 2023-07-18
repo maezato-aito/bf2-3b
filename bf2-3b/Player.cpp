@@ -7,7 +7,7 @@ int Gvy = 0;
 
 Player::Player()
 {
-	Image = LoadDivGraph("x64/Release/images/Player_Animation.png",30,8,4,64,64,Playerimg);
+	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);
 
 }
 Player::~Player()
@@ -39,19 +39,30 @@ AbstractScene* Player::Update()
 
 	
 	//地面に立っていないとき
-	if(//右地面
-		S1_Landright_X <= boxX2 && S1_Landright_X + 160 >= boxX &&
-		S1_Landright_Y <= boxY2 && S1_Landright_Y + 90 >= boxY  
-		||
-		//左地面
-		S1_Landleft_X <= boxX2 && S1_Landleft_X + 160 >= boxX &&
-		S1_Landleft_Y <= boxY2 && S1_Landleft_Y+90 >= boxY
-		||
-		//空中床
-		S1_Flooting_LEFT <= boxX2 && S1_Flooting_X + 280 >= boxX &&
-		S1_Flooting_LEFT <= boxY2 && S1_Flooting_Y + 20 >= boxY
-		)
-	{ }
+	//右地面
+	if (S1_Landright_X <= boxX2 && S1_Landright_Width >= boxX && S1_Landright_Y == boxY2) {
+		Gvy = 0;
+	}
+	// 右地面左側面
+	else if (S1_Landright_X <= boxX2 && S1_Landright_Y < boxY2) {
+		boxX = 430;
+		boxX2 = 480;
+		Gvy = 1;
+	}
+	//左地面
+	if (S1_Landleft_X <= boxX2 && S1_Landleft_Width >= boxX && S1_Landleft_Y == boxY2) {
+		Gvy = 0;
+	}
+	// 左地面右側面
+	if (S1_Landleft_Width >= boxX && S1_Landleft_Y < boxY2) {
+		boxX = 160;
+		boxX2 = 210;
+		Gvy = 1;
+	}
+	//空中床
+	if (S1_Flooting_X <= boxX2 && S1_Flooting_Width >= boxX && S1_Flooting_Y == boxY2) {
+		Gvy = 0;
+	}
 	else
 	{
 		// ジャンプが押されていない
@@ -59,6 +70,8 @@ AbstractScene* Player::Update()
 		boxY += Gvy;
 		boxY2 += Gvy;
 	}
+
+	
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
 	if (boxX > 0) {
 		if (InputX < -1)
@@ -83,5 +96,5 @@ void Player::Draw() const
 	
 	/*DrawBox(boxX, boxY,boxX2, boxY2+5, 0xffffff, TRUE);*/
 	DrawBox(boxX, boxY, boxX2, boxY2 + 5, 0xff2255, FALSE);
-	DrawGraph(boxX, boxY, Playerimg[0], true);
+	DrawGraph(boxX, boxY, Playerimg[0], TRUE);
 }
