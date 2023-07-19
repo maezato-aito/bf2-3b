@@ -2,6 +2,7 @@
 #include "AbstractScene.h"
 #include "Stage.h"
 #include"Player.h"
+#include"thunder.h"
 
 class GameMain :
     public AbstractScene
@@ -9,6 +10,7 @@ class GameMain :
 private:
     Stage* stage;
     Player* PlayChar;
+    thunder* Thunder;
 public:
     //コンストラクタ
     GameMain();
