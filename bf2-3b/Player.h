@@ -7,6 +7,8 @@ private:
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
+	int vx, vy;		//ベクトル
+	int e;			// 反発係数
 public:
 
 	int PlayerStus=0; //地面の状態を0　空中なら1をいれる
