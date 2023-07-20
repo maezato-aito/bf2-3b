@@ -11,6 +11,7 @@ private:
 	int InputX, InputY;
 	float Speed;
 	int Gvy;
+	int Enemy2_x, Enemy2_y;
 
 	// “G‚Ì\‘¢‘Ì
 	struct ENEMY
