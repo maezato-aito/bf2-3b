@@ -66,6 +66,8 @@ void Stage::Stage1() {
 	DrawGraph(S1_Landleft_X, S1_Landleft_Y, LandImg[2], TRUE);
 	DrawBox(S1_Landleft_X, S1_Landleft_Y, S1_Landleft_Width, S1_Landleft_height, 0xff2255, FALSE);
 
+	// ’n–ÊŠÔ‚Ì‹óŠÔ‚Ì“–‚½‚è”»’è
+	DrawBox(S1_Landleft_Width, S1_Landleft_height+30, S1_Landright_X, S1_Landright_Y, 0xff2255, FALSE);
 	// ‰_‚Ì•`‰æ
 	DrawGraph(S1_Cloud_X, S1_Cloud_Y, CloudImg[0], TRUE);
 }
