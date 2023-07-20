@@ -16,6 +16,7 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+	Thunder->Update();
 	PlayChar->Update();
 	return this;
 }

@@ -5,6 +5,11 @@ thunder::thunder()
 {
 	LoadDivGraph("x64/Release/images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, ThunderImg);
 	T_AnimImg = 1;
+	Time = 0;
+	pointFlg = 3;
+	countFlg = 1;
+	blinkCycle = 60;
+	AnimFlg = 0b0000;
 }
 
 thunder::~thunder()
@@ -12,23 +17,28 @@ thunder::~thunder()
 	/*DeleteGraph(Titleimage);*/
 	DeleteGraph(ThunderImg[0]);
 }
-enum class STATE {
-	white,
-	green,
-	yellow,
-};
-STATE state;
 
 void thunder::Update()
 {
-	switch (state) {
-	case STATE::white:
-
+	if (++pointFlg < 100) {
+		if (AnimFlg == 0b0000) {
+			countFlg = pointFlg % 3;
+				if (countFlg == 0) {
+					T_AnimImg = 0;
+				}
+				if (countFlg == 1) {
+					T_AnimImg = 1;
+				}
+				if (countFlg == 2) {
+					T_AnimImg = 2;
+			}
+			
+		}
 	}
 }
 
 void thunder::D_thunder()
 {
-	//DrawRotaGraph(boxX, boxY, 4.0f, 0, ThunderImg[T_AnimImg], TRUE, FALSE);
-	DrawGraph(S1_Thunder_X, S1_Thunder_Y, ThunderImg[0], TRUE);
+	DrawRotaGraph(S1_Thunder_X, S1_Thunder_Y, 0.8f, 0, ThunderImg[T_AnimImg], TRUE, FALSE);
+	//DrawGraph(S1_Thunder_X, S1_Thunder_Y, ThunderImg[0], TRUE);
 }

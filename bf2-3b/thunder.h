@@ -8,6 +8,11 @@ class thunder
 private:
 	int ThunderImg[3];	//雷画像
 	int T_AnimImg;      //雷アニメ画像
+	int Time;
+	int pointFlg;
+	int countFlg;
+	int blinkCycle;
+	int AnimFlg = 0b0000;
 public:
 
 	// コンストラクタ
