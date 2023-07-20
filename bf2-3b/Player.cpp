@@ -13,6 +13,8 @@ Player::Player()
 	vy = 0.5;
 	e = 0.8;		//反発係数
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);
+	Speed = 0;
+	playerLR = 0;
 
 }
 Player::~Player()
@@ -97,17 +99,27 @@ AbstractScene* Player::Update()
 
 	
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
+	if (InputX < -1 || 1 < InputX)
+	{
+		Speed += 0.1f;
+	}
+	else
+	{
+		Speed *= 0.93f;
+	}
 	if (playerX+64 > 0) {
-		if (InputX < -1)
+		if (InputX < -100)
 		{
-			playerX -= 6;
-			/*playerY -= 6;*/
+			playerX -= Speed;
+			playerLR = 1;
+			/*playerY += 6;*/
 		}
 	}
 	if (playerX < 640) {
-		if (InputX > 1)
+		if (InputX > 100)
 		{
-			playerX += 6;
+			playerX += Speed;
+			playerLR = 2;
 			/*playerY += 6;*/
 		}
 	}
@@ -127,7 +139,9 @@ AbstractScene* Player::Update()
 void Player::Draw() const
 {
 	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
-	
+	DrawFormatString(0, 40, 0xffffff, "Speed:%f", Speed, TRUE);
+	DrawFormatString(0, 80, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
+
 	/*DrawBox(boxX, boxY,boxX2, boxY2+5, 0xffffff, TRUE);*/
 	/*DrawBox(boxX, boxY, boxX2, boxY2 , 0xff2255, FALSE);*/
 	DrawGraph(playerX, playerY, Playerimg[0], TRUE);
