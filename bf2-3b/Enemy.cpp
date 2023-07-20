@@ -6,9 +6,9 @@
 
 
 Enemy::Enemy() {
-	LoadDivGraph("x64/Release/images/Enemy/Enemy_G_Animation.png", 18, 6, 3, 64, 64, EnemyG_img);
-	LoadDivGraph("x64/Release/images/Enemy/Enemy_P_Animation.png", 18, 6, 5, 64, 64, EnemyP_img);
-	LoadDivGraph("x64/Release/images/Enemy/Enemy_R_Animation.png", 18, 6, 5, 64, 64, EnemyR_img);
+	LoadDivGraph("images/Enemy/Enemy_G_Animation.png", 18, 6, 3, 64, 64, EnemyG_img);
+	LoadDivGraph("images/Enemy/Enemy_P_Animation.png", 18, 6, 5, 64, 64, EnemyP_img);
+	LoadDivGraph("images/Enemy/Enemy_R_Animation.png", 18, 6, 5, 64, 64, EnemyR_img);
 
 	enemy[0].x = 200;
 	enemy[0].y = 100;

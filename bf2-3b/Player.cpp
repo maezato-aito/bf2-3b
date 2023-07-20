@@ -59,6 +59,7 @@ AbstractScene* Player::Update()
 	//右地面
 	if ((S1_Landright_X-64 <= playerX && S1_Landright_Width >= playerX)&& S1_Landright_Y == playerY+64) {
 		Gvy = 0;
+		Speed *= 0.94f;
 	}
 	// 右地面左側面
 	else if (S1_Landright_X <= playerX && S1_Landright_Y < playerY+64) {
@@ -71,6 +72,7 @@ AbstractScene* Player::Update()
 	//左地面
 	else if ((S1_Landleft_X <= playerX+64 && S1_Landleft_Width >= playerX+20) && S1_Landleft_Y == playerY+64) {
 		Gvy = 0;
+		Speed *= 0.94f;
 	}
 	// 左地面右側面
 	else if (S1_Landleft_Width >= playerX+20 && S1_Landleft_Y < playerY+64) {
@@ -84,7 +86,9 @@ AbstractScene* Player::Update()
 	//空中床
 	else if ((S1_Flooting_X <= playerX && S1_Flooting_Width >= playerX+64) && S1_Flooting_Y == playerY+64) {
 		Gvy = 0;
+		Speed *= 0.94f;
 	}
+
 	else if ((S1_Flooting_X <= playerX && S1_Flooting_Width >= playerX + 64) && S1_Flooting_height == playerY+64){
 		Gvy = -5;
 		playerY += Gvy;
@@ -99,30 +103,40 @@ AbstractScene* Player::Update()
 
 	
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
-	if (InputX < -1 || 1 < InputX)
-	{
-		Speed += 0.1f;
-	}
-	else
-	{
-		Speed *= 0.93f;
-	}
 	if (playerX+64 > 0) {
-		if (InputX < -100)
+		//左移動
+		if (InputX < -1)
 		{
-			playerX -= Speed;
+			if (Speed > -3) {
+				Speed -= 0.1f;
+			}
+
 			playerLR = 1;
 			/*playerY += 6;*/
 		}
 	}
+		
 	if (playerX < 640) {
-		if (InputX > 100)
+		//右移動
+		if (InputX > 1)
 		{
-			playerX += Speed;
+			if (Speed < 3) {
+				Speed += 0.1f;
+			}
 			playerLR = 2;
 			/*playerY += 6;*/
 		}
 	}
+
+	if (InputX == 0) {
+		//慣性の作成
+		Speed *= 0.99f;
+	}
+	
+	//プレイヤーの横移動
+	playerX += Speed;
+
+
 	if (playerX < -64)	// 左から右
 	{
 		playerX = 576;
@@ -139,11 +153,11 @@ AbstractScene* Player::Update()
 void Player::Draw() const
 {
 	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
-	DrawFormatString(0, 40, 0xffffff, "Speed:%f", Speed, TRUE);
+	DrawFormatString(0, 40, 0xffffff, "Speed:%5.2f", Speed, TRUE);
 	DrawFormatString(0, 80, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
 
 	/*DrawBox(boxX, boxY,boxX2, boxY2+5, 0xffffff, TRUE);*/
-	/*DrawBox(boxX, boxY, boxX2, boxY2 , 0xff2255, FALSE);*/
+	/*DrawBox(playerX, playerY, playerX+50, playerY+50, 0xff2255, FALSE);*/
 	DrawGraph(playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(640 + playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(playerX - 640, playerY, Playerimg[0], TRUE);
