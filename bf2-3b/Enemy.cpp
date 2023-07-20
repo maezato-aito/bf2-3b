@@ -128,5 +128,5 @@ void Enemy::Draw() const {
 
 	DrawGraph(640 + enemy[0].x, enemy[0].y, EnemyG_img[8], TRUE);
 	DrawGraph(enemy[0].x - 640, enemy[0].y, EnemyG_img[8], TRUE);	// 画面端ワープ用
-	DrawFormatString(320, 0, 0xffffff, "%f", enemy[0].x);
+
 }
