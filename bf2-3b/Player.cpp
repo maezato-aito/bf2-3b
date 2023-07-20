@@ -111,6 +111,16 @@ AbstractScene* Player::Update()
 			/*playerY += 6;*/
 		}
 	}
+	if (playerX < -64)	// ç∂Ç©ÇÁâE
+	{
+		playerX = 576;
+
+	}
+	if (playerX > 620)	// âEÇ©ÇÁç∂
+	{
+		playerX = -10;
+
+	}
 	return this;
 }
 
@@ -121,4 +131,6 @@ void Player::Draw() const
 	/*DrawBox(boxX, boxY,boxX2, boxY2+5, 0xffffff, TRUE);*/
 	/*DrawBox(boxX, boxY, boxX2, boxY2 , 0xff2255, FALSE);*/
 	DrawGraph(playerX, playerY, Playerimg[0], TRUE);
+	DrawGraph(640 + playerX, playerY, Playerimg[0], TRUE);
+	DrawGraph(playerX - 640, playerY, Playerimg[0], TRUE);
 }
