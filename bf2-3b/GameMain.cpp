@@ -5,6 +5,7 @@ GameMain::GameMain()
 	stage = new Stage();
 	PlayChar = new Player();
 	EnemyChar = new Enemy();
+	Thunder = new thunder();
 }
 
 GameMain::~GameMain()
@@ -12,10 +13,12 @@ GameMain::~GameMain()
 	delete stage;
 	delete PlayChar;
 	delete EnemyChar;
+	delete Thunder;
 }
 
 AbstractScene* GameMain::Update()
 {
+	Thunder->Update();
 	PlayChar->Update();
 	EnemyChar->Update();
 	return this;
@@ -23,7 +26,7 @@ AbstractScene* GameMain::Update()
 
 void GameMain::Draw() const
 {
-	
+	Thunder->D_thunder();
 	stage->Stage1();
 	PlayChar->Draw();
 	EnemyChar->Draw();
