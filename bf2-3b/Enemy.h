@@ -11,7 +11,7 @@ private:
 	int InputX, InputY;
 	float Speed;
 	int Gvy;
-	
+
 	// 敵の構造体
 	struct ENEMY
 	{
@@ -36,4 +36,3 @@ public:
 
 	static int EnemyScore[3];	// 敵のスコア
 };
-

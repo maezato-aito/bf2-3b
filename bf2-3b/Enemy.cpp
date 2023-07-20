@@ -9,14 +9,15 @@ Enemy::Enemy() {
 	LoadDivGraph("x64/Release/images/Enemy/Enemy_G_Animation.png", 18, 6, 3, 64, 64, EnemyG_img);
 	LoadDivGraph("x64/Release/images/Enemy/Enemy_P_Animation.png", 18, 6, 5, 64, 64, EnemyP_img);
 	LoadDivGraph("x64/Release/images/Enemy/Enemy_R_Animation.png", 18, 6, 5, 64, 64, EnemyR_img);
-	
 
+	enemy[0].x = 200;
+	enemy[0].y = 100;
 	Gvy = 0;
 	Speed = 0;
 }
 
 Enemy::~Enemy() {
-	
+
 }
 
 void Enemy::Update() {
@@ -32,7 +33,7 @@ void Enemy::Update() {
 			enemy[0].h -= Speed;
 		}
 	}
-	else if(Speed > 0.01f) {
+	else if (Speed > 0.01f) {
 		Speed -= 0.5f;
 		enemy[0].y += Speed;
 		enemy[0].h += Speed;
@@ -42,18 +43,18 @@ void Enemy::Update() {
 		Gvy = 1;
 		enemy[0].y += Gvy;
 		enemy[0].h += Gvy;
-	/*	Speed = 0;*/
+		/*	Speed = 0;*/
 	}
-	
+
 
 	if ((PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
 	{
 		if (enemy[0].y > 4)
 		{
-			Gvy = 1*2;
+			Gvy = 1 * 2;
 			// ‰Ÿ‚³‚ê‚Ä‚¢‚é
-			enemy[0].y -= Gvy*10;
-			enemy[0].h -= Gvy*10;
+			enemy[0].y -= Gvy * 10;
+			enemy[0].h -= Gvy * 10;
 		}
 	}
 
@@ -93,7 +94,7 @@ void Enemy::Update() {
 		enemy[0].x += 6;
 		enemy[0].w += 6;
 	}
-	
+
 }
 
 void Enemy::Draw() const {
