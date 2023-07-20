@@ -1,5 +1,7 @@
 #pragma once
 
+#define SCREEN_WIDTH ()
+#define SCREEN_HEIGHT ()
 // ステージ１・２の空中床座標
 #define S1_Flooting_X (180)
 #define S1_Flooting_Y (280)

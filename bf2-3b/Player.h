@@ -4,6 +4,7 @@
 class Player : public AbstractScene
 {
 private:
+	int playerX, playerY;
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
