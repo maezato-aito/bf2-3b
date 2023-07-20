@@ -1,5 +1,5 @@
 ﻿  Player.cpp
-C:\PG\bf2-3b\bf2-3b\Player.cpp(10,7): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(11,7): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(12,6): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(12,7): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(13,7): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(14,6): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe
