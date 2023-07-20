@@ -4,17 +4,20 @@
 class Player : public AbstractScene
 {
 private:
-	int playerX, playerY;
+	float playerX, playerY;
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
-	int vx, vy;		//ベクトル
-	int e;			// 反発係数
+	float vx, vy;		//ベクトル
+	float e;			// 反発係数
 public:
 
 	int PlayerStus=0; //地面の状態を0　空中なら1をいれる
 
-	int boxX=100, boxY=100, boxX2=boxX+50, boxY2=boxY+50;
+	float boxX=100, boxY=100, boxX2=boxX+50, boxY2=boxY+50;
+
+	float Speed;
+	int playerLR;
 	// コンストラクタ
 	Player();
 	// デストラクタ
