@@ -62,10 +62,11 @@ AbstractScene* Player::Update()
 		Speed *= 0.94f;
 	}
 	// 右地面左側面
-	else if (S1_Landright_X <= playerX && S1_Landright_Y < playerY+64) {
+	else if (S1_Landright_X <= playerX+40 && S1_Landright_Y < playerY+64) {
 		/*vx -= vx*e;*/
 		Gvy = 1;
-		playerX = 420;
+		Speed *= -e;
+		playerX = 380;
 		playerY += Gvy;
 
 	}
@@ -77,10 +78,9 @@ AbstractScene* Player::Update()
 	// 左地面右側面
 	else if (S1_Landleft_Width >= playerX+20 && S1_Landleft_Y < playerY+64) {
 		Gvy = 1;
-		playerX *= 0.8f;
-		/*boxX2 = 210;*/
+		Speed *= -e;
+		playerX = 160;
 		playerY += Gvy;
-		/*boxY2 += Gvy;*/
 		
 	}
 	//空中床
