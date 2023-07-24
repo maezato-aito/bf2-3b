@@ -9,8 +9,6 @@ Player::Player()
 {
 	playerX = 100;
 	playerY = 340;
-	vx = 0.5;
-	vy = 0.5;
 	e = 0.8;		//反発係数
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);
 	Speed = 0;
@@ -32,12 +30,13 @@ AbstractScene* Player::Update()
 			playerY -= Gvy;
 			/*boxY2 -= Gvy;*/
 		}
-		else if (playerY < 0) {
-			vy = -vy * e;
-			playerY *= vy;
+		else if (playerY < 100) {
+			Gvy *= e;
+			playerY -= Gvy;
+
 		}
 	}
-	else if ((PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
+	if ((PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
 	{
 		if (boxY > 0)
 		{
@@ -46,29 +45,28 @@ AbstractScene* Player::Update()
 			playerY -= Gvy;
 			/*boxY2 -= Gvy;*/
 		}
-		else if (playerY == 0) {
-			vy = -vy * e;
-			playerY *= vy;
-		}
-		
-		
 	}
 
 	
 	//地面に立っていないとき
 	//右地面
-	if ((S1_Landright_X-64 <= playerX && S1_Landright_Width >= playerX)&& S1_Landright_Y == playerY+64) {
+	if ((S1_Landright_X <= playerX+40 && S1_Landright_Width >= playerX)&& S1_Landright_Y == playerY+64) {
 		Gvy = 0;
 		Speed *= 0.94f;
 	}
 	// 右地面左側面
 	else if (S1_Landright_X <= playerX+40 && S1_Landright_Y < playerY+64) {
-		/*vx -= vx*e;*/
-		Gvy = 1;
-		Speed *= -e;
-		playerX = 380;
-		playerY += Gvy;
-
+		if (Speed > 2) {
+			Gvy = 1;
+			Speed *= -e;	// 反発係数
+			playerX = 436;
+			playerY += Gvy;
+		}
+		else if (Speed < 2) {
+			Gvy = 1;
+			playerX = 445;
+			playerY += Gvy;
+		}
 	}
 	//左地面
 	else if ((S1_Landleft_X <= playerX+64 && S1_Landleft_Width >= playerX+20) && S1_Landleft_Y == playerY+64) {
@@ -77,11 +75,17 @@ AbstractScene* Player::Update()
 	}
 	// 左地面右側面
 	else if (S1_Landleft_Width >= playerX+20 && S1_Landleft_Y < playerY+64) {
-		Gvy = 1;
-		Speed *= -e;
-		playerX = 160;
-		playerY += Gvy;
-		
+		if (Speed < -2) {
+			Gvy = 1;
+			Speed *= -e;		// 反発係数
+			playerX = 160;
+			playerY += Gvy;
+		}
+		else if (Speed > -2) {
+			Gvy = 1;
+			playerX = 140;
+			playerY += Gvy;
+		}
 	}
 	//空中床
 	else if ((S1_Flooting_X <= playerX && S1_Flooting_Width >= playerX+64) && S1_Flooting_Y == playerY+64) {
@@ -90,7 +94,8 @@ AbstractScene* Player::Update()
 	}
 
 	else if ((S1_Flooting_X <= playerX && S1_Flooting_Width >= playerX + 64) && S1_Flooting_height == playerY+64){
-		Gvy = -5;
+		Gvy = 1;
+
 		playerY += Gvy;
 	}
 	else
@@ -161,4 +166,5 @@ void Player::Draw() const
 	DrawGraph(playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(640 + playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(playerX - 640, playerY, Playerimg[0], TRUE);
+
 }

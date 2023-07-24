@@ -6,7 +6,9 @@ GameMain::GameMain()
 	PlayChar = new Player();
 	EnemyChar = new Enemy();
 	Thunder = new thunder();
+	fish = new Fish();
 }
+
 
 GameMain::~GameMain()
 {
@@ -30,6 +32,7 @@ void GameMain::Draw() const
 	stage->Stage1();
 	PlayChar->Draw();
 	EnemyChar->Draw();
+	fish->Draw();
 	DrawFormatString(640, 360, 0xffffff, "GameMain");
 }
 
