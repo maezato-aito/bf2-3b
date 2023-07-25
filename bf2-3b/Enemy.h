@@ -9,7 +9,7 @@ private:
 	int EnemyR_img[18];
 
 	int InputX, InputY;
-	float Speed;
+	float SpeedX, SpeedY;
 	int Gvy;
 
 	int Score_g[3] = { 500, 1000, 750 };
@@ -21,6 +21,8 @@ private:
 	float Count;
 	int Counter;
 	int AnimImg;
+
+	
 
 	// “G‚Ì\‘¢‘Ì
 	struct ENEMY
@@ -46,4 +48,5 @@ public:
 	void EnemyStart();
 
 	static int EnemyScore[3];	// “G‚ÌƒXƒRƒA
+	static int eBoxX, eBoxY, eBoxX2, eBoxY2;	// “G‚Ì“–‚½‚è”»’è
 };
