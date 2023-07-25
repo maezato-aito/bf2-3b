@@ -1,14 +1,19 @@
-﻿  Player.cpp
-C:\PG\bf2-3b\bf2-3b\Player.cpp(14,9): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(161,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(161,12): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(162,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(162,16): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(163,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(163,20): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+﻿  Enemy.cpp
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(78,16): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(128,32): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(128,20): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(130,38): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(130,16): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(131,38): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(131,23): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   コード生成しています。
-  1 of 57 functions ( 1.8%) were compiled, the rest were copied from previous compilation.
+  2 of 58 functions ( 3.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
+FpsController.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+PadInput.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+Pause.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+Result.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+SceneManager.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Release\bf2-3b.exe

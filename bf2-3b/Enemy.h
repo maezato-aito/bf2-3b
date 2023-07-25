@@ -11,7 +11,16 @@ private:
 	int InputX, InputY;
 	float Speed;
 	int Gvy;
-	int Enemy2_x, Enemy2_y;
+
+	int Score_g[3] = { 500, 1000, 750 };
+	int Score_p[3] = { 750, 1500, 1000 };
+	int Score_r[3] = { 1000, 2000, 1500 };
+
+	int PointFlg;
+	int AnimFlg;
+	float Count;
+	int Counter;
+	int AnimImg;
 
 	// 敵の構造体
 	struct ENEMY
@@ -24,7 +33,6 @@ private:
 		int score;			// スコア加算ポイント
 	};
 	struct ENEMY enemy[3];
-
 public:
 	// コンストラクタ
 	Enemy();
@@ -34,6 +42,8 @@ public:
 	void Update();
 	//描画処理
 	void Draw() const;
+
+	void EnemyStart();
 
 	static int EnemyScore[3];	// 敵のスコア
 };
