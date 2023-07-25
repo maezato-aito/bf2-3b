@@ -3,13 +3,19 @@
 #include"PadInput.h"
 #include"common.h"
 
- 
+ int Player::pBoxX;
+ int Player::pBoxY;
+ int Player::pBoxX2;
+ int Player::pBoxY2;
+
+ int Player::bBoxX;
+ int Player::bBoxY;
+ int Player::bBoxX2;
+ int Player::bBoxY2;
 
 Player::Player()
 {
-	
-
-
+	Gvy = 0;
 	playerX = 100;
 	playerY = 340;
 	vx = 0.5;

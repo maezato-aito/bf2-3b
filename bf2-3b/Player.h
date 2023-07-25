@@ -15,16 +15,16 @@ public:
 	int PlayerStus=0; //地面の状態を0　空中なら1をいれる
 
 	//プレイヤーコリジョン
-	int pBoxX;
-	int pBoxY;
-	int pBoxX2;
-	int pBoxY2;
+	static int pBoxX;
+	static int pBoxY;
+	static int pBoxX2;
+	static int pBoxY2;
 
 	//風船コリジョン
-	int bBoxX;
-	int bBoxY;
-	int bBoxX2;
-	int bBoxY2;
+	static int bBoxX;
+	static int bBoxY;
+	static int bBoxX2;
+	static int bBoxY2;
 
 	float Gvy;
 	float Speed;
