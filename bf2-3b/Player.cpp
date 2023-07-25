@@ -3,6 +3,7 @@
 #include"PadInput.h"
 #include"common.h"
 
+
 int Gvy = 0;
 
 Player::Player()
@@ -23,6 +24,11 @@ Player::~Player()
 }
 AbstractScene* Player::Update()
 {
+	pBoxX = playerX + 6;
+	pBoxY = playerY + 12;
+	pBoxX2 = pBoxX + 50;
+	pBoxY2 = pBoxY + 52;
+
 	if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)))
 	{
 		if (playerY > 0) 
@@ -39,7 +45,7 @@ AbstractScene* Player::Update()
 	}
 	else if ((PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
 	{
-		if (boxY > 0)
+		if (pBoxY > 0)
 		{
 			Gvy = 20;
 			// 押されている
@@ -157,8 +163,8 @@ void Player::Draw() const
 	DrawFormatString(0, 80, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
 
 	/*DrawBox(boxX, boxY,boxX2, boxY2+5, 0xffffff, TRUE);*/
-	/*DrawBox(playerX, playerY, playerX+50, playerY+50, 0xff2255, FALSE);*/
-	DrawGraph(playerX, playerY, Playerimg[0], TRUE);
+	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);
+	DrawGraph(playerX, playerY, Playerimg[1], TRUE);
 	DrawGraph(640 + playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(playerX - 640, playerY, Playerimg[0], TRUE);
 }
