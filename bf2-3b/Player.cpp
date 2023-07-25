@@ -3,17 +3,19 @@
 #include"PadInput.h"
 #include"common.h"
 
-
-int Gvy = 0;
+ 
 
 Player::Player()
 {
+	
+
+
 	playerX = 100;
 	playerY = 340;
 	vx = 0.5;
 	vy = 0.5;
 	e = 0.8;		//反発係数
-	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);
+	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
 	Speed = 0;
 	playerLR = 0;
 
@@ -24,10 +26,19 @@ Player::~Player()
 }
 AbstractScene* Player::Update()
 {
+	//風船のボックス情報
+	bBoxX = playerX + 6;
+	bBoxY = playerY + 12;
+	bBoxX2 = bBoxX + 50;
+	bBoxY2 = bBoxY + 22;
+
+	//プレイヤーのボックス情報
 	pBoxX = playerX + 6;
-	pBoxY = playerY + 12;
+	pBoxY = playerY + 32;
 	pBoxX2 = pBoxX + 50;
-	pBoxY2 = pBoxY + 52;
+	pBoxY2 = pBoxY + 32;
+
+
 
 	if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)))
 	{
@@ -163,7 +174,8 @@ void Player::Draw() const
 	DrawFormatString(0, 80, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
 
 	/*DrawBox(boxX, boxY,boxX2, boxY2+5, 0xffffff, TRUE);*/
-	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);
+	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
+	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
 	DrawGraph(playerX, playerY, Playerimg[1], TRUE);
 	DrawGraph(640 + playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(playerX - 640, playerY, Playerimg[0], TRUE);

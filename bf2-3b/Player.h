@@ -20,6 +20,13 @@ public:
 	int pBoxX2;
 	int pBoxY2;
 
+	//風船コリジョン
+	int bBoxX;
+	int bBoxY;
+	int bBoxX2;
+	int bBoxY2;
+
+	float Gvy;
 	float Speed;
 	int playerLR;
 	// コンストラクタ
