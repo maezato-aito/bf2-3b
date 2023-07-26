@@ -22,7 +22,8 @@ private:
 	int Counter;
 	int AnimImg;
 
-	
+	int Pr_y;
+	int De_y;
 
 	// “G‚Ì\‘¢‘Ì
 	struct ENEMY
@@ -46,7 +47,11 @@ public:
 	void Draw() const;
 
 	void EnemyStart();
+	void Parachute();
+	void Death();
 
 	static int EnemyScore[3];	// “G‚ÌƒXƒRƒA
+
 	static int eBoxX, eBoxY, eBoxX2, eBoxY2;	// “G‚Ì“–‚½‚è”»’è
+	static int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2;	// “G‚Ì•—‘D‚Ì“–‚½‚è”»’è
 };
