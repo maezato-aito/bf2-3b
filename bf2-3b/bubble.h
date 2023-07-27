@@ -24,7 +24,17 @@ public:
 	float bX1;
 	float bY1;
 
+	//画像
 	int bubbleImg[4];
+
+	//アニメーション用カウンタ
+	int bubbleC;
+	int bubbleAC;
+
+	//泡の種類の順番
+	int bAv;
+
+	int b;
 	//コンストラクタ
 	Bubble();
 	//デストラクタ
