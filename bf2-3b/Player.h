@@ -12,7 +12,7 @@ private:
 	float e;			// 反発係数
 public:
 
-	int PlayerStus=0; //地面の状態を0　空中なら1をいれる
+	int PlayerFlg=0; //地面の状態を0　空中なら1をいれる
 
 	//プレイヤーコリジョン
 	static int pBoxX;
