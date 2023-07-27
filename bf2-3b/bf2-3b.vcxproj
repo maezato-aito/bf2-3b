@@ -154,6 +154,7 @@
     <ClCompile Include="anim.cpp" />
     <ClCompile Include="bubble.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="fish.cpp" />
     <ClCompile Include="FpsController.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="main.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="anim.h" />
     <ClInclude Include="bubble.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="fish.h" />
     <ClInclude Include="FpsController.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="PadInput.h" />
