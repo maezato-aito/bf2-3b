@@ -54,7 +54,7 @@ void thunder::Circle()
 {
 
 	if (once == false) {
-		ranDirection = 2;//GetRand(3);
+		ranDirection = GetRand(3);
 
 		switch (ranDirection) {
 		case 0: // éŒÇﬂâEè„
