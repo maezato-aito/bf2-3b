@@ -16,6 +16,8 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+	Thunder->Circle();
+	Thunder->Anim();
 	Thunder->Update();
 	PlayChar->Update();
 	return this;
