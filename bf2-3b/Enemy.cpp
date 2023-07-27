@@ -14,6 +14,13 @@ int Enemy::ebBoxY;
 int Enemy::ebBoxX2;
 int Enemy::ebBoxY2;
 
+int Enemy::St_x;
+int Enemy::St_y;
+int Enemy::Pr_x;
+int Enemy::Pr_y;
+int Enemy::De_x;
+int Enemy::De_y;
+
 
 Enemy::Enemy() {
 	LoadDivGraph("images/Enemy/Enemy_G_Animation.png", 18, 6, 3, 64, 64, EnemyG_img);
