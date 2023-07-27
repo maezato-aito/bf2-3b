@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="anim.cpp" />
+    <ClCompile Include="bubble.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FpsController.cpp" />
     <ClCompile Include="GameMain.cpp" />
