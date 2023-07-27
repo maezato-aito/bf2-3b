@@ -4,7 +4,7 @@
 #include"Player.h"
 #include "Enemy.h"
 #include "thunder.h"
-
+#include"bubble.h"
 class GameMain :
     public AbstractScene
 {
@@ -13,6 +13,7 @@ private:
     Player* PlayChar;
     Enemy* EnemyChar;
     thunder* Thunder;
+    Bubble* bubble;
 public:
     //コンストラクタ
     GameMain();
