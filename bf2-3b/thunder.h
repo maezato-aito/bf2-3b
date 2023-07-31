@@ -6,13 +6,26 @@
 class thunder
 {
 private:
-	int ThunderImg[3];	//雷画像
-	int T_AnimImg;      //雷アニメ画像
+	int CloudImg[3];	//雷画像
+	int C_AnimImg;      //雷アニメ画像
 	int Time;
 	int pointFlg;
 	int countFlg;
 	int blinkCycle;
 	int AnimFlg = 0b0000;
+	int centerX;
+	int centerY;
+	int ranDirection;
+	int incFlg;
+	int moveAmount;
+	int x;
+	int y;
+	bool once;
+	int A_Flg;
+	int C_Flg;
+	int A_ThunderImg;
+	int ThunderImg[6];
+	int A_nimFlg = 0b0000;
 public:
 
 	// コンストラクタ
@@ -22,6 +35,10 @@ public:
 
 	//描画以外の処理
 	void Update();
+
+	void Circle();
+
+	void Anim();
 
 	//描画処理
 	void D_thunder();
