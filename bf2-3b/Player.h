@@ -8,12 +8,13 @@ private:
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
+	
 	float vx, vy;		//ベクトル
 	float e;			// 反発係数
 public:
 
 	int PlayerFlg=0; //地面の状態を0　空中なら1をいれる
-
+	int HitFlg = 0;	//横に触れていたら0 触れていなかったら１
 	//プレイヤーコリジョン
 	static int pBoxX;
 	static int pBoxY;

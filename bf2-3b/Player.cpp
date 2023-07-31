@@ -21,7 +21,7 @@ Player::Player()
 	playerY = 340;
 
 	PlayerFlg = 1;
-
+	HitFlg = 1;		
 	vx = 0.5;
 	vy = 0.5;
 
@@ -139,6 +139,7 @@ AbstractScene* Player::Update()
 			}
 			Gvy = 0.0f;
 			PlayerFlg = 0;
+			HitFlg = 0;
 		}
 
 		//地面に立っていなければ
@@ -180,7 +181,31 @@ AbstractScene* Player::Update()
 			}
 			Gvy = 0.98f;
 			PlayerFlg = 1;
+			HitFlg = 0;
 		}
+	//地面左壁
+	if (S1_Landleft_X <= pBoxX2 &&  S1_Landleft_Width >= pBoxX && S1_Landleft_height >= pBoxY
+		&& S1_Landleft_Y+1 < pBoxY2) {
+		HitFlg = 1;
+	}
+	// 地面右壁
+	if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX && S1_Landright_height >= pBoxY &&
+		S1_Landright_Y + 1 < pBoxY2) {
+		HitFlg = 2;
+	}
+	// 反発
+	// 左側に触れたとき
+	if (HitFlg == 1 && Speed < -0.5) {
+		Speed *= -0.8;
+	}
+	// 右側に触れたとき
+	if (HitFlg == 2 && Speed > 0.5) {
+		Speed *= -0.8;
+	}
+	if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
+		Gvy = 0.98f;
+		Speed *= 0.8;
+	}
 	//地面に立っているか
 	///*if (pBoxY2 > S1_Landleft_Y)
 	//{
@@ -263,6 +288,7 @@ void Player::Draw() const
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
+	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
