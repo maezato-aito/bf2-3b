@@ -21,6 +21,8 @@ int Enemy::Pr_y;
 int Enemy::De_x;
 int Enemy::De_y;
 
+int Enemy::Score;
+
 
 Enemy::Enemy() {
 	LoadDivGraph("images/Enemy/Enemy_G_Animation.png", 18, 6, 3, 64, 64, EnemyG_img);
@@ -68,8 +70,6 @@ void Enemy::Update() {
 	{
 		if (enemy[0].y > 4 && SpeedY <= 3)
 		{
-		/*	Gvy = 1;*/
-			// 押されている
 			SpeedY += 0.03f;
 			enemy[0].y -= SpeedY;
 		}
@@ -84,28 +84,30 @@ void Enemy::Update() {
 
 	}
 	
-
-	if (Player::pBoxX2 < eBoxX && enemy[0].flg == 2)	// 左移動
+	// 左移動
+	if (Player::pBoxX2 < eBoxX && enemy[0].flg == 2)
 	{
 		if (SpeedX > -1) {
 			SpeedX -= 0.1f;
 		}
 	}
 	else if (Player::pBoxX2 <= eBoxX && enemy[0].flg == 2) {
+		// 回避
 		if (SpeedX > -2) {
 			SpeedX -= 0.4f;
 			enemy[0].y -= SpeedY;
 		}
 	}
 
-
-	if (Player::pBoxX > eBoxX2 && enemy[0].flg == 2)		// 右移動
+	// 右移動
+	if (Player::pBoxX > eBoxX2 && enemy[0].flg == 2)
 	{
 		if (SpeedX < 1) {
 			SpeedX += 0.1f;
 		}
 	}
 	else if (Player::pBoxX >= eBoxX2 && enemy[0].flg == 2) {
+		// 回避
 		if (SpeedX > -2) {
 			SpeedX -= 0.4f;
 			enemy[0].y -= SpeedY;
@@ -159,7 +161,7 @@ void Enemy::Update() {
 	}
 
 	//空中床
-	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_Width >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
+	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_Width >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && S1_Flooting_Y + 20 >= enemy[0].y && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
 		if (enemy[0].flg == 3) {
@@ -177,6 +179,11 @@ void Enemy::Update() {
 		/*	Speed = 0;*/
 	}
 
+	// 海
+	if (Searight_Y <= enemy[0].y) {
+		enemy[0].flg = 0;
+	}
+
 	// 画面端ワープ
 	if (enemy[0].x < -64)	// 左から右
 	{
@@ -192,13 +199,35 @@ void Enemy::Update() {
 	// 風船を割られたとき
 	if (Player::pBoxX < ebBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < ebBoxY2 && Player::pBoxY2 > ebBoxY && enemy[0].flg == 2/* && ebBoxY && enemy[0].flg != 4*/) {
 		enemy[0].flg = 3;
-		Pr_y = eBoxX;
+		Pr_x = eBoxX;
+		Pr_y = eBoxY;
+		if (enemy[0].type == 0) {
+			Score += EnemyPScore[0];
+		}
+		else if (enemy[0].type == 1) {
+			Score += EnemyGScore[0];
+		}
+		else {
+			Score += EnemyRScore[0];
+		}
+		
 		Parachute();
 	}
 	
 	// 死亡判定
 	if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY && enemy[0].flg == 1) {
 		enemy[0].flg = 4;
+		De_x = enemy[0].x;
+		De_y = enemy[0].y;
+		if (enemy[0].type == 0) {
+			Score += EnemyPScore[2];
+		}
+		else if (enemy[0].type == 1) {
+			Score += EnemyGScore[2];
+		}
+		else {
+			Score += EnemyRScore[2];
+		}
 		Death();
 	}
 
@@ -219,9 +248,13 @@ void Enemy::Draw() const {
 		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
 		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
 
-	/*	if (enemy[0].flg == 3) {
-			DrawFormatString(enemy[0].x + 50, enemy[0].y - 10, 0xff2255, "%d", Score_p[0], TRUE);
-		}*/
+		if (enemy[0].flg == 3) {
+			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyPScore[0], TRUE);
+		}
+	
+		if (enemy[0].flg == 4) {
+			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[2], TRUE);
+		}
 
 	}
 
@@ -236,6 +269,15 @@ void Enemy::Draw() const {
 		// 当たり判定の範囲
 		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
 		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
+
+		if (enemy[0].flg == 3) {
+			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyGScore[0], TRUE);
+		}
+
+		if (enemy[0].flg == 4) {
+			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyGScore[2], TRUE);
+		}
+
 	}
 
 	// 敵（赤）の描画
@@ -249,6 +291,15 @@ void Enemy::Draw() const {
 		// 当たり判定の範囲
 		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
 		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
+
+		if (enemy[0].flg == 3) {
+			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyRScore[0], TRUE);
+		}
+
+		if (enemy[0].flg == 4) {
+			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyRScore[2], TRUE);
+		}
+
 	}
 
 	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
@@ -355,11 +406,11 @@ void Enemy::Parachute() {
 		Death();
 	}*/
 
-	if (Pr_y + 5 > enemy[0].x) {
+	if (Pr_x + 5 > enemy[0].x) {
 		enemy[0].x += SpeedX;
 	}
 	
-	if (Pr_y - 5 < enemy[0].x) {
+	if (Pr_x - 5 < enemy[0].x) {
 		enemy[0].x -= SpeedX;
 	}	
 }
@@ -368,7 +419,7 @@ void Enemy::Parachute() {
 void Enemy::Death() {
 	AnimImg = 13;
 	SpeedX = 0;
-	De_y = enemy[0].y;
+	
 
 	if (enemy[0].y - 150 < De_y) {
 		enemy[0].y -= SpeedY;

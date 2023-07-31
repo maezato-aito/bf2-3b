@@ -8,6 +8,7 @@ GameMain::GameMain()
 	Thunder = new thunder();
 	bubble = new Bubble(); 
 	fish = new Fish(); 
+	ui = new UI();
 }
 
 GameMain::~GameMain()
@@ -18,6 +19,7 @@ GameMain::~GameMain()
 	delete Thunder;
 	delete bubble;
 	delete fish;
+	delete ui;
 }
 
 AbstractScene* GameMain::Update()
@@ -29,6 +31,7 @@ AbstractScene* GameMain::Update()
 	EnemyChar->Update();
 	bubble->Update();
 	fish->Update();
+	ui->Update();
 	return this;
 }
 
@@ -40,6 +43,7 @@ void GameMain::Draw() const
 	EnemyChar->Draw();
 	bubble->Draw();
 	fish->Draw();
+	ui->Draw();
 	DrawFormatString(640, 360, 0xffffff, "GameMain");
 }
 

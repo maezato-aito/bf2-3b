@@ -14,6 +14,10 @@ private:
 
 	int eSpeed[3] = { 1000, 2000, 1500 };
 
+	int EnemyPScore[3] = { 500, 1000, 750 };	// 敵のスコア
+	int EnemyGScore[3] = { 750, 1500, 1000 };	// 敵のスコア
+	int EnemyRScore[3] = { 1000, 2000, 1500 };	// 敵のスコア
+
 	int Lv;
 
 	int PointFlg;
@@ -56,6 +60,5 @@ public:
 	static int eBoxX, eBoxY, eBoxX2, eBoxY2;		// 敵の当たり判定
 	static int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2;	// 敵の風船の当たり判定
 
-	static int EnemyScore[3];	// 敵のスコア
-
+	static int Score;
 };
