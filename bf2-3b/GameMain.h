@@ -4,8 +4,8 @@
 #include"Player.h"
 #include "Enemy.h"
 #include "thunder.h"
-#include "Fish.h"
-
+#include"bubble.h"
+#include"fish.h"
 class GameMain :
     public AbstractScene
 {
@@ -14,6 +14,7 @@ private:
     Player* PlayChar;
     Enemy* EnemyChar;
     thunder* Thunder;
+    Bubble* bubble;
     Fish* fish;
 public:
     //コンストラクタ

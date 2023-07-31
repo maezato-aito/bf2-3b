@@ -8,13 +8,25 @@ private:
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
+	float vx, vy;		//ベクトル
 	float e;			// 反発係数
 public:
 
-	int PlayerStus = 0; //地面の状態を0　空中なら1をいれる
+	int PlayerFlg=0; //地面の状態を0　空中なら1をいれる
 
-	float boxX = 100, boxY = 100, boxX2 = boxX + 50, boxY2 = boxY + 50;
+	//プレイヤーコリジョン
+	static int pBoxX;
+	static int pBoxY;
+	static int pBoxX2;
+	static int pBoxY2;
 
+	//風船コリジョン
+	static int bBoxX;
+	static int bBoxY;
+	static int bBoxX2;
+	static int bBoxY2;
+
+	float Gvy;
 	float Speed;
 	int playerLR;
 	// コンストラクタ
