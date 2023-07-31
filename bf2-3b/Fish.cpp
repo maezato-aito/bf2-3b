@@ -1,24 +1,24 @@
-#include "Fish.h"
+#include"fish.h"
 #include"DxLib.h"
-#include"common.h"
 
 Fish::Fish()
 {
-	fishX = 160;
-	fishY = 300;
-	LoadDivGraph("images/Enemy/Enemy_FishAnimation.png", 32, 8, 4, 64, 64, Fishimg);
+	//âÊëúÇÃì«Ç›çûÇ›
+	LoadDivGraph("images/Enemy/Enemy_FishAnimation.png", 10, 5, 2, 64, 64, fishImg);
 }
 
 Fish::~Fish()
 {
+
 }
 
 void Fish::Update()
 {
-	return ;
+
 }
 
 void Fish::Draw()
 {
-	DrawGraph(fishX, fishY, Fishimg[3], TRUE);
+	DrawExtendGraph(270, 400, 320, 450, fishImg[2], TRUE);
+	
 }
