@@ -455,7 +455,7 @@ void Enemy::Death() {
 }
 
 void Enemy::Wait() {
-	if (++Counter >= 1000)
+	if (++Counter >= 60)
 	{
 		if (0 <= Cnt) {
 			--Cnt;
