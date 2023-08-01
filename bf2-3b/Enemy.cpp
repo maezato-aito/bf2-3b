@@ -34,6 +34,7 @@ Enemy::Enemy() {
 
 	enemy[0].flg = 1;
 	enemy[0].type = 0;
+	Dflg = 0;
 
 	Lv = 0;
 
@@ -271,9 +272,13 @@ void Enemy::Draw() const {
 			
 		}
 	
-		if (enemy[0].flg == 4) {
+		if (enemy[0].flg == 4 && Dflg == 0) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[2], TRUE);
 			
+		}
+
+		if (Dflg == 1) {
+			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[1], TRUE);
 		}
 
 	}
@@ -294,8 +299,12 @@ void Enemy::Draw() const {
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyGScore[0], TRUE);
 		}
 
-		if (enemy[0].flg == 4) {
+		if (enemy[0].flg == 4 && Dflg == 0) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyGScore[2], TRUE);
+		}
+
+		if (Dflg == 2) {
+			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyGScore[1], TRUE);
 		}
 
 	}
@@ -316,8 +325,12 @@ void Enemy::Draw() const {
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyRScore[0], TRUE);
 		}
 
-		if (enemy[0].flg == 4) {
+		if (enemy[0].flg == 4 && Dflg == 0) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyRScore[2], TRUE);
+		}
+
+		if (Dflg == 3) {
+			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyRScore[1], TRUE);
 		}
 
 	}
@@ -421,10 +434,25 @@ void Enemy::Parachute() {
 	AnimImg = 17;
 	
 
-	/*if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY) {
+	if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY) {
 		enemy[0].flg = 4;
+		De_x = enemy[0].x;
+		De_y = enemy[0].y;
+		if (enemy[0].type == 0) {
+			Score += EnemyPScore[2];
+			Dflg = 1;
+		}
+		else if (enemy[0].type == 1) {
+			Score += EnemyGScore[2];
+			Dflg = 2;
+		}
+		else {
+			Score += EnemyRScore[2];
+			Dflg = 3;
+		}
+
 		Death();
-	}*/
+	}
 
 	if (Pr_x + 5 > enemy[0].x) {
 		enemy[0].x += 0.5;

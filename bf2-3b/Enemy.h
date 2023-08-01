@@ -12,6 +12,7 @@ private:
 	float SpeedX, SpeedY;
 	int Gvy;
 	int Cnt;
+	int Dflg;
 
 	float eSpeed[3] = { 1, 1.25, 2.5 };
 	int EnemyWait[3] = { 3, 2, 1 };
