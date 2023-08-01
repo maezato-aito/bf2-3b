@@ -44,6 +44,7 @@ Enemy::Enemy() {
 	SpeedX = 0;
 	SpeedY = 0;
 	Pr_y = 0;
+
 }
 
 Enemy::~Enemy() {
@@ -71,15 +72,15 @@ void Enemy::Update() {
 		if (enemy[0].y > 4 && SpeedY <= 3)
 		{
 			SpeedY += 0.03f;
-			enemy[0].y -= SpeedY;
+			enemy[0].y -= SpeedY * eSpeed[Lv];
 		}
 		else if (enemy[0].y > 4 && SpeedY > 3) {
-			enemy[0].y -= SpeedY;
+			enemy[0].y -= SpeedY * eSpeed[Lv];
 		}
 	}
 	else if (SpeedY > 0.05f && enemy[0].flg == 2) {
 		SpeedY -= 0.5f;
-		enemy[0].y += SpeedY;
+		enemy[0].y += SpeedY * eSpeed[Lv];
 		enemy[0].y += Gvy;
 
 	}
@@ -88,14 +89,14 @@ void Enemy::Update() {
 	if (Player::pBoxX2 < eBoxX && enemy[0].flg == 2)
 	{
 		if (SpeedX > -1) {
-			SpeedX -= 0.1f;
+			SpeedX -= 0.1f * eSpeed[Lv];
 		}
 	}
 	else if (Player::pBoxX2 <= eBoxX && enemy[0].flg == 2) {
 		// 回避
 		if (SpeedX > -2) {
-			SpeedX -= 0.4f;
-			enemy[0].y -= SpeedY;
+			SpeedX -= 0.4f * eSpeed[Lv];
+			enemy[0].y -= SpeedY * eSpeed[Lv];
 		}
 	}
 
@@ -103,14 +104,14 @@ void Enemy::Update() {
 	if (Player::pBoxX > eBoxX2 && enemy[0].flg == 2)
 	{
 		if (SpeedX < 1) {
-			SpeedX += 0.1f;
+			SpeedX += 0.1f * eSpeed[Lv];
 		}
 	}
 	else if (Player::pBoxX >= eBoxX2 && enemy[0].flg == 2) {
 		// 回避
 		if (SpeedX > -2) {
-			SpeedX -= 0.4f;
-			enemy[0].y -= SpeedY;
+			SpeedX -= 0.4f * eSpeed[Lv];
+			enemy[0].y -= SpeedY * eSpeed[Lv];
 		}
 	}
 
@@ -120,18 +121,22 @@ void Enemy::Update() {
 		SpeedX *= 0.99f;
 	}
 
-	enemy[0].x += SpeedX;
+	enemy[0].x += SpeedX * eSpeed[Lv];
 
 	
 	// 右地面
 	if ((S1_Landright_X <= enemy[0].x + 32 && S1_Landright_Width >= enemy[0].x) && S1_Landright_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
+		
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
-			Lv += 1;
-			EnemyStart();
+			if (Lv < 3) {
+				Lv += 1;
+			}
+			Cnt = EnemyWait[Lv - 1];
+			Wait();
 		}
 	}
 	// 右地面左側面
@@ -149,8 +154,11 @@ void Enemy::Update() {
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
-			Lv += 1;
-			EnemyStart();
+			if (Lv < 3) {
+				Lv += 1;
+			}
+			Cnt = EnemyWait[Lv - 1];
+			Wait();
 		}
 	}
 	// 左地面右側面
@@ -164,11 +172,18 @@ void Enemy::Update() {
 	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_Width >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && S1_Flooting_Y + 20 >= enemy[0].y && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
+		if (SpeedX > -5 && enemy[0].flg == 2) {
+			SpeedX += 0.4f * -eSpeed[Lv];
+			enemy[0].y -= SpeedY * -eSpeed[Lv];
+		}
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
-			Lv += 1;
+			if (Lv < 3) {
+				Lv += 1;
+			}
 			Count = 15;
-			EnemyStart();
+			Cnt = EnemyWait[Lv - 1];
+			Wait();
 		}
 	}
 	else {
@@ -248,12 +263,17 @@ void Enemy::Draw() const {
 		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
 		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
 
+		/*DrawFormatString(200, 200, 0xff0000, "%d", Counter, TRUE);*/
+		
 		if (enemy[0].flg == 3) {
+			
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyPScore[0], TRUE);
+			
 		}
 	
 		if (enemy[0].flg == 4) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[2], TRUE);
+			
 		}
 
 	}
@@ -302,8 +322,10 @@ void Enemy::Draw() const {
 
 	}
 
-	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
-	DrawFormatString(100, 150, 0xffffff, "%d", enemy[0].type, TRUE);
+	/*DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
+	DrawFormatString(100, 150, 0xffffff, "%d", enemy[0].type, TRUE);*/
+	DrawFormatString(300, 300, 0xffffff, "%d", Cnt, TRUE);
+	DrawFormatString(300, 350, 0xffffff, "%d", Counter, TRUE);
 
 }
 
@@ -390,9 +412,7 @@ void Enemy::EnemyStart() {
 			}
 			Counter = 0;
 		}
-	}
-
-	
+	}	
 
 }
 
@@ -407,30 +427,49 @@ void Enemy::Parachute() {
 	}*/
 
 	if (Pr_x + 5 > enemy[0].x) {
-		enemy[0].x += SpeedX;
+		enemy[0].x += 0.5;
 	}
 	
 	if (Pr_x - 5 < enemy[0].x) {
-		enemy[0].x -= SpeedX;
+		enemy[0].x -= 0.5;
 	}	
 }
 
 // 死亡処理
 void Enemy::Death() {
 	AnimImg = 13;
-	SpeedX = 0;
+	SpeedY = 0;
 	
-
-	if (enemy[0].y - 150 < De_y) {
+	if (enemy[0].y > 4 && SpeedY <= 10)
+	{
+		SpeedY += 0.03f;
 		enemy[0].y -= SpeedY;
 	}
-	else if(enemy[0].y > 300 && enemy[0].y - 150 >= De_y) {
+	else{
 		
-		SpeedY += 1.0f;
+		SpeedY -= 0.5f;
 		enemy[0].y += SpeedY;
 		enemy[0].y += Gvy;
 	}
-	else{
-		enemy[0].flg = 0;
+
+}
+
+void Enemy::Wait() {
+	if (++Counter >= 1000)
+	{
+		if (0 <= Cnt) {
+			--Cnt;
+			if (0 < Cnt) {
+				AnimImg = 0;
+			}
+			else
+			{
+				EnemyStart();
+			}
+		}
+		
+		
 	}
+	Counter = 0;
+
 }

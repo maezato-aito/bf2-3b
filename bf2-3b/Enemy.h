@@ -11,8 +11,10 @@ private:
 	int InputX, InputY;
 	float SpeedX, SpeedY;
 	int Gvy;
+	int Cnt;
 
-	int eSpeed[3] = { 1000, 2000, 1500 };
+	float eSpeed[3] = { 1, 1.25, 2.5 };
+	int EnemyWait[3] = { 3, 2, 1 };
 
 	int EnemyPScore[3] = { 500, 1000, 750 };	// 敵のスコア
 	int EnemyGScore[3] = { 750, 1500, 1000 };	// 敵のスコア
@@ -26,6 +28,8 @@ private:
 	int Counter;
 	int AnimImg;
 
+	int WaitTime;
+	int NowTime;
 	
 	// 敵の構造体
 	struct ENEMY
@@ -52,6 +56,7 @@ public:
 	void EnemyStart();	// 初期状態処理
 	void Parachute();	// パラシュート処理
 	void Death();		// 死亡処理
+	void Wait();
 
 	static int St_x, St_y;	// スタート時の座標
 	static int Pr_x, Pr_y;	// パラシュート時の座標
