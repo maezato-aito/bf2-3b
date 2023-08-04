@@ -3,6 +3,8 @@
 class Fish
 {
 private:
+	int fishBox;
+	int pBoxX;
 public:
 
 	//‰æ‘œ—p

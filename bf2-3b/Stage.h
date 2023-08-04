@@ -15,6 +15,7 @@ public:
     void Update();      //描画以外の処理
     void Draw()const;   //描画処理
 
+    static float fishBox;
     void Stage1();      // ステージ１
 
 };
