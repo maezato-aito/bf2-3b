@@ -32,6 +32,7 @@ Player::Player()
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
 	AnimCount = 0;
 
+	Image = 0;
 	Speed = 0;
 	playerLR = 0;
 
@@ -66,6 +67,7 @@ AbstractScene* Player::Update()
 	ebBoxX2 = Enemy::ebBoxX2;
 	ebBoxY2 = Enemy::ebBoxY2;
 
+
 		if (1 < Gvy)
 		{
 			Gvy = 1;
@@ -81,58 +83,92 @@ AbstractScene* Player::Update()
 			pUP();
 		}
 	}
-	
-	//地面に立っているとか
-	if (//左の床
-		(S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
-			S1_Landleft_Y <= pBoxY2) ||
-		//右の床
-		(S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
-			S1_Landright_Y <= pBoxY2) ||
-		//空中の床
-		(S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-			S1_Flooting_Y <= pBoxY2 && S1_Flooting_height >= pBoxY)
-		)
+	if (++AnimCount < 400.0f)
 	{
-
-		if (playerX + 64 > 0)
+		//地面に立っているとか
+		if (//左の床
+			(S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
+				S1_Landleft_Y <= pBoxY2) ||
+			//右の床
+			(S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
+				S1_Landright_Y <= pBoxY2) ||
+			//空中の床
+			(S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+				S1_Flooting_Y <= pBoxY2 && S1_Flooting_height >= pBoxY)
+			)
 		{
-			//左移動
-			if (InputX < -1)
+
+			if (playerX + 64 > 0)
 			{
-				if (Speed > -3)
+				//左移動
+				if (InputX < -1)
 				{
-					Speed -= 0.1f;
+
+
+					if (Speed > -3)
+					{
+						Speed -= 0.016f;
+					}
+
+						if (0 <= AnimCount)
+						{
+							Image = 8;
+						}
+						if (5 <= AnimCount)
+						{
+							Image = 9;
+						}
+						if (10 <= AnimCount)
+						{
+							Image = 10;
+						}
+						if (14 <= AnimCount)
+						{
+							AnimCount = 0;
+						}
+
+					playerLR = 1;
+					/*playerY += 6;*/
 				}
-
-				playerLR = 1;
-				/*playerY += 6;*/
 			}
-		}
 
-		if (playerX < 640)
-		{
-			//右移動
-			if (InputX > 1)
+			if (playerX < 640)
 			{
-				if (Speed < 3)
+				//右移動
+				if (InputX > 1)
 				{
-					Speed += 0.1f;
+					if (Speed < 3)
+					{
+						Speed += 0.016f;
+					}
+
+					if (0 <= AnimCount)
+					{
+						Image = 8;
+					}
+					if (5 <= AnimCount)
+					{
+						Image = 9;
+					}
+					if (10 <= AnimCount)
+					{
+						Image = 10;
+					}
+					if (14 <= AnimCount)
+					{
+						AnimCount = 0;
+					}
+					playerLR = 2;
 				}
-				playerLR = 2;
-				/*playerY += 6;*/
 			}
-		}
 
-		if (InputX == 0)
-		{
-			//慣性の作成
-			Speed = 0.0f;
-			Gvy = 0.0f;
-
-			if (++AnimCount < 15.0f)
+			if (InputX == 0)
 			{
-				/*待機中アニメーション
+				//慣性の作成
+				Speed = 0.0f;
+				Gvy = 0.0f;
+
+				/*待機中アニメーション*/
 				if (0 <= AnimCount)
 				{
 					Image = 1;
@@ -152,134 +188,176 @@ AbstractScene* Player::Update()
 				if (399 <= AnimCount)
 				{
 					AnimCount = 0;
-				}*/
-			}
-		}
-		
-		PlayerFlg = 0;
-		HitFlg = 0;
-	}
-
-	//地面に立っていなければ
-	else
-	{
-		if (playerX + 64 > 0)
-		{
-			//左移動
-			if (InputX < -1)
-			{
-				if (Speed > -3)
-				{
-					Speed -= 0.016f;
 				}
-
-				playerLR = 1;
-				/*playerY += 6;*/
 			}
+
+			PlayerFlg = 0;
+			HitFlg = 0;
 		}
 
-		if (playerX < 640)
+		//地面に立っていなければ
+		else
 		{
-			//右移動
-			if (InputX > 1)
+			if (playerX + 64 > 0)
 			{
-				if (Speed < 3)
+				//左移動
+				if (InputX < -1)
 				{
-					Speed += 0.016f;
+					if (Speed > -3)
+					{
+						Speed -= 0.016f;
+					}
+
+					if (0 <= AnimCount)
+					{
+						Image = 17;
+					}
+					if (5 <= AnimCount)
+					{
+						Image = 18;
+					}
+					if (10 <= AnimCount)
+					{
+						Image = 19;
+					}
+					if (15 <= AnimCount)
+					{
+						Image = 18;
+					}
+					if (19 <= AnimCount)
+					{
+						AnimCount = 0;
+					}
+
+					playerLR = 1;
+					/*playerY += 6;*/
 				}
-				playerLR = 2;
-				/*playerY += 6;*/
 			}
+
+			if (playerX < 640)
+			{
+				//右移動
+				if (InputX > 1)
+				{
+					if (Speed < 3)
+					{
+						Speed += 0.016f;
+					}
+
+					if (0 <= AnimCount)
+					{
+						Image = 17;
+					}
+					if (5 <= AnimCount)
+					{
+						Image = 18;
+					}
+					if (10 <= AnimCount)
+					{
+						Image = 19;
+					}
+					if (15 <= AnimCount)
+					{
+						Image = 18;
+					}
+					if (19 <= AnimCount)
+					{
+						AnimCount = 0;
+					}
+					playerLR = 2;
+					/*playerY += 6;*/
+				}
+			}
+
+			if (InputX == 0)
+			{
+				//慣性の作成
+				Speed *= 0.99f;
+			}
+			Gvy += 0.1f;
+			PlayerFlg = 1;
+			HitFlg = 0;
+		}
+		//左地面壁
+		if (S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
+			S1_Landleft_height >= bBoxY && S1_Landleft_Y + 1 < pBoxY2) {
+			HitFlg = 1;
+		}
+		// 右地面壁
+		if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
+			S1_Landright_height >= bBoxY && S1_Landright_Y + 1 < pBoxY2) {
+			HitFlg = 2;
+		}
+		//空中床左壁
+		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed > 0.5) {
+			HitFlg = 2;
+		}
+		// 空中床右壁
+		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed < -0.5) {
+			HitFlg = 1;
+		}
+		if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
+			S1_Flooting_height == bBoxY) {
+			Gvy *= -0.8f;
 		}
 
-		if (InputX == 0)
+		// 敵の左側に当たったとき
+		//// 敵の半分より上に当たったとき
+		//if (pBoxX2 == ebBoxX && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 2) {
+		//	HitFlg = 2;
+		//}
+		////// 敵の半分より下に当たったとき
+		////if (pBoxX2 == ebBoxX && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
+		////	HitFlg = 2;
+		////}
+		//// 敵と高さが同じ時
+		//if (pBoxX2 == ebBoxX && bBoxY == ebBoxY && pBoxY2 == eBoxY2 && playerLR == 2) {
+		//	HitFlg = 2;
+		//}
+		//// 敵の右側に当たったとき
+		//// 敵の半分より上に当たったとき
+		//if (pBoxX == ebBoxX2 && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 1) {
+		//	HitFlg = 1;
+		//}
+		//// 敵の半分より下に当たったとき
+		//if (pBoxX == ebBoxX2 && pBoxY + 7 >= eBoxY + 7 && bBoxY >= eBoxY2 && playerLR == 1) {
+		//	HitFlg = 1;
+		//}
+		//// 敵と高さが同じ時
+		//if (pBoxX == ebBoxX2 && bBoxY == ebBoxY && pBoxY2 == eBoxY2) {
+		//	HitFlg = 1;
+		//}
+		// 反発
+		// 左側に触れたとき
+		if (HitFlg == 1 && Speed < -0.5) {
+			Speed *= -0.8;
+		}
+		// 右側に触れたとき
+		if (HitFlg == 2 && Speed > 0.5) {
+			Speed *= -0.8;
+		}
+		/*if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
+			Gvy = 0.98f;
+			Speed *= 0.8;
+		}*/
+
+
+		//プレイヤーの横移動
+		playerX += Speed;
+
+
+		if (playerX < -64)	// 左から右
 		{
-			//慣性の作成
-			Speed *= 0.99f;
+			playerX = 576;
+
 		}
-		Gvy += 0.1f;
-		PlayerFlg = 1;
-		HitFlg = 0;
-	}
-	//左地面壁
-	if (S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
-		S1_Landleft_height >= bBoxY	&& S1_Landleft_Y + 1 < pBoxY2) {
-		HitFlg = 1;
-	}
-	// 右地面壁
-	if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
-		S1_Landright_height >= bBoxY &&	S1_Landright_Y + 1 < pBoxY2) {
-		HitFlg = 2;
-	}
-	//空中床左壁
-	if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-		S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height-1 >= bBoxY && Speed > 0.5) {
-		HitFlg = 2;
-	}
-	// 空中床右壁
-	if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-		S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height-1 >= bBoxY && Speed < -0.5) {
-		HitFlg = 1;
-	}
-	if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
-		S1_Flooting_height == bBoxY ) {
-		Gvy *= -0.8f;
-	}
+		if (playerX > 620)	// 右から左
+		{
+			playerX = -10;
 
-	// 敵の左側に当たったとき
-	//// 敵の半分より上に当たったとき
-	//if (pBoxX2 == ebBoxX && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 2) {
-	//	HitFlg = 2;
-	//}
-	////// 敵の半分より下に当たったとき
-	////if (pBoxX2 == ebBoxX && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
-	////	HitFlg = 2;
-	////}
-	//// 敵と高さが同じ時
-	//if (pBoxX2 == ebBoxX && bBoxY == ebBoxY && pBoxY2 == eBoxY2 && playerLR == 2) {
-	//	HitFlg = 2;
-	//}
-	//// 敵の右側に当たったとき
-	//// 敵の半分より上に当たったとき
-	//if (pBoxX == ebBoxX2 && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 1) {
-	//	HitFlg = 1;
-	//}
-	//// 敵の半分より下に当たったとき
-	//if (pBoxX == ebBoxX2 && pBoxY + 7 >= eBoxY + 7 && bBoxY >= eBoxY2 && playerLR == 1) {
-	//	HitFlg = 1;
-	//}
-	//// 敵と高さが同じ時
-	//if (pBoxX == ebBoxX2 && bBoxY == ebBoxY && pBoxY2 == eBoxY2) {
-	//	HitFlg = 1;
-	//}
-	// 反発
-	// 左側に触れたとき
-	if (HitFlg == 1 && Speed < -0.5) {
-		Speed *= -0.8;
-	}
-	// 右側に触れたとき
-	if (HitFlg == 2 && Speed > 0.5) {
-		Speed *= -0.8;
-	}
-	/*if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
-		Gvy = 0.98f;
-		Speed *= 0.8;
-	}*/
-
-	
-	//プレイヤーの横移動
-	playerX += Speed;
-
-
-	if (playerX < -64)	// 左から右
-	{
-		playerX = 576;
-
-	}
-	if (playerX > 620)	// 右から左
-	{
-		playerX = -10;
-
+		}
 	}
 	return this;
 }
@@ -295,13 +373,24 @@ void Player::Draw() const
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
 	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
-	DrawFormatString(0, 160, 0xffffff, "%d", gCount, TRUE);
+	DrawFormatString(0, 160, 0xffffff, "%d", AnimCount, TRUE);
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
 #endif _DEBUG
+
+	//向きで描画
+	//左向き
+	if (playerLR == 1) 
+	{
+		DrawGraph(playerX, playerY, Playerimg[Image], TRUE);
+	}
+	//右向き
+	else
+	{
+		DrawTurnGraph(playerX, playerY, Playerimg[Image], TRUE);
+	}
 	
-	DrawGraph(playerX, playerY, Playerimg[1], TRUE);
 	DrawGraph(640 + playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(playerX - 640, playerY, Playerimg[0], TRUE);
 
