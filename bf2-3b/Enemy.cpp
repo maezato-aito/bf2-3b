@@ -247,7 +247,7 @@ void Enemy::Draw() const {
 		// ìñÇΩÇËîªíËÇÃîÕàÕ
 		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
 		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
-
+#if _DEBUG
 		if (enemy[0].flg == 3) {
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyPScore[0], TRUE);
 		}
@@ -255,7 +255,7 @@ void Enemy::Draw() const {
 		if (enemy[0].flg == 4) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[2], TRUE);
 		}
-
+#endif _DEBUG
 	}
 
 	// ìGÅióŒÅjÇÃï`âÊ
@@ -301,10 +301,10 @@ void Enemy::Draw() const {
 		}
 
 	}
-
+#if _DEBUG
 	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
 	DrawFormatString(100, 150, 0xffffff, "%d", enemy[0].type, TRUE);
-
+#endif _DEBUG
 }
 
 // èâä˙èÛë‘

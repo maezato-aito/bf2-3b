@@ -278,7 +278,7 @@ AbstractScene* Player::Update()
 
 void Player::Draw() const
 {
-
+#if _DEBUG
 	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
 	DrawFormatString(0, 20, 0xffffff, "Speed:%5.2f", Speed, TRUE);
 	DrawFormatString(0, 40, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
@@ -287,7 +287,7 @@ void Player::Draw() const
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
 	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
-
+#endif _DEBUG
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
 	DrawGraph(playerX, playerY, Playerimg[1], TRUE);
