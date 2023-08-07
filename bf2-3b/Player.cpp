@@ -16,10 +16,11 @@
 
 Player::Player()
 {
-	Gvy = 0;
+	Gvy = 0.98;
+	gCount = 0;
 
 	playerX = 100;
-	playerY = 340;
+	playerY = 240;
 
 	PlayerFlg = 1;
 	HitFlg = 1;		
@@ -29,6 +30,7 @@ Player::Player()
 	e = 0.8;		//反発係数
 
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
+	AnimCount = 0;
 
 	Speed = 0;
 	playerLR = 0;
@@ -63,43 +65,23 @@ AbstractScene* Player::Update()
 	ebBoxY = Enemy::ebBoxY;
 	ebBoxX2 = Enemy::ebBoxX2;
 	ebBoxY2 = Enemy::ebBoxY2;
-	//重力の加算
-	playerY += Gvy;
 
-	if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)))
-	{
-		if (bBoxY > 0)
+		if (1 < Gvy)
 		{
-			Gvy = 3.0f;
-			// 押されている
-			playerY -= Gvy;
-			/*boxY2 -= Gvy;*/
+			Gvy = 1;
 		}
-		else if (bBoxY < 0)
+		//重力の加算
+		playerY += Gvy;
+	
+
+	if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) || (PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
+	{
+		if (bBoxY >= 0)
 		{
-			/*vy = -vy * e;
-			playerY *= vy;*/
+			pUP();
 		}
 	}
-	else if ((PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
-	{
-		if (bBoxY > 0)
-		{
-			Gvy = 20.0f;
-			// 押されている
-			playerY -= Gvy;
-			/*boxY2 -= Gvy;*/
-		}
-		else if (playerY == 0)
-		{
-			/*
-
-			vy = -vy * e;
-			playerY *= vy;
-
-			*/
-		}
-	}
+	
 	//地面に立っているとか
 	if (//左の床
 		(S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
@@ -145,9 +127,35 @@ AbstractScene* Player::Update()
 		if (InputX == 0)
 		{
 			//慣性の作成
-			Speed *= 0.94f;
+			Speed = 0.0f;
+			Gvy = 0.0f;
+
+			if (++AnimCount < 15.0f)
+			{
+				/*待機中アニメーション
+				if (0 <= AnimCount)
+				{
+					Image = 1;
+				}
+				if (100 <= AnimCount)
+				{
+					Image = 0;
+				}
+				if (200 <= AnimCount)
+				{
+					Image = 1;
+				}
+				if (300 <= AnimCount)
+				{
+					Image = 2;
+				}
+				if (399 <= AnimCount)
+				{
+					AnimCount = 0;
+				}*/
+			}
 		}
-		Gvy = 0.0f;
+		
 		PlayerFlg = 0;
 		HitFlg = 0;
 	}
@@ -162,7 +170,7 @@ AbstractScene* Player::Update()
 			{
 				if (Speed > -3)
 				{
-					Speed -= 0.1f;
+					Speed -= 0.016f;
 				}
 
 				playerLR = 1;
@@ -177,7 +185,7 @@ AbstractScene* Player::Update()
 			{
 				if (Speed < 3)
 				{
-					Speed += 0.1f;
+					Speed += 0.016f;
 				}
 				playerLR = 2;
 				/*playerY += 6;*/
@@ -189,7 +197,7 @@ AbstractScene* Player::Update()
 			//慣性の作成
 			Speed *= 0.99f;
 		}
-		Gvy = 0.98f;
+		Gvy += 0.1f;
 		PlayerFlg = 1;
 		HitFlg = 0;
 	}
@@ -287,11 +295,19 @@ void Player::Draw() const
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
 	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
-#endif _DEBUG
+	DrawFormatString(0, 160, 0xffffff, "%d", gCount, TRUE);
+
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
+#endif _DEBUG
+	
 	DrawGraph(playerX, playerY, Playerimg[1], TRUE);
 	DrawGraph(640 + playerX, playerY, Playerimg[0], TRUE);
 	DrawGraph(playerX - 640, playerY, Playerimg[0], TRUE);
 
+}
+
+void Player::pUP()
+{
+	Gvy = -2.0f;
 }
