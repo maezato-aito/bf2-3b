@@ -215,31 +215,31 @@ AbstractScene* Player::Update()
 	}
 	if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
 		S1_Flooting_height == bBoxY ) {
-		Gvy *= 0.5f;
+		Gvy *= -0.8f;
 	}
 
 	// “G‚Ì¶‘¤‚É“–‚½‚Á‚½‚Æ‚«
-	// “G‚Ì”¼•ª‚æ‚èã‚É“–‚½‚Á‚½‚Æ‚«
-	if (pBoxX2 == ebBoxX && pBoxY + 7 <= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
-		HitFlg = 2;
-	}
-	// “G‚Ì”¼•ª‚æ‚è‰º‚É“–‚½‚Á‚½‚Æ‚«
-	if (pBoxX2 == ebBoxX && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
-		HitFlg = 2;
-	}
-	// “G‚Æ‚‚³‚ª“¯‚¶Žž
-	if (pBoxX2 == ebBoxX && bBoxY == ebBoxY && pBoxY2 == eBoxY2 && playerLR == 2) {
-		HitFlg = 2;
-	}
-	// “G‚Ì‰E‘¤‚É“–‚½‚Á‚½‚Æ‚«
-	// “G‚Ì”¼•ª‚æ‚èã‚É“–‚½‚Á‚½‚Æ‚«
-	if (pBoxX == ebBoxX2 && pBoxY + 7 <= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 1) {
-		HitFlg = 1;
-	}
-	// “G‚Ì”¼•ª‚æ‚è‰º‚É“–‚½‚Á‚½‚Æ‚«
-	if (pBoxX == ebBoxX2 && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 1) {
-		HitFlg = 1;
-	}
+	//// “G‚Ì”¼•ª‚æ‚èã‚É“–‚½‚Á‚½‚Æ‚«
+	//if (pBoxX2 == ebBoxX && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 2) {
+	//	HitFlg = 2;
+	//}
+	////// “G‚Ì”¼•ª‚æ‚è‰º‚É“–‚½‚Á‚½‚Æ‚«
+	////if (pBoxX2 == ebBoxX && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
+	////	HitFlg = 2;
+	////}
+	//// “G‚Æ‚‚³‚ª“¯‚¶Žž
+	//if (pBoxX2 == ebBoxX && bBoxY == ebBoxY && pBoxY2 == eBoxY2 && playerLR == 2) {
+	//	HitFlg = 2;
+	//}
+	//// “G‚Ì‰E‘¤‚É“–‚½‚Á‚½‚Æ‚«
+	//// “G‚Ì”¼•ª‚æ‚èã‚É“–‚½‚Á‚½‚Æ‚«
+	//if (pBoxX == ebBoxX2 && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 1) {
+	//	HitFlg = 1;
+	//}
+	//// “G‚Ì”¼•ª‚æ‚è‰º‚É“–‚½‚Á‚½‚Æ‚«
+	//if (pBoxX == ebBoxX2 && pBoxY + 7 >= eBoxY + 7 && bBoxY >= eBoxY2 && playerLR == 1) {
+	//	HitFlg = 1;
+	//}
 	//// “G‚Æ‚‚³‚ª“¯‚¶Žž
 	//if (pBoxX == ebBoxX2 && bBoxY == ebBoxY && pBoxY2 == eBoxY2) {
 	//	HitFlg = 1;

@@ -10,9 +10,9 @@ Fish::Fish()
 	fishX = S1_Landleft_Width;
 	fishY = S1_Landleft_Y;
 	fBoxX = fishX + 6;
-	fBoxY = fishY + 32;
-	fBoxX2 = fBoxX + 50;
-	fBoxY2 = fBoxY + 32;
+	fBoxY = fishY;
+	fBoxX2 = fBoxX + 38;
+	fBoxY2 = fBoxY + 64;
 }
 
 Fish::~Fish()
@@ -26,7 +26,7 @@ void Fish::Update()
 		fBoxX += 2;
 		fBoxX2 += 2;
 	}
-	else if (fBoxX2 > S1_Landright_X) {
+	if (fBoxX2 > S1_Landright_X) {
 		fBoxX -= 2;
 		fBoxX2 -= 2;
 	}
