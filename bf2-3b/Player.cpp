@@ -2,6 +2,7 @@
 #include"Player.h"
 #include"PadInput.h"
 #include"common.h"
+#include"Enemy.h"
 
  int Player::pBoxX;
  int Player::pBoxY;
@@ -21,7 +22,7 @@ Player::Player()
 	playerY = 340;
 
 	PlayerFlg = 1;
-
+	HitFlg = 1;		
 	vx = 0.5;
 	vy = 0.5;
 
@@ -52,7 +53,16 @@ AbstractScene* Player::Update()
 	pBoxY = playerY + 32;
 	pBoxX2 = pBoxX + 50;
 	pBoxY2 = pBoxY + 32;
-
+	//敵のボックス
+	eBoxX = Enemy::eBoxX;
+	eBoxY = Enemy::eBoxY;
+	eBoxX2 = Enemy::eBoxX2;
+	eBoxY2 = Enemy::eBoxY2;
+	// 敵の風船のボックス
+	ebBoxX = Enemy::ebBoxX;
+	ebBoxY = Enemy::ebBoxY;
+	ebBoxX2 = Enemy::ebBoxX2;
+	ebBoxY2 = Enemy::ebBoxY2;
 	//重力の加算
 	playerY += Gvy;
 
@@ -80,7 +90,7 @@ AbstractScene* Player::Update()
 			playerY -= Gvy;
 			/*boxY2 -= Gvy;*/
 		}
-		else if (playerY == 0) 
+		else if (playerY == 0)
 		{
 			/*
 
@@ -103,138 +113,151 @@ AbstractScene* Player::Update()
 		)
 	{
 
-			if (playerX + 64 > 0)
-			{
-				//左移動
-				if (InputX < -1)
-				{
-					if (Speed > -3)
-					{
-						Speed -= 0.1f;
-					}
-
-					playerLR = 1;
-					/*playerY += 6;*/
-				}
-			}
-
-			if (playerX < 640)
-			{
-				//右移動
-				if (InputX > 1)
-				{
-					if (Speed < 3)
-					{
-						Speed += 0.1f;
-					}
-					playerLR = 2;
-					/*playerY += 6;*/
-				}
-			}
-
-			if (InputX == 0)
-			{
-				//慣性の作成
-				Speed *= 0.94f;
-			}
-			Gvy = 0.0f;
-			PlayerFlg = 0;
-		}
-
-		//地面に立っていなければ
-		else
+		if (playerX + 64 > 0)
 		{
-			if (playerX + 64 > 0)
+			//左移動
+			if (InputX < -1)
 			{
-				//左移動
-				if (InputX < -1)
+				if (Speed > -3)
 				{
-					if (Speed > -3)
-					{
-						Speed -= 0.1f;
-					}
-
-					playerLR = 1;
-					/*playerY += 6;*/
+					Speed -= 0.1f;
 				}
-			}
 
-			if (playerX < 640)
-			{
-				//右移動
-				if (InputX > 1)
-				{
-					if (Speed < 3)
-					{
-						Speed += 0.1f;
-					}
-					playerLR = 2;
-					/*playerY += 6;*/
-				}
+				playerLR = 1;
+				/*playerY += 6;*/
 			}
-
-			if (InputX == 0)
-			{
-				//慣性の作成
-				Speed *= 0.99f;
-			}
-			Gvy = 0.98f;
-			PlayerFlg = 1;
 		}
-	//地面に立っているか
-	///*if (pBoxY2 > S1_Landleft_Y)
-	//{
-	//	Gvy = 0.0f;
-	//}
-	//else
-	//{
-	//	Gvy = 0.98f;
-	//}*/
-	////地面に立っていないとき
-	////右地面
-	//if ((S1_Landright_X-64 <= playerX && S1_Landright_Width >= playerX)&& S1_Landright_Y == playerY+64) {
-	//	Gvy = 0;
-	//	Speed *= 0.94f;
-	//}
-	//// 右地面左側面
-	//else if (S1_Landright_X <= playerX && S1_Landright_Y < playerY+64) {
-	//	/*vx -= vx*e;*/
-	//	Gvy = 1;
-	//	playerX = 420;
-	//	playerY += Gvy;
 
-	//}
-	////左地面
-	//else if ((S1_Landleft_X <= playerX+64 && S1_Landleft_Width >= playerX+20) && S1_Landleft_Y == playerY+64) {
-	//	Gvy = 0;
-	//	Speed *= 0.94f;
-	//}
-	//// 左地面右側面
-	//else if (S1_Landleft_Width >= playerX+20 && S1_Landleft_Y < playerY+64) {
-	//	Gvy = 1;
-	//	playerX *= 0.8f;
-	//	/*boxX2 = 210;*/
-	//	playerY += Gvy;
-	//	/*boxY2 += Gvy;*/
-	//	
-	//}
-	////空中床
-	//else if ((S1_Flooting_X <= playerX && S1_Flooting_Width >= playerX+64) && S1_Flooting_Y == playerY+64) {
-	//	Gvy = 0;
-	//	Speed *= 0.94f;
-	//}
+		if (playerX < 640)
+		{
+			//右移動
+			if (InputX > 1)
+			{
+				if (Speed < 3)
+				{
+					Speed += 0.1f;
+				}
+				playerLR = 2;
+				/*playerY += 6;*/
+			}
+		}
 
-	//else if ((S1_Flooting_X <= playerX && S1_Flooting_Width >= playerX + 64) && S1_Flooting_height == playerY+64){
-	//	Gvy = -5;
-	//	playerY += Gvy;
+		if (InputX == 0)
+		{
+			//慣性の作成
+			Speed *= 0.94f;
+		}
+		Gvy = 0.0f;
+		PlayerFlg = 0;
+		HitFlg = 0;
+	}
+
+	//地面に立っていなければ
+	else
+	{
+		if (playerX + 64 > 0)
+		{
+			//左移動
+			if (InputX < -1)
+			{
+				if (Speed > -3)
+				{
+					Speed -= 0.1f;
+				}
+
+				playerLR = 1;
+				/*playerY += 6;*/
+			}
+		}
+
+		if (playerX < 640)
+		{
+			//右移動
+			if (InputX > 1)
+			{
+				if (Speed < 3)
+				{
+					Speed += 0.1f;
+				}
+				playerLR = 2;
+				/*playerY += 6;*/
+			}
+		}
+
+		if (InputX == 0)
+		{
+			//慣性の作成
+			Speed *= 0.99f;
+		}
+		Gvy = 0.98f;
+		PlayerFlg = 1;
+		HitFlg = 0;
+	}
+	//左地面壁
+	if (S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
+		S1_Landleft_height >= bBoxY	&& S1_Landleft_Y + 1 < pBoxY2) {
+		HitFlg = 1;
+	}
+	// 右地面壁
+	if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
+		S1_Landright_height >= bBoxY &&	S1_Landright_Y + 1 < pBoxY2) {
+		HitFlg = 2;
+	}
+	//空中床左壁
+	if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+		S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height-1 >= bBoxY && Speed > 0.5) {
+		HitFlg = 2;
+	}
+	// 空中床右壁
+	if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+		S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height-1 >= bBoxY && Speed < -0.5) {
+		HitFlg = 1;
+	}
+	if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
+		S1_Flooting_height == bBoxY ) {
+		Gvy *= -0.8f;
+	}
+
+	// 敵の左側に当たったとき
+	//// 敵の半分より上に当たったとき
+	//if (pBoxX2 == ebBoxX && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 2) {
+	//	HitFlg = 2;
 	//}
-	//else
-	//{
-	//	// ジャンプが押されていない
-	//	Gvy = 1;
-	//	/*playerX += Gvy;*/
-	//	playerY += Gvy;
+	////// 敵の半分より下に当たったとき
+	////if (pBoxX2 == ebBoxX && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
+	////	HitFlg = 2;
+	////}
+	//// 敵と高さが同じ時
+	//if (pBoxX2 == ebBoxX && bBoxY == ebBoxY && pBoxY2 == eBoxY2 && playerLR == 2) {
+	//	HitFlg = 2;
 	//}
+	//// 敵の右側に当たったとき
+	//// 敵の半分より上に当たったとき
+	//if (pBoxX == ebBoxX2 && pBoxY + 7 <= eBoxY + 7 && pBoxY2 <= ebBoxY && playerLR == 1) {
+	//	HitFlg = 1;
+	//}
+	//// 敵の半分より下に当たったとき
+	//if (pBoxX == ebBoxX2 && pBoxY + 7 >= eBoxY + 7 && bBoxY >= eBoxY2 && playerLR == 1) {
+	//	HitFlg = 1;
+	//}
+	//// 敵と高さが同じ時
+	//if (pBoxX == ebBoxX2 && bBoxY == ebBoxY && pBoxY2 == eBoxY2) {
+	//	HitFlg = 1;
+	//}
+	// 反発
+	// 左側に触れたとき
+	if (HitFlg == 1 && Speed < -0.5) {
+		Speed *= -0.8;
+	}
+	// 右側に触れたとき
+	if (HitFlg == 2 && Speed > 0.5) {
+		Speed *= -0.8;
+	}
+	/*if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
+		Gvy = 0.98f;
+		Speed *= 0.8;
+	}*/
+
 	
 	//プレイヤーの横移動
 	playerX += Speed;
@@ -263,6 +286,7 @@ void Player::Draw() const
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
+	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
