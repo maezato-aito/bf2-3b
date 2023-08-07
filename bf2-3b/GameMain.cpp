@@ -24,6 +24,7 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+	Thunder->Ball();
 	Thunder->Circle();
 	Thunder->Anim();
 	Thunder->Update();
