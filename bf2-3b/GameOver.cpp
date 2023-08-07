@@ -20,9 +20,9 @@ void GameOver::Update()
 void GameOver::Draw()
 {
 	
-	if (SCREEN_HEIGHT >= pBoxY) {
+	/*if (SCREEN_HEIGHT >= pBoxY) {
 		DrawString(300, 200, "GAME OVER", 0xffffff);
 
-	}
+	}*/
 	
 }
