@@ -157,6 +157,7 @@
     <ClCompile Include="fish.cpp" />
     <ClCompile Include="FpsController.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="Pause.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="fish.h" />
     <ClInclude Include="FpsController.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="Pause.h" />
     <ClInclude Include="Result.h" />

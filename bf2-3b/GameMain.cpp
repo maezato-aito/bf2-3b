@@ -41,5 +41,6 @@ void GameMain::Draw() const
 	bubble->Draw();
 	fish->Draw();
 	DrawFormatString(640, 360, 0xffffff, "GameMain");
+	gameover->Draw();
 }
 

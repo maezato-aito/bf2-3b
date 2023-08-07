@@ -11,6 +11,8 @@ private:
 	
 	float vx, vy;		//ベクトル
 	float e;			// 反発係数
+	int eBoxX, eBoxY, eBoxX2, eBoxY2; //敵の判定
+	int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2; //敵の風船の判定
 public:
 
 	int PlayerFlg=0; //地面の状態を0　空中なら1をいれる

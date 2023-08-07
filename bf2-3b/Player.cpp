@@ -2,6 +2,7 @@
 #include"Player.h"
 #include"PadInput.h"
 #include"common.h"
+#include"Enemy.h"
 
  int Player::pBoxX;
  int Player::pBoxY;
@@ -52,7 +53,16 @@ AbstractScene* Player::Update()
 	pBoxY = playerY + 32;
 	pBoxX2 = pBoxX + 50;
 	pBoxY2 = pBoxY + 32;
-
+	//敵のボックス
+	eBoxX = Enemy::eBoxX;
+	eBoxY = Enemy::eBoxY;
+	eBoxX2 = Enemy::eBoxX2;
+	eBoxY2 = Enemy::eBoxY2;
+	// 敵の風船のボックス
+	ebBoxX = Enemy::ebBoxX;
+	ebBoxY = Enemy::ebBoxY;
+	ebBoxX2 = Enemy::ebBoxX2;
+	ebBoxY2 = Enemy::ebBoxY2;
 	//重力の加算
 	playerY += Gvy;
 
@@ -207,6 +217,33 @@ AbstractScene* Player::Update()
 		S1_Flooting_height == bBoxY ) {
 		Gvy *= 0.5f;
 	}
+
+	// 敵の左側に当たったとき
+	// 敵の半分より上に当たったとき
+	if (pBoxX2 == ebBoxX && pBoxY + 7 <= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
+		HitFlg = 2;
+	}
+	// 敵の半分より下に当たったとき
+	if (pBoxX2 == ebBoxX && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 2) {
+		HitFlg = 2;
+	}
+	// 敵と高さが同じ時
+	if (pBoxX2 == ebBoxX && bBoxY == ebBoxY && pBoxY2 == eBoxY2 && playerLR == 2) {
+		HitFlg = 2;
+	}
+	// 敵の右側に当たったとき
+	// 敵の半分より上に当たったとき
+	if (pBoxX == ebBoxX2 && pBoxY + 7 <= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 1) {
+		HitFlg = 1;
+	}
+	// 敵の半分より下に当たったとき
+	if (pBoxX == ebBoxX2 && pBoxY + 7 >= eBoxY + 7 && pBoxY2 >= ebBoxY && playerLR == 1) {
+		HitFlg = 1;
+	}
+	//// 敵と高さが同じ時
+	//if (pBoxX == ebBoxX2 && bBoxY == ebBoxY && pBoxY2 == eBoxY2) {
+	//	HitFlg = 1;
+	//}
 	// 反発
 	// 左側に触れたとき
 	if (HitFlg == 1 && Speed < -0.5) {
@@ -216,10 +253,10 @@ AbstractScene* Player::Update()
 	if (HitFlg == 2 && Speed > 0.5) {
 		Speed *= -0.8;
 	}
-	if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
+	/*if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
 		Gvy = 0.98f;
 		Speed *= 0.8;
-	}
+	}*/
 
 	
 	//プレイヤーの横移動
