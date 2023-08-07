@@ -72,10 +72,6 @@ void thunder::Update()
 		BallAngle = (1 - BallAngle);
 		ChangeAngle();
 	}
-	/*if (BallY < 8) { // ã‚Ì•Ç
-		BallAngle = (1 - BallAngle);
-		ChangeAngle();
-	}*/
 	if (++pointFlg < 100) {
 		if (AnimFlg == 0b0000) {
 			countFlg = pointFlg % 3;
