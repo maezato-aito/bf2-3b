@@ -44,50 +44,57 @@ thunder::~thunder()
 
 void thunder::Update()
 {
-	BallX += MoveX;
-	BallY += MoveY;
-	// 壁・天井での反射
-	if (BallX < 4 || BallX > 640 - 4) { // 横の壁
-		if (BallX < 4) {
-			BallX = 4;
-		}
-		else {
-			BallX = 640 - 4;
-		}
-		BallAngle = (1 - BallAngle) + 0.5f;
-		if (BallAngle > 1) BallAngle -= 1.0f;
-		ChangeAngle();
-	}
-	if (BallX == 100 && 200) {
+	if (++incFlg < 100000000) {
+		if (incFlg > 200) {
+			BallX += MoveX;
+			BallY += MoveY;
+			// 壁・天井での反射
+			if (BallX < 4 || BallX > 640 - 4) { // 横の壁
+				if (BallX < 4) {
+					BallX = 4;
+				}
+				else {
+					BallX = 640 - 4;
+				}
+				BallAngle = (1 - BallAngle) + 0.5f;
+				if (BallAngle > 1) BallAngle -= 1.0f;
+				ChangeAngle();
+			}
+			if (BallX >= 200 && 300) {
+				printfDx("A\n");
+				if (BallY >= 275 && 290) {
+					BallAngle = (1 - BallAngle);
+					ChangeAngle();
+				}
+			}
+			if (BallY < 8 || BallY > 400) {
+				if (BallY < 8) {
+					BallY = 8;
+				}
+				else {
+					BallY = 400;
+				}
 				BallAngle = (1 - BallAngle);
 				ChangeAngle();
-	}
-	if (BallY < 8 || BallY > 400) {
-		if (BallY < 8) {
-			BallY = 8;
+			}
 		}
-		else {
-			BallY =  400;
-		}
-		BallAngle = (1 - BallAngle);
-		ChangeAngle();
 	}
-	if (++pointFlg < 100) {
-		if (AnimFlg == 0b0000) {
-			countFlg = pointFlg % 3;
-			if (countFlg == 0) {
-				C_AnimImg = 0;
-			}
-			if (countFlg == 1) {
-				C_AnimImg = 1;
-			}
-			if (countFlg == 2) {
-				C_AnimImg = 2;
-			}
+			if (++pointFlg < 100) {
+				if (AnimFlg == 0b0000) {
+					countFlg = pointFlg % 3;
+					if (countFlg == 0) {
+						C_AnimImg = 0;
+					}
+					if (countFlg == 1) {
+						C_AnimImg = 1;
+					}
+					if (countFlg == 2) {
+						C_AnimImg = 2;
+					}
 
+				}
+			}
 		}
-	}
-}
 void thunder::ChangeAngle()
 {
 	rad = BallAngle * (float)M_PI * 2;
