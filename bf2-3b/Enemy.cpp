@@ -34,7 +34,6 @@ Enemy::Enemy() {
 
 	enemy[0].flg = 1;
 	enemy[0].type = 0;
-	Dflg = 0;
 
 	Lv = 0;
 
@@ -45,7 +44,6 @@ Enemy::Enemy() {
 	SpeedX = 0;
 	SpeedY = 0;
 	Pr_y = 0;
-
 }
 
 Enemy::~Enemy() {
@@ -73,15 +71,15 @@ void Enemy::Update() {
 		if (enemy[0].y > 4 && SpeedY <= 3)
 		{
 			SpeedY += 0.03f;
-			enemy[0].y -= SpeedY * eSpeed[Lv];
+			enemy[0].y -= SpeedY;
 		}
 		else if (enemy[0].y > 4 && SpeedY > 3) {
-			enemy[0].y -= SpeedY * eSpeed[Lv];
+			enemy[0].y -= SpeedY;
 		}
 	}
 	else if (SpeedY > 0.05f && enemy[0].flg == 2) {
 		SpeedY -= 0.5f;
-		enemy[0].y += SpeedY * eSpeed[Lv];
+		enemy[0].y += SpeedY;
 		enemy[0].y += Gvy;
 
 	}
@@ -90,14 +88,14 @@ void Enemy::Update() {
 	if (Player::pBoxX2 < eBoxX && enemy[0].flg == 2)
 	{
 		if (SpeedX > -1) {
-			SpeedX -= 0.1f * eSpeed[Lv];
+			SpeedX -= 0.1f;
 		}
 	}
 	else if (Player::pBoxX2 <= eBoxX && enemy[0].flg == 2) {
 		// 回避
 		if (SpeedX > -2) {
-			SpeedX -= 0.4f * eSpeed[Lv];
-			enemy[0].y -= SpeedY * eSpeed[Lv];
+			SpeedX -= 0.4f;
+			enemy[0].y -= SpeedY;
 		}
 	}
 
@@ -105,14 +103,14 @@ void Enemy::Update() {
 	if (Player::pBoxX > eBoxX2 && enemy[0].flg == 2)
 	{
 		if (SpeedX < 1) {
-			SpeedX += 0.1f * eSpeed[Lv];
+			SpeedX += 0.1f;
 		}
 	}
 	else if (Player::pBoxX >= eBoxX2 && enemy[0].flg == 2) {
 		// 回避
 		if (SpeedX > -2) {
-			SpeedX -= 0.4f * eSpeed[Lv];
-			enemy[0].y -= SpeedY * eSpeed[Lv];
+			SpeedX -= 0.4f;
+			enemy[0].y -= SpeedY;
 		}
 	}
 
@@ -122,22 +120,18 @@ void Enemy::Update() {
 		SpeedX *= 0.99f;
 	}
 
-	enemy[0].x += SpeedX * eSpeed[Lv];
+	enemy[0].x += SpeedX;
 
 	
 	// 右地面
 	if ((S1_Landright_X <= enemy[0].x + 32 && S1_Landright_Width >= enemy[0].x) && S1_Landright_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
-		
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
-			if (Lv < 3) {
-				Lv += 1;
-			}
-			Cnt = EnemyWait[Lv - 1];
-			Wait();
+			Lv += 1;
+			EnemyStart();
 		}
 	}
 	// 右地面左側面
@@ -155,11 +149,8 @@ void Enemy::Update() {
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
-			if (Lv < 3) {
-				Lv += 1;
-			}
-			Cnt = EnemyWait[Lv - 1];
-			Wait();
+			Lv += 1;
+			EnemyStart();
 		}
 	}
 	// 左地面右側面
@@ -173,18 +164,11 @@ void Enemy::Update() {
 	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_Width >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && S1_Flooting_Y + 20 >= enemy[0].y && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
-		if (SpeedX > -5 && enemy[0].flg == 2) {
-			SpeedX += 0.4f * -eSpeed[Lv];
-			enemy[0].y -= SpeedY * -eSpeed[Lv];
-		}
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
-			if (Lv < 3) {
-				Lv += 1;
-			}
+			Lv += 1;
 			Count = 15;
-			Cnt = EnemyWait[Lv - 1];
-			Wait();
+			EnemyStart();
 		}
 	}
 	else {
@@ -263,24 +247,15 @@ void Enemy::Draw() const {
 		// 当たり判定の範囲
 		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
 		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
-
-		/*DrawFormatString(200, 200, 0xff0000, "%d", Counter, TRUE);*/
-		
+#if _DEBUG
 		if (enemy[0].flg == 3) {
-			
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyPScore[0], TRUE);
-			
 		}
 	
-		if (enemy[0].flg == 4 && Dflg == 0) {
+		if (enemy[0].flg == 4) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[2], TRUE);
-			
 		}
-
-		if (Dflg == 1) {
-			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[1], TRUE);
-		}
-
+#endif _DEBUG
 	}
 
 	// 敵（緑）の描画
@@ -299,12 +274,8 @@ void Enemy::Draw() const {
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyGScore[0], TRUE);
 		}
 
-		if (enemy[0].flg == 4 && Dflg == 0) {
+		if (enemy[0].flg == 4) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyGScore[2], TRUE);
-		}
-
-		if (Dflg == 2) {
-			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyGScore[1], TRUE);
 		}
 
 	}
@@ -325,21 +296,15 @@ void Enemy::Draw() const {
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyRScore[0], TRUE);
 		}
 
-		if (enemy[0].flg == 4 && Dflg == 0) {
+		if (enemy[0].flg == 4) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyRScore[2], TRUE);
 		}
 
-		if (Dflg == 3) {
-			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyRScore[1], TRUE);
-		}
-
 	}
-
-	/*DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
-	DrawFormatString(100, 150, 0xffffff, "%d", enemy[0].type, TRUE);*/
-	DrawFormatString(300, 300, 0xffffff, "%d", Cnt, TRUE);
-	DrawFormatString(300, 350, 0xffffff, "%d", Counter, TRUE);
-
+#if _DEBUG
+	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
+	DrawFormatString(100, 150, 0xffffff, "%d", enemy[0].type, TRUE);
+#endif _DEBUG
 }
 
 // 初期状態
@@ -425,7 +390,9 @@ void Enemy::EnemyStart() {
 			}
 			Counter = 0;
 		}
-	}	
+	}
+
+	
 
 }
 
@@ -434,70 +401,36 @@ void Enemy::Parachute() {
 	AnimImg = 17;
 	
 
-	if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY) {
+	/*if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY) {
 		enemy[0].flg = 4;
-		De_x = enemy[0].x;
-		De_y = enemy[0].y;
-		if (enemy[0].type == 0) {
-			Score += EnemyPScore[2];
-			Dflg = 1;
-		}
-		else if (enemy[0].type == 1) {
-			Score += EnemyGScore[2];
-			Dflg = 2;
-		}
-		else {
-			Score += EnemyRScore[2];
-			Dflg = 3;
-		}
-
 		Death();
-	}
+	}*/
 
 	if (Pr_x + 5 > enemy[0].x) {
-		enemy[0].x += 0.5;
+		enemy[0].x += SpeedX;
 	}
 	
 	if (Pr_x - 5 < enemy[0].x) {
-		enemy[0].x -= 0.5;
+		enemy[0].x -= SpeedX;
 	}	
 }
 
 // 死亡処理
 void Enemy::Death() {
 	AnimImg = 13;
-	SpeedY = 0;
+	SpeedX = 0;
 	
-	if (enemy[0].y > 4 && SpeedY <= 10)
-	{
-		SpeedY += 0.03f;
+
+	if (enemy[0].y - 150 < De_y) {
 		enemy[0].y -= SpeedY;
 	}
-	else{
+	else if(enemy[0].y > 300 && enemy[0].y - 150 >= De_y) {
 		
-		SpeedY -= 0.5f;
+		SpeedY += 1.0f;
 		enemy[0].y += SpeedY;
 		enemy[0].y += Gvy;
 	}
-
-}
-
-void Enemy::Wait() {
-	if (++Counter >= 60)
-	{
-		if (0 <= Cnt) {
-			--Cnt;
-			if (0 < Cnt) {
-				AnimImg = 0;
-			}
-			else
-			{
-				EnemyStart();
-			}
-		}
-		
-		
+	else{
+		enemy[0].flg = 0;
 	}
-	Counter = 0;
-
 }

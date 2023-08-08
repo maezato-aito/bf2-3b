@@ -98,7 +98,9 @@ void Bubble::Update()
 void Bubble::Draw()
 {
 	DrawExtendGraph(bX0, bY0,bX1,bY1 ,bubbleImg[bubbleAC], TRUE);
+#if _DEBUG
 	DrawFormatString(350, 0, 0xffffff, "ñAÇÃç¿ïW X:%3.2f Y:%3.2f",bubbleX,bubbleY,  TRUE);
 	DrawFormatString(350, 20, 0xffffff, "ñAÇÃéÌóﬁ:%d",bubbleAC,  TRUE);
 	DrawFormatString(350, 40, 0xffffff,		"éûä‘: % d",bAv,  TRUE);
+#endif _DEBUG
 }

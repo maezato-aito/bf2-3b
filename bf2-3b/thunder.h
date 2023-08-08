@@ -26,6 +26,15 @@ private:
 	int A_ThunderImg;
 	int ThunderImg[6];
 	int A_nimFlg = 0b0000;
+	int BallX;
+	int BallY;
+	int MoveX;
+	int MoveY;
+	int BallImg[3];
+	int A_BallImg;
+	int speed;
+	float BallAngle;
+	float rad;
 public:
 
 	// コンストラクタ
@@ -39,6 +48,10 @@ public:
 	void Circle();
 
 	void Anim();
+
+	void Ball();
+
+	void ChangeAngle();
 
 	//描画処理
 	void D_thunder();

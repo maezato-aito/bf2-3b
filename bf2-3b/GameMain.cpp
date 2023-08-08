@@ -24,6 +24,7 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+	Thunder->Ball();
 	Thunder->Circle();
 	Thunder->Anim();
 	Thunder->Update();
@@ -45,5 +46,6 @@ void GameMain::Draw() const
 	fish->Draw();
 	ui->Draw();
 	DrawFormatString(640, 360, 0xffffff, "GameMain");
+	gameover->Draw();
 }
 
