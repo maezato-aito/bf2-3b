@@ -166,7 +166,7 @@ AbstractScene* Player::Update()
 			{
 				//慣性の作成
 				Speed = 0.0f;
-				Gvy = 0.0f;
+				
 
 				/*待機中アニメーション*/
 				if (0 <= AnimCount)
@@ -190,7 +190,7 @@ AbstractScene* Player::Update()
 					AnimCount = 0;
 				}
 			}
-
+			Gvy = 0.0f;
 			PlayerFlg = 0;
 			HitFlg = 0;
 		}

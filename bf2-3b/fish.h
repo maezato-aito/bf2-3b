@@ -1,11 +1,13 @@
 #pragma once
 
+
+
 class Fish
 {
 private:
 	int fBoxX,fBoxY,fBoxX2,fBoxY2;
 	int fishX, fishY;
-	int pBoxX;
+	int pBoxX,pBoxY,pBoxX2,pBoxY2;
 public:
 
 	//‰æ‘œ—p
