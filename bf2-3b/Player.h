@@ -4,17 +4,41 @@
 class Player : public AbstractScene
 {
 private:
-	int playerX, playerY;
+	float playerX, playerY;
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
-	int vx, vy;		//ベクトル
-	int e;			// 反発係数
+	
+	float vx, vy;		//ベクトル
+	float e;			// 反発係数
+	int eBoxX, eBoxY, eBoxX2, eBoxY2; //敵の判定
+	int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2; //敵の風船の判定
+
+	int AnimCount;
+
 public:
 
-	int PlayerStus=0; //地面の状態を0　空中なら1をいれる
+	int PlayerFlg=0; //地面の状態を0　空中なら1をいれる
+	int HitFlg = 0;	//横に触れていたら0 触れていなかったら１
+	//プレイヤーコリジョン
+	static int pBoxX;
+	static int pBoxY;
+	static int pBoxX2;
+	static int pBoxY2;
 
-	int boxX=100, boxY=100, boxX2=boxX+50, boxY2=boxY+50;
+	//風船コリジョン
+	static int bBoxX;
+	static int bBoxY;
+	static int bBoxX2;
+	static int bBoxY2;
+
+	float Gvy;
+	int gCount;
+
+	float UpNum;
+	
+	float Speed;
+	int playerLR;
 	// コンストラクタ
 	Player();
 	// デストラクタ
@@ -25,4 +49,6 @@ public:
 
 	//描画処理
 	void Draw() const override;
+
+	void pUP();
 };

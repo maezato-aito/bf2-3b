@@ -3,14 +3,24 @@
 #include "Stage.h"
 #include"Player.h"
 #include "Enemy.h"
-
+#include "thunder.h"
+#include"bubble.h"
+#include"fish.h"
+#include "UI.h"
+#include"GameOver.h"
 class GameMain :
     public AbstractScene
 {
 private:
     Stage* stage;
     Player* PlayChar;
-    //Enemy* EnemyChar;
+    Enemy* EnemyChar;
+    thunder* Thunder;
+    Bubble* bubble;
+    Fish* fish;
+    UI* ui;
+    GameOver* gameover;
+
 public:
     //コンストラクタ
     GameMain();
