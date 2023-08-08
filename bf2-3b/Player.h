@@ -34,9 +34,11 @@ public:
 
 	float Gvy;
 	int gCount;
+	int buttonC;
 
 	float UpNum;
-	
+	int UpFlg;
+
 	float Speed;
 	int playerLR;
 	// コンストラクタ
