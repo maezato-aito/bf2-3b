@@ -1,6 +1,7 @@
 #include"fish.h"
 #include"DxLib.h"
 #include"common.h"
+#include"Player.h"
 
 Fish::Fish()
 {
@@ -9,10 +10,11 @@ Fish::Fish()
 	// ãõÇÃìñÇΩÇËîªíË
 	fishX = S1_Landleft_Width;
 	fishY = S1_Landleft_Y;
-	fBoxX = fishX + 6;
+	fBoxX = fishX;
 	fBoxY = fishY;
-	fBoxX2 = fBoxX + 38;
+	fBoxX2 = fBoxX + 64;
 	fBoxY2 = fBoxY + 64;
+
 }
 
 Fish::~Fish()
@@ -22,19 +24,24 @@ Fish::~Fish()
 
 void Fish::Update()
 {
-	if (fBoxX2 < S1_Landright_X) {
-		fBoxX += 2;
-		fBoxX2 += 2;
+	pBoxX = Player::pBoxX;
+	pBoxY = Player::pBoxY;
+	pBoxX2 = Player::pBoxX2;
+	pBoxY2 = Player::pBoxY2;
+
+	if (pBoxX2 > fBoxX2 && fBoxX2 <= S1_Landright_X) {
+		fBoxX += 3;
+		fBoxX2 += 3;
 	}
-	if (fBoxX2 > S1_Landright_X) {
-		fBoxX -= 2;
-		fBoxX2 -= 2;
+	if (pBoxX2 < fBoxX2 && fBoxX >= S1_Landleft_Width) {
+		fBoxX -= 3;
+		fBoxX2 -= 3;
 	}
 }
 
 void Fish::Draw()
 {
 	DrawBox(fBoxX, fBoxY, fBoxX2, fBoxY2, 0xff2255, FALSE);//ÉvÉåÉCÉÑÅ[ÇÃbox
-	DrawExtendGraph(270, 400, 320, 450, fishImg[2], TRUE);
+	DrawExtendGraph(fBoxX, fBoxY, fBoxX2, fBoxY2, fishImg[2], TRUE);
 	
 }

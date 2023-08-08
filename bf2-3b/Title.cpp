@@ -5,6 +5,7 @@
 #include "PadInput.h"
 #include "GameMain.h"
 #include "FpsController.h"
+
 Title::Title()
 {
 	/*Titleimage = LoadGraph("");*/
