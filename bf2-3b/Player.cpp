@@ -35,7 +35,7 @@ Player::Player()
 	Image = 0;
 	Speed = 0;
 	playerLR = 0;
-
+	UpNum = 0;
 }
 Player::~Player()
 {
@@ -74,7 +74,9 @@ AbstractScene* Player::Update()
 		}
 		//èdóÕÇÃâ¡éZ
 		playerY += Gvy;
-	
+
+		//è„è∏ÇÃâ¡éZ
+		playerY -= UpNum;
 
 	if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) || (PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
 	{
@@ -82,6 +84,11 @@ AbstractScene* Player::Update()
 		{
 			pUP();
 		}
+	}
+	else
+	{
+		if(0 < UpNum)
+		UpNum -= 0.1;
 	}
 	if (++AnimCount < 400.0f)
 	{
@@ -198,6 +205,27 @@ AbstractScene* Player::Update()
 		//ínñ Ç…óßÇ¡ÇƒÇ¢Ç»ÇØÇÍÇŒ
 		else
 		{
+		if (0 <= AnimCount)
+		{
+			Image = 17;
+		}
+		if (5 <= AnimCount)
+		{
+			Image = 18;
+		}
+		if (10 <= AnimCount)
+		{
+			Image = 19;
+		}
+		if (15 <= AnimCount)
+		{
+			Image = 18;
+		}
+		if (19 <= AnimCount)
+		{
+			AnimCount = 0;
+		}
+
 			if (playerX + 64 > 0)
 			{
 				//ç∂à⁄ìÆ
@@ -208,26 +236,7 @@ AbstractScene* Player::Update()
 						Speed -= 0.016f;
 					}
 
-					if (0 <= AnimCount)
-					{
-						Image = 17;
-					}
-					if (5 <= AnimCount)
-					{
-						Image = 18;
-					}
-					if (10 <= AnimCount)
-					{
-						Image = 19;
-					}
-					if (15 <= AnimCount)
-					{
-						Image = 18;
-					}
-					if (19 <= AnimCount)
-					{
-						AnimCount = 0;
-					}
+					
 
 					playerLR = 1;
 					/*playerY += 6;*/
@@ -244,26 +253,7 @@ AbstractScene* Player::Update()
 						Speed += 0.016f;
 					}
 
-					if (0 <= AnimCount)
-					{
-						Image = 17;
-					}
-					if (5 <= AnimCount)
-					{
-						Image = 18;
-					}
-					if (10 <= AnimCount)
-					{
-						Image = 19;
-					}
-					if (15 <= AnimCount)
-					{
-						Image = 18;
-					}
-					if (19 <= AnimCount)
-					{
-						AnimCount = 0;
-					}
+					
 					playerLR = 2;
 					/*playerY += 6;*/
 				}
@@ -398,5 +388,5 @@ void Player::Draw() const
 
 void Player::pUP()
 {
-	Gvy = -2.0f;
+	UpNum = 2;
 }
