@@ -39,11 +39,12 @@ AbstractScene* GameMain::Update()
 void GameMain::Draw() const
 {
 	Thunder->D_thunder();
+	fish->Draw();
 	stage->Stage1();
 	PlayChar->Draw();
 	EnemyChar->Draw();
 	bubble->Draw();
-	fish->Draw();
+	
 	ui->Draw();
 	DrawFormatString(640, 360, 0xffffff, "GameMain");
 	gameover->Draw();

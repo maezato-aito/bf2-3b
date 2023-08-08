@@ -300,7 +300,7 @@ AbstractScene* Player::Update()
 		}
 		if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
 			S1_Flooting_height == bBoxY) {
-			Gvy *= -0.8f;
+			Gvy *= 0.8f;
 		}
 
 		// ìGÇÃç∂ë§Ç…ìñÇΩÇ¡ÇΩÇ∆Ç´
