@@ -78,15 +78,17 @@ AbstractScene* Player::Update()
 			Gvy = 1;
 		}
 		//d—Í‚Ì‰ÁŽZ
-		playerY += Gvy;
+		playerY += (Gvy-UpNum);
 
-		//ã¸‚Ì‰ÁŽZ
-		playerY -= UpNum;
+		if ((0.1 > Gvy - UpNum) && 45 > bBoxY)
+		{
+
+		}
 			if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) || (PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
 			{
 				if (bBoxY > 0)
 				{
-					UpNum = 2;
+					if(UpNum < 2)UpNum += 0.3;
 					UpFlg = 1;
 				}
 				else
