@@ -6,9 +6,9 @@
 
 thunder::thunder()
 {
-	LoadDivGraph("x64/Release/images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
-	LoadDivGraph("x64/Release/images/stage/Stage_ThunderAnimation.png", 6, 6, 1, 64, 63, ThunderImg);
-	LoadDivGraph("x64/Release/images/stage/Stage_ThunderEffectAnimation.png", 3, 3, 1, 32, 32, BallImg);
+	LoadDivGraph("images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
+	LoadDivGraph("images/stage/Stage_ThunderAnimation.png", 6, 6, 1, 64, 63, ThunderImg);
+	LoadDivGraph("images/stage/Stage_ThunderEffectAnimation.png", 3, 3, 1, 32, 32, BallImg);
 	A_ThunderImg = 1;
 	C_AnimImg = 1;
 	Time = 0;

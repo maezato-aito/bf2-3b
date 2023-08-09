@@ -67,6 +67,5 @@ void Stage::Stage1() {
 	DrawBox(S1_Landleft_X, S1_Landleft_Y, S1_Landleft_Width, S1_Landleft_height, 0xff2255, FALSE);
 
 	
-	// ‰_‚Ì•`‰æ
-	DrawGraph(S1_Cloud_X, S1_Cloud_Y, CloudImg[0], TRUE);
+	
 }
