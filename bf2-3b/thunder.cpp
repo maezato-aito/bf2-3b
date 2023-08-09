@@ -62,7 +62,6 @@ void thunder::Update()
 			}
 			if (BallX >= 200) {
 				if (BallX <= 500) {
-					printfDx("A\n");
 					if (BallY >= 275) {
 						if (BallY <= 300) {
 							BallAngle = (1 - BallAngle);

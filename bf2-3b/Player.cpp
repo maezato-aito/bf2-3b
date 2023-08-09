@@ -72,6 +72,7 @@ AbstractScene* Player::Update()
 
 
 	UpFlg = 0;
+
 		if (1 < Gvy)
 		{
 			Gvy = 1;
@@ -95,7 +96,7 @@ AbstractScene* Player::Update()
 			}
 			else
 			{
-				if (0.1 < UpNum)
+				if (0.01 < UpNum)
 				{
 					UpNum -= 0.1;
 				}
@@ -242,7 +243,7 @@ AbstractScene* Player::Update()
 				//左移動
 				if (InputX < -1)
 				{
-					if (Speed > -1.5 && UpFlg==1)
+					if (UpFlg == 1 && Speed > -2.5 )
 					{
 						Speed -= 1.0f;
 					}
@@ -255,9 +256,9 @@ AbstractScene* Player::Update()
 			if (playerX < 640)
 			{
 				//右移動
-				if (InputX > 1.5)
+				if (InputX > 2.5)
 				{
-					if (Speed < 1 && UpFlg==1)
+					if (UpFlg == 1 && Speed < 1)
 					{
 						Speed += 1.0f;
 					}
@@ -376,6 +377,7 @@ void Player::Draw() const
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
+
 #endif _DEBUG
 
 	//向きで描画
