@@ -123,10 +123,13 @@ AbstractScene* Player::Update()
 				if (InputX < -1)
 				{
 
-
-					if (Speed > -3)
+					if (Speed > -3.5)
 					{
-						Speed -= 0.016f;
+						Speed -= 0.05f;
+						if (-1.0 > Speed)
+						{
+							Speed -= 0.3;
+						}
 					}
 
 						if (0 <= AnimCount)
@@ -156,9 +159,14 @@ AbstractScene* Player::Update()
 				//âEà⁄ìÆ
 				if (InputX > 1)
 				{
-					if (Speed < 3)
+					
+					if (Speed < 3.5)
 					{
-						Speed += 0.016f;
+						Speed += 0.05f;
+						if (1.0 < Speed)
+						{
+							Speed += 0.3;
+						}
 					}
 
 					if (0 <= AnimCount)
@@ -243,9 +251,10 @@ AbstractScene* Player::Update()
 				//ç∂à⁄ìÆ
 				if (InputX < -1)
 				{
-					if (UpFlg == 1 && Speed > -2.5 )
+					if (UpFlg == 1 && Speed > -3.2)
 					{
-						Speed -= 1.0f;
+						Speed -= 1.1f;
+						if (Speed > -3.2)Speed = -3.2;
 					}
 
 					playerLR = 1;
@@ -256,11 +265,12 @@ AbstractScene* Player::Update()
 			if (playerX < 640)
 			{
 				//âEà⁄ìÆ
-				if (InputX > 2.5)
+				if (InputX > 1)
 				{
-					if (UpFlg == 1 && Speed < 1)
+					if (UpFlg == 1 && Speed < 3.2)
 					{
-						Speed += 1.0f;
+						Speed += 1.1f;
+						if (Speed > 3.2)Speed = 3.2;
 					}
 
 					
@@ -272,7 +282,7 @@ AbstractScene* Player::Update()
 			if (InputX == 0 || UpFlg==0)
 			{
 				//äµê´ÇÃçÏê¨
-				Speed *= 0.98f;
+				Speed *= 0.96f;
 			}
 			Gvy += 0.01f;
 			PlayerFlg = 1;
