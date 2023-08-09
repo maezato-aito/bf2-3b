@@ -1,84 +1,12 @@
-﻿  Enemy.cpp
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(56,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(57,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(58,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(59,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(62,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(63,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(64,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(65,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(159,16): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(220,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(221,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(242,33): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(242,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(244,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(244,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(245,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(245,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(264,33): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(264,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(266,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(266,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(267,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(267,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(286,33): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(286,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(288,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(288,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(289,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Enemy.cpp(289,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  GameMain.cpp
-  GameOver.cpp
-  Player.cpp
-C:\PG\bf2-3b\bf2-3b\Player.cpp(19,12): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(30,9): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(48,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(49,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(54,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(55,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(258,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(262,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(304,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(304,12): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(305,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(305,16): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(306,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(306,20): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  Title.cpp
-  anim.cpp
-  bubble.cpp
-C:\PG\bf2-3b\bf2-3b\bubble.cpp(77,14): warning C4804: '<': 演算中の 'bool' 型の使用方法が安全ではありません
-C:\PG\bf2-3b\bf2-3b\bubble.cpp(81,14): warning C4804: '<': 演算中の 'bool' 型の使用方法が安全ではありません
-C:\PG\bf2-3b\bf2-3b\bubble.cpp(85,14): warning C4804: '<': 演算中の 'bool' 型の使用方法が安全ではありません
-C:\PG\bf2-3b\bf2-3b\bubble.cpp(100,31): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\bubble.cpp(100,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\bubble.cpp(100,23): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\bubble.cpp(100,18): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  main.cpp
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4476: 'fprintf_s' : 形式指定子に不明な種類フィールド文字 '\xe6' があります
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4477: 'fprintf_s' : 書式文字列 '% s' には、型 'char *' の引数が必要ですが、可変個引数 5 は型 'int' です
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4313: 'fprintf_s': 書式文字列内の '%s' が引数 5 ('int' 型) と競合しています
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,151): warning C4474: 'fprintf_s': 書式文字列に渡された引数の数が多すぎます
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,151): message : プレースホルダーとそのパラメーターには 5 の可変個引数が必要ですが、7 が指定されています。
+﻿  fish.cpp
   コード生成しています。
-  0 of 81 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  2 of 80 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
-FpsController.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-FpsController.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-Stage.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-Stage.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-SceneManager.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-GameOver.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-UI.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-UI.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-Stage.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-GameMain.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-UI.obj : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-kernel32.lib(KERNEL32.dll) : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-kernel32.lib(KERNEL32.dll) : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-kernel32.lib(KERNEL32.dll) : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-kernel32.lib(KERNEL32.dll) : warning LNK4020: 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb' の型レコードは破損しています。一部のシンボルおよび型は、デバッガーからはアクセスできない可能性があります。
-kernel32.lib(KERNEL32.dll) : fatal error LNK1318: 予期しない PDB エラー。OK (0) 'c:\pg\bf2-3b\bf2-3b\x64\release\vc143.pdb'
+FpsController.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+PadInput.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+Pause.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+Result.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+SceneManager.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Release\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+  bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Release\bf2-3b.exe

@@ -86,5 +86,7 @@ void Fish::Draw()
 	DrawBox(fBoxX, fBoxY, fBoxX2, fBoxY2, 0xff2255, FALSE);//ÉvÉåÉCÉÑÅ[ÇÃbox
 	/*DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xff2255, FALSE);*/
 	DrawExtendGraph(fBoxX, fBoxY, fBoxX2, fBoxY2, fishImg[Anim], TRUE);
+#if _DEBUG
 	DrawFormatString(0, 350, 0xffffff, "èÛë‘ %d", ChangeAnim, TRUE);
+#endif _DEBUG
 }
