@@ -33,7 +33,7 @@ void Fish::Update()
 	pBoxY = Player::pBoxY;
 	pBoxX2 = Player::pBoxX2;
 	pBoxY2 = Player::pBoxY2;
-
+	playerFlg = Player::PlayerFlg;
 	if (pBoxX2 > fBoxX2 && fBoxX2 <= S1_Landright_X) {
 		fBoxX += 3;
 		fBoxX2 += 3;
@@ -53,12 +53,18 @@ void Fish::Update()
 			if (ChangeAnim >= 10 && ChangeAnim < 20) {
 				Anim = 1;
 			}
-			if (ChangeAnim >= 20 && ChangeAnim < 30) {
+			if (ChangeAnim >= 20 && ChangeAnim < 30 && pBoxY2 <= fBoxY2) {
+				Anim = 6;
+				Player::PlayerFlg = 0;
+			}
+			else if (ChangeAnim >= 20 && ChangeAnim < 30) {
 				Anim = 2;
 			}
+			
 			if (ChangeAnim >= 30 && ChangeAnim < 40) {
 				Anim = 3;
 			}
+			
 			if (ChangeAnim >= 40 && ChangeAnim < 50) {
 				Anim = 4;
 				fBoxY += 2;

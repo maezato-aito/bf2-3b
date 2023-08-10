@@ -11,6 +11,7 @@ private:
 	int pBoxX,pBoxY,pBoxX2,pBoxY2;
 	int ChangeAnim;
 	int Anim;
+	int playerFlg;
 public:
 
 	//‰æ‘œ—p
