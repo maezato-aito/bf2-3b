@@ -35,7 +35,10 @@ Player::Player()
 	Image = 0;
 	Speed = 0;
 	playerLR = 0;
+
+	UpFlg = 0;
 	UpNum = 0;
+	buttonC = 0;
 }
 Player::~Player()
 {
@@ -68,6 +71,7 @@ AbstractScene* Player::Update()
 	ebBoxY2 = Enemy::ebBoxY2;
 
 
+	UpFlg = 0;
 		if (1 < Gvy)
 		{
 			Gvy = 1;
@@ -77,19 +81,26 @@ AbstractScene* Player::Update()
 
 		//ã¸‚Ì‰ÁŽZ
 		playerY -= UpNum;
+			if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) || (PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
+			{
+				if (bBoxY > 0)
+				{
+					UpNum = 2;
+					UpFlg = 1;
+				}
+				else
+				{
+					UpNum = 0;
+				}
+			}
+			else
+			{
+				if (0.1 < UpNum)
+				{
+					UpNum -= 0.1;
+				}
 
-	if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) || (PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
-	{
-		if (bBoxY >= 0)
-		{
-			pUP();
-		}
-	}
-	else
-	{
-		if(0 < UpNum)
-		UpNum -= 0.1;
-	}
+			}
 	if (++AnimCount < 400.0f)
 	{
 		//’n–Ê‚É—§‚Á‚Ä‚¢‚é‚Æ‚©
@@ -231,12 +242,10 @@ AbstractScene* Player::Update()
 				//¶ˆÚ“®
 				if (InputX < -1)
 				{
-					if (Speed > -3)
+					if (Speed > -1.5 && UpFlg==1)
 					{
-						Speed -= 0.016f;
+						Speed -= 1.0f;
 					}
-
-					
 
 					playerLR = 1;
 					/*playerY += 6;*/
@@ -246,11 +255,11 @@ AbstractScene* Player::Update()
 			if (playerX < 640)
 			{
 				//‰EˆÚ“®
-				if (InputX > 1)
+				if (InputX > 1.5)
 				{
-					if (Speed < 3)
+					if (Speed < 1 && UpFlg==1)
 					{
-						Speed += 0.016f;
+						Speed += 1.0f;
 					}
 
 					
@@ -259,12 +268,12 @@ AbstractScene* Player::Update()
 				}
 			}
 
-			if (InputX == 0)
+			if (InputX == 0 || UpFlg==0)
 			{
 				//Šµ«‚Ìì¬
-				Speed *= 0.99f;
+				Speed *= 0.98f;
 			}
-			Gvy += 0.1f;
+			Gvy += 0.01f;
 			PlayerFlg = 1;
 			HitFlg = 0;
 		}
@@ -388,5 +397,6 @@ void Player::Draw() const
 
 void Player::pUP()
 {
-	UpNum = 2;
+	UpNum = 4;
+	UpFlg = 1;
 }
