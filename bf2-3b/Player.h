@@ -18,7 +18,7 @@ private:
 
 public:
 
-	int PlayerFlg=0; //地面の状態を0　空中なら1をいれる
+	static int PlayerFlg; //地面の状態を0　空中なら1をいれる
 	int HitFlg = 0;	//横に触れていたら0 触れていなかったら１
 	//プレイヤーコリジョン
 	static int pBoxX;
@@ -53,4 +53,6 @@ public:
 	void Draw() const override;
 
 	void pUP();
+
+	void backlash();
 };
