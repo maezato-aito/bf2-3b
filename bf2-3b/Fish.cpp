@@ -14,10 +14,10 @@ Fish::Fish()
 	fBoxY = fishY;
 	fBoxX2 = fBoxX + 64;
 	fBoxY2 = fBoxY + 70;
-	/*fishBoxX = fishX;
+	fishBoxX = fishX;
 	fishBoxY = fishY;
 	fishBoxX2 = fishX + 64;
-	fishBoxY2 = fishY + 80;*/
+	fishBoxY2 = fishY + 80;
 	ChangeAnim = 0;
 	Anim = 0;
 }
@@ -33,7 +33,7 @@ void Fish::Update()
 	pBoxY = Player::pBoxY;
 	pBoxX2 = Player::pBoxX2;
 	pBoxY2 = Player::pBoxY2;
-	playerFlg = Player::PlayerFlg;
+
 	if (pBoxX2 > fBoxX2 && fBoxX2 <= S1_Landright_X) {
 		fBoxX += 3;
 		fBoxX2 += 3;

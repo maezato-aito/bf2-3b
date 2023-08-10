@@ -13,6 +13,7 @@
  int Player::bBoxY;
  int Player::bBoxX2;
  int Player::bBoxY2;
+ int Player::PlayerFlg;
 
 Player::Player()
 {
@@ -347,14 +348,7 @@ AbstractScene* Player::Update()
 		//	HitFlg = 1;
 		//}
 		// îΩî≠
-		// ç∂ë§Ç…êGÇÍÇΩÇ∆Ç´
-		if (HitFlg == 1 && Speed < -0.5) {
-			Speed *= -0.8;
-		}
-		// âEë§Ç…êGÇÍÇΩÇ∆Ç´
-		if (HitFlg == 2 && Speed > 0.5) {
-			Speed *= -0.8;
-		}
+		backlash();
 		/*if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
 			Gvy = 0.98f;
 			Speed *= 0.8;
@@ -418,4 +412,16 @@ void Player::pUP()
 {
 	UpNum = 4;
 	UpFlg = 1;
+}
+
+void Player::backlash()
+{
+	// ç∂ë§Ç…êGÇÍÇΩÇ∆Ç´
+	if (HitFlg == 1 && Speed < -0.5) {
+		Speed *= -0.8;
+	}
+	// âEë§Ç…êGÇÍÇΩÇ∆Ç´
+	if (HitFlg == 2 && Speed > 0.5) {
+		Speed *= -0.8;
+	}
 }
