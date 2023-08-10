@@ -1,19 +1,2 @@
-﻿  Player.cpp
-C:\PG\bf2-3b\bf2-3b\Player.cpp(19,12): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(30,9): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(52,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(53,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(58,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(59,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(106,18): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(341,17): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(345,17): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(392,22): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(392,13): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(397,26): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(397,17): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(400,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(400,16): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(401,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(401,20): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+﻿  Stage.cpp
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe

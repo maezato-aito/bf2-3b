@@ -7,6 +7,11 @@ private:
     int LandImg[4];     // 地面の画像
     int SeaImg;    // 海の画像
     int CloudImg[3];     // 雲の画像 
+
+    int Stage2Sample;
+    int Stage3Sample;
+    int Stage4Sample;
+    int Stage5Sample;
     
 public:
     Stage();    //コンストラクタ
@@ -17,5 +22,9 @@ public:
 
     static float fishBox;
     void Stage1();      // ステージ１
+    void Stage2();      // ステージ１
+    void Stage3();      // ステージ１
+    void Stage4();      // ステージ１
+    void Stage5();      // ステージ１
 
 };

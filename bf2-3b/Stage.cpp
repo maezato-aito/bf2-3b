@@ -25,6 +25,8 @@ Stage::Stage() {
 	// ‰_‚Ì‰æ‘œ•ªŠ„“Ç
 	LoadDivGraph("images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
 	
+	Stage2Sample = LoadGraph("images/StageSample/Stage_2.png");
+
 }
 
 Stage::~Stage() {
@@ -69,4 +71,25 @@ void Stage::Stage1() {
 	
 	// ‰_‚Ì•`‰æ
 	DrawGraph(S1_Cloud_X, S1_Cloud_Y, CloudImg[0], TRUE);
+}
+
+void Stage::Stage2() {
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 122);
+	DrawGraph(0, 0, Stage2Sample, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	// DrawGraph();
+	// ‹ó’†°‚Ì•`‰æ
+	DrawGraph(S1_Flooting_X, S1_Flooting_Y, FlootingImg[0], TRUE);
+	DrawGraph(100, 165, FlootingImg[1], TRUE);
+	DrawGraph(457, 150, FlootingImg[1], TRUE);
+
+
+	// ŠC‚Ì•`‰æ
+	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
+	DrawGraph(Sealeft_X, Sealeft_Y, SeaImg, TRUE);
+
+	// ’n–Ê‚Ì•`‰æ
+	DrawGraph(S1_Landright_X, S1_Landright_Y, LandImg[0], TRUE);
+	DrawGraph(S1_Landleft_X, S1_Landleft_Y, LandImg[2], TRUE);
 }

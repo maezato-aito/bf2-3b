@@ -29,3 +29,5 @@
 #define Searight_Y (440)
 #define Sealeft_X (320)
 #define Sealeft_Y (440)
+
+// ステージ２の空中床

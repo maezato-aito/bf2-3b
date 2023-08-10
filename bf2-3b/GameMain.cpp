@@ -39,7 +39,7 @@ AbstractScene* GameMain::Update()
 void GameMain::Draw() const
 {
 	Thunder->D_thunder();
-	stage->Stage1();
+	stage->Stage2();
 	PlayChar->Draw();
 	EnemyChar->Draw();
 	bubble->Draw();
