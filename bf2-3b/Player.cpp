@@ -72,19 +72,23 @@ AbstractScene* Player::Update()
 
 
 	UpFlg = 0;
+
 		if (1 < Gvy)
 		{
 			Gvy = 1;
 		}
 		//重力の加算
-		playerY += Gvy;
+		playerY += (Gvy-UpNum);
 
-		//上昇の加算
-		playerY -= UpNum;
+		if ((0.1 > Gvy - UpNum) && 45 > bBoxY)
+		{
+
+		}
 			if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) || (PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
 			{
 				if (bBoxY > 0)
 				{
+					
 					UpNum = 2;
 					UpFlg = 1;
 				}
@@ -95,7 +99,7 @@ AbstractScene* Player::Update()
 			}
 			else
 			{
-				if (0.1 < UpNum)
+				if (0.01 < UpNum)
 				{
 					UpNum -= 0.1;
 				}
@@ -105,14 +109,14 @@ AbstractScene* Player::Update()
 	{
 		//地面に立っているとか
 		if (//左の床
-			(S1_Landleft_X <= pBoxX2 && S1_Landleft_w >= pBoxX &&
+			(S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
 				S1_Landleft_Y <= pBoxY2) ||
 			//右の床
-			(S1_Landright_X <= pBoxX2 && S1_Landright_w >= pBoxX &&
+			(S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
 				S1_Landright_Y <= pBoxY2) ||
 			//空中の床
-			(S1_Flooting_X <= pBoxX2 && S1_Flooting_w >= pBoxX &&
-				S1_Flooting_Y <= pBoxY2 && S1_Flooting_h >= pBoxY)
+			(S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+				S1_Flooting_Y <= pBoxY2 && S1_Flooting_height >= pBoxY)
 			)
 		{
 
@@ -122,10 +126,17 @@ AbstractScene* Player::Update()
 				if (InputX < -1)
 				{
 
-
-					if (Speed > -3)
+					if (Speed > -3.5)
 					{
-						Speed -= 0.016f;
+						Speed -= 0.05f;
+						if (-1.0 > Speed)
+						{
+							Speed -= 0.3;
+						}
+						if (Speed < -0.1 && 100 < InputX)
+						{
+							Speed *= 0.5f;
+						}
 					}
 
 						if (0 <= AnimCount)
@@ -155,9 +166,14 @@ AbstractScene* Player::Update()
 				//右移動
 				if (InputX > 1)
 				{
-					if (Speed < 3)
+					
+					if (Speed < 3.5)
 					{
-						Speed += 0.016f;
+						Speed += 0.05f;
+						if (1.0 < Speed)
+						{
+							Speed += 0.3;
+						}
 					}
 
 					if (0 <= AnimCount)
@@ -183,7 +199,7 @@ AbstractScene* Player::Update()
 			if (InputX == 0)
 			{
 				//慣性の作成
-				Speed = 0.0f;
+				Speed *= 0.9f;
 				
 
 				/*待機中アニメーション*/
@@ -242,9 +258,10 @@ AbstractScene* Player::Update()
 				//左移動
 				if (InputX < -1)
 				{
-					if (Speed > -1.5 && UpFlg==1)
+					if (UpFlg == 1 && Speed > -3.2)
 					{
-						Speed -= 1.0f;
+						Speed -= 1.1f;
+						if (Speed > -3.2)Speed = -3.2;
 					}
 
 					playerLR = 1;
@@ -255,11 +272,12 @@ AbstractScene* Player::Update()
 			if (playerX < 640)
 			{
 				//右移動
-				if (InputX > 1.5)
+				if (InputX > 1)
 				{
-					if (Speed < 1 && UpFlg==1)
+					if (UpFlg == 1 && Speed < 3.2)
 					{
-						Speed += 1.0f;
+						Speed += 1.1f;
+						if (Speed > 3.2)Speed = 3.2;
 					}
 
 					
@@ -271,35 +289,35 @@ AbstractScene* Player::Update()
 			if (InputX == 0 || UpFlg==0)
 			{
 				//慣性の作成
-				Speed *= 0.98f;
+				Speed *= 0.96f;
 			}
 			Gvy += 0.01f;
 			PlayerFlg = 1;
 			HitFlg = 0;
 		}
 		//左地面壁
-		if (S1_Landleft_X <= pBoxX2 && S1_Landleft_w >= pBoxX &&
-			S1_Landleft_h >= bBoxY && S1_Landleft_Y + 1 < pBoxY2) {
+		if (S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
+			S1_Landleft_height >= bBoxY && S1_Landleft_Y + 1 < pBoxY2) {
 			HitFlg = 1;
 		}
 		// 右地面壁
-		if (S1_Landright_X <= pBoxX2 && S1_Landright_w >= pBoxX &&
-			S1_Landright_h >= bBoxY && S1_Landright_Y + 1 < pBoxY2) {
+		if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
+			S1_Landright_height >= bBoxY && S1_Landright_Y + 1 < pBoxY2) {
 			HitFlg = 2;
 		}
 		//空中床左壁
-		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_w >= pBoxX &&
-			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_h - 1 >= bBoxY && Speed > 0.5) {
+		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed > 0.5) {
 			HitFlg = 2;
 		}
 		// 空中床右壁
-		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_w >= pBoxX &&
-			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_h - 1 >= bBoxY && Speed < -0.5) {
+		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
+			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed < -0.5) {
 			HitFlg = 1;
 		}
-		if (S1_Flooting_X <= bBoxX2 && S1_Flooting_w >= bBoxX &&
-			S1_Flooting_h == bBoxY) {
-			Gvy *= -0.8f;
+		if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
+			S1_Flooting_height == bBoxY) {
+			Gvy *= 0.8f;
 		}
 
 		// 敵の左側に当たったとき
@@ -376,6 +394,7 @@ void Player::Draw() const
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
+
 #endif _DEBUG
 
 	//向きで描画

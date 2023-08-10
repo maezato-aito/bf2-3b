@@ -6,9 +6,9 @@
 
 thunder::thunder()
 {
-	LoadDivGraph("x64/Release/images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
-	LoadDivGraph("x64/Release/images/stage/Stage_ThunderAnimation.png", 6, 6, 1, 64, 63, ThunderImg);
-	LoadDivGraph("x64/Release/images/stage/Stage_ThunderEffectAnimation.png", 3, 3, 1, 32, 32, BallImg);
+	LoadDivGraph("images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
+	LoadDivGraph("images/stage/Stage_ThunderAnimation.png", 6, 6, 1, 64, 63, ThunderImg);
+	LoadDivGraph("images/stage/Stage_ThunderEffectAnimation.png", 3, 3, 1, 32, 32, BallImg);
 	A_ThunderImg = 1;
 	C_AnimImg = 1;
 	Time = 0;
@@ -19,7 +19,7 @@ thunder::thunder()
 	centerX = 200;
 	centerY = 100;
 	ranDirection = 0;
-	incFlg = 18;
+	incFlg = 30;
 	moveAmount = 28;
 	x = 0;
 	y = 0;
@@ -44,47 +44,67 @@ thunder::~thunder()
 
 void thunder::Update()
 {
-	BallX += MoveX;
-	BallY += MoveY;
-	// 壁・天井での反射
-	if (BallX < 4 || BallX > 640 - 4) { // 横の壁
-		if (BallX < 4) {
-			BallX = 4;
-		}
-		else {
-			BallX = 640 - 4;
-		}
-		BallAngle = (1 - BallAngle) + 0.5f;
-		if (BallAngle > 1) BallAngle -= 1.0f;
-		ChangeAngle();
-	}
-	if (BallX == 100 && 200) {
+	if (++incFlg < 100000000) {
+		if (incFlg > 200) {
+			BallX += MoveX;
+			BallY += MoveY;
+			// 壁・天井での反射
+			if (BallX < 4 || BallX > 640 - 4) { // 横の壁
+				if (BallX < 4) {
+					BallX = 4;
+				}
+				else {
+					BallX = 640 - 4;
+				}
+				BallAngle = (1 - BallAngle) + 0.5f;
+				if (BallAngle > 1) BallAngle -= 1.0f;
+				ChangeAngle();
+			}
+			if (BallX >= 200) {
+				if (BallX <= 500) {
+					if (BallY >= 275) {
+						if (BallY <= 300) {
+							BallAngle = (1 - BallAngle);
+							ChangeAngle();
+						}
+					}
+				}
+			}
+			if (BallY < 8) {   // 上の壁
 				BallAngle = (1 - BallAngle);
 				ChangeAngle();
-	}
-	if (BallY < 8 || BallY > 400) {
-		if (BallY < 8) {
-			BallY = 8;
+			}
+			if (BallX >= 0) {
+				if (BallX <= 200) {
+					if (BallY >= 400) {
+						BallAngle = (1 - BallAngle);
+						ChangeAngle();
+					}
+				}
+			}
+			if (BallX >= 500) {
+				if (BallX <= 700) {
+					if (BallY >= 400) {
+						BallAngle = (1 - BallAngle);
+						ChangeAngle();
+					}
+				}
+			}
 		}
-		else {
-			BallY =  400;
-		}
-		BallAngle = (1 - BallAngle);
-		ChangeAngle();
-	}
-	if (++pointFlg < 100) {
-		if (AnimFlg == 0b0000) {
-			countFlg = pointFlg % 3;
-			if (countFlg == 0) {
-				C_AnimImg = 0;
-			}
-			if (countFlg == 1) {
-				C_AnimImg = 1;
-			}
-			if (countFlg == 2) {
-				C_AnimImg = 2;
-			}
+		if (++pointFlg < 100) {
+			if (AnimFlg == 0b0000) {
+				countFlg = pointFlg % 3;
+				if (countFlg == 0) {
+					C_AnimImg = 0;
+				}
+				if (countFlg == 1) {
+					C_AnimImg = 1;
+				}
+				if (countFlg == 2) {
+					C_AnimImg = 2;
+				}
 
+			}
 		}
 	}
 }
@@ -126,7 +146,7 @@ void thunder::Circle()
 }
 void thunder::Ball()
 {
-	if (++pointFlg < 100) {
+	if (++pointFlg < 10000) {
 		if (AnimFlg == 0b0000) {
 			countFlg = pointFlg % 3;
 			if (countFlg == 0) {
@@ -139,6 +159,7 @@ void thunder::Ball()
 				A_BallImg = 2;
 			}
 
+
 		}
 	}
 }
@@ -146,7 +167,7 @@ void thunder::Anim() {
 	if (++incFlg < 200) {
 		if (incFlg > 100) {
 			if (A_nimFlg == 0b0000) {
-				C_Flg = incFlg % 18;
+				C_Flg = incFlg % 30;
 				if (C_Flg == 0) {
 					A_ThunderImg = 0;
 				}
@@ -157,7 +178,7 @@ void thunder::Anim() {
 					A_ThunderImg = 0;
 				}
 				if (C_Flg == 3) {
-					A_ThunderImg = 1;
+					A_ThunderImg = 0;
 				}
 				if (C_Flg == 4) {
 					A_ThunderImg = 1;
@@ -166,39 +187,57 @@ void thunder::Anim() {
 					A_ThunderImg = 1;
 				}
 				if (C_Flg == 6) {
-					A_ThunderImg = 2;
+					A_ThunderImg = 1;
 				}
 				if (C_Flg == 7) {
-					A_ThunderImg = 2;
+					A_ThunderImg = 1;
 				}
 				if (C_Flg == 8) {
 					A_ThunderImg = 2;
 				}
 				if (C_Flg == 9) {
-					A_ThunderImg = 3;
+					A_ThunderImg = 2;
 				}
 				if (C_Flg == 10) {
-					A_ThunderImg = 3;
+					A_ThunderImg = 2;
 				}
 				if (C_Flg == 11) {
-					A_ThunderImg = 3;
+					A_ThunderImg = 2;
 				}
 				if (C_Flg == 12) {
-					A_ThunderImg = 4;
+					A_ThunderImg = 3;
 				}
 				if (C_Flg == 13) {
-					A_ThunderImg = 4;
+					A_ThunderImg = 3;
 				}
 				if (C_Flg == 14) {
-					A_ThunderImg = 4;
+					A_ThunderImg = 3;
 				}
 				if (C_Flg == 15) {
-					A_ThunderImg = 5;
+					A_ThunderImg = 3;
 				}
 				if (C_Flg == 16) {
-					A_ThunderImg = 5;
+					A_ThunderImg = 4;
 				}
 				if (C_Flg == 17) {
+					A_ThunderImg = 4;
+				}
+				if (C_Flg == 18) {
+					A_ThunderImg = 4;
+				}
+				if (C_Flg == 19) {
+					A_ThunderImg = 4;
+				}
+				if (C_Flg == 20) {
+					A_ThunderImg = 5;
+				}
+				if (C_Flg == 21) {
+					A_ThunderImg = 5;
+				}
+				if (C_Flg == 22) {
+					A_ThunderImg = 5;
+				}
+				if (C_Flg == 23) {
 					A_ThunderImg = 5;
 				}
 
