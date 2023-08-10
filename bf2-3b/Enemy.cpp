@@ -124,7 +124,7 @@ void Enemy::Update() {
 
 	
 	// 右地面
-	if ((S1_Landright_X <= enemy[0].x + 32 && S1_Landright_w >= enemy[0].x) && S1_Landright_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
+	if ((S1_Landright_X <= enemy[0].x + 32 && S1_Landright_Width >= enemy[0].x) && S1_Landright_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
 		if (enemy[0].flg == 3) {
@@ -143,7 +143,7 @@ void Enemy::Update() {
 	}
 
 	//左地面
-	else if (S1_Landleft_X <= enemy[0].x + 64 && S1_Landleft_w >= enemy[0].x + 64 && S1_Landleft_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
+	else if (S1_Landleft_X <= enemy[0].x + 64 && S1_Landleft_Width >= enemy[0].x + 64 && S1_Landleft_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
 		if (enemy[0].flg == 3) {
@@ -154,14 +154,14 @@ void Enemy::Update() {
 		}
 	}
 	// 左地面右側面
-	else if (S1_Landleft_w >= enemy[0].x && S1_Landleft_Y < enemy[0].h) {
+	else if (S1_Landleft_Width >= enemy[0].x && S1_Landleft_Y < enemy[0].h) {
 		Gvy = 1;
 		enemy[0].x = Gvy;		
 		enemy[0].y += Gvy;
 	}
 
 	//空中床
-	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_w >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && S1_Flooting_Y + 20 >= enemy[0].y && enemy[0].flg != 4) {
+	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_Width >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && S1_Flooting_Y + 20 >= enemy[0].y && enemy[0].flg != 4) {
 		Gvy = 0;
 		SpeedX = 0;
 		if (enemy[0].flg == 3) {
