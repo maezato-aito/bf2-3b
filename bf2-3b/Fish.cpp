@@ -53,12 +53,17 @@ void Fish::Update()
 			if (ChangeAnim >= 10 && ChangeAnim < 20) {
 				Anim = 1;
 			}
-			if (ChangeAnim >= 20 && ChangeAnim < 30) {
+			if (ChangeAnim >= 20 && ChangeAnim < 30 && pBoxY2 <= fBoxY2) {
+				Anim = 6;
+			}
+			else if (ChangeAnim >= 20 && ChangeAnim < 30) {
 				Anim = 2;
 			}
+			
 			if (ChangeAnim >= 30 && ChangeAnim < 40) {
 				Anim = 3;
 			}
+			
 			if (ChangeAnim >= 40 && ChangeAnim < 50) {
 				Anim = 4;
 				fBoxY += 2;
