@@ -88,7 +88,8 @@ AbstractScene* Player::Update()
 			{
 				if (bBoxY > 0)
 				{
-					if(UpNum < 2)UpNum += 0.3;
+					
+					UpNum = 2;
 					UpFlg = 1;
 				}
 				else
@@ -131,6 +132,10 @@ AbstractScene* Player::Update()
 						if (-1.0 > Speed)
 						{
 							Speed -= 0.3;
+						}
+						if (Speed < -0.1 && 100 < InputX)
+						{
+							Speed *= 0.5f;
 						}
 					}
 
@@ -194,7 +199,7 @@ AbstractScene* Player::Update()
 			if (InputX == 0)
 			{
 				//慣性の作成
-				Speed = 0.0f;
+				Speed *= 0.9f;
 				
 
 				/*待機中アニメーション*/
