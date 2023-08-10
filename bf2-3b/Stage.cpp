@@ -57,16 +57,16 @@ void Stage::Draw() const {
 void Stage::Stage1() {
 	// ãÛíÜè∞ÇÃï`âÊ
 	DrawGraph(S1_Flooting_X, S1_Flooting_Y, FlootingImg[0], TRUE);
-	DrawBox(S1_Flooting_X, S1_Flooting_Y, S1_Flooting_Width, S1_Flooting_height, 0xff2255, FALSE);
+	DrawBox(S1_Flooting_X, S1_Flooting_Y, S1_Flooting_w, S1_Flooting_h, 0xff2255, FALSE);
 	// äCÇÃï`âÊ
 	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
 	DrawGraph(Sealeft_X, Sealeft_Y, SeaImg, TRUE);
 
 	// ínñ ÇÃï`âÊ
 	DrawGraph(S1_Landright_X, S1_Landright_Y, LandImg[0], TRUE);
-	DrawBox(S1_Landright_X, S1_Landright_Y, S1_Landright_Width, S1_Landright_height, 0xff2255, FALSE);
+	DrawBox(S1_Landright_X, S1_Landright_Y, S1_Landright_w, S1_Landright_h, 0xff2255, FALSE);
 	DrawGraph(S1_Landleft_X, S1_Landleft_Y, LandImg[2], TRUE);
-	DrawBox(S1_Landleft_X, S1_Landleft_Y, S1_Landleft_Width, S1_Landleft_height, 0xff2255, FALSE);
+	DrawBox(S1_Landleft_X, S1_Landleft_Y, S1_Landleft_w, S1_Landleft_h, 0xff2255, FALSE);
 
 	
 	// â_ÇÃï`âÊ

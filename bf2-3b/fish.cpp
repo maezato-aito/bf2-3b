@@ -8,7 +8,7 @@ Fish::Fish()
 	//‰æ‘œ‚Ì“Ç‚İ‚İ
 	LoadDivGraph("images/Enemy/Enemy_FishAnimation.png", 10, 5, 2, 64, 64, fishImg);
 	// ‹›‚Ì“–‚½‚è”»’è
-	fishX = S1_Landleft_Width;
+	fishX = S1_Landleft_w;
 	fishY = S1_Landleft_Y;
 	fBoxX = fishX;
 	fBoxY = fishY;
@@ -33,7 +33,7 @@ void Fish::Update()
 		fBoxX += 3;
 		fBoxX2 += 3;
 	}
-	if (pBoxX2 < fBoxX2 && fBoxX >= S1_Landleft_Width) {
+	if (pBoxX2 < fBoxX2 && fBoxX >= S1_Landleft_w) {
 		fBoxX -= 3;
 		fBoxX2 -= 3;
 	}

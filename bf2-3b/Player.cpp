@@ -105,14 +105,14 @@ AbstractScene* Player::Update()
 	{
 		//地面に立っているとか
 		if (//左の床
-			(S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
+			(S1_Landleft_X <= pBoxX2 && S1_Landleft_w >= pBoxX &&
 				S1_Landleft_Y <= pBoxY2) ||
 			//右の床
-			(S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
+			(S1_Landright_X <= pBoxX2 && S1_Landright_w >= pBoxX &&
 				S1_Landright_Y <= pBoxY2) ||
 			//空中の床
-			(S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-				S1_Flooting_Y <= pBoxY2 && S1_Flooting_height >= pBoxY)
+			(S1_Flooting_X <= pBoxX2 && S1_Flooting_w >= pBoxX &&
+				S1_Flooting_Y <= pBoxY2 && S1_Flooting_h >= pBoxY)
 			)
 		{
 
@@ -278,27 +278,27 @@ AbstractScene* Player::Update()
 			HitFlg = 0;
 		}
 		//左地面壁
-		if (S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
-			S1_Landleft_height >= bBoxY && S1_Landleft_Y + 1 < pBoxY2) {
+		if (S1_Landleft_X <= pBoxX2 && S1_Landleft_w >= pBoxX &&
+			S1_Landleft_h >= bBoxY && S1_Landleft_Y + 1 < pBoxY2) {
 			HitFlg = 1;
 		}
 		// 右地面壁
-		if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
-			S1_Landright_height >= bBoxY && S1_Landright_Y + 1 < pBoxY2) {
+		if (S1_Landright_X <= pBoxX2 && S1_Landright_w >= pBoxX &&
+			S1_Landright_h >= bBoxY && S1_Landright_Y + 1 < pBoxY2) {
 			HitFlg = 2;
 		}
 		//空中床左壁
-		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed > 0.5) {
+		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_w >= pBoxX &&
+			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_h - 1 >= bBoxY && Speed > 0.5) {
 			HitFlg = 2;
 		}
 		// 空中床右壁
-		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed < -0.5) {
+		if (S1_Flooting_X <= pBoxX2 && S1_Flooting_w >= pBoxX &&
+			S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_h - 1 >= bBoxY && Speed < -0.5) {
 			HitFlg = 1;
 		}
-		if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
-			S1_Flooting_height == bBoxY) {
+		if (S1_Flooting_X <= bBoxX2 && S1_Flooting_w >= bBoxX &&
+			S1_Flooting_h == bBoxY) {
 			Gvy *= -0.8f;
 		}
 
