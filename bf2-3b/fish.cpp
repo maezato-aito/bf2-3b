@@ -56,7 +56,7 @@ void Fish::Update()
 		fBoxX -= 3;
 		fBoxX2 -= 3;
 	}*/
-	if (pBoxX <= fishBoxX2 && pBoxX2 >= fishBoxX && pBoxY2 = fishBoxY&& Player::PlayerFlg != 0) {
+	if (pBoxX <= fishBoxX2 && pBoxX2 >= fishBoxX && pBoxY2 >= fishBoxY&& Player::PlayerFlg != 0) {
 		rand = GetRand(99);
 		ChangeAnim++;
 		if (ChangeAnim >= 0 && ChangeAnim < 10 && rand<=30) {
@@ -105,14 +105,13 @@ void Fish::Update()
 		}
 		if (ChangeAnim >= 60) {
 			ChangeAnim = 0;
-		}
-	if (pBoxY<= 410) {
+		}	
+	}
+	if (pBoxY >= fBoxY) {
 		fBoxY = 410;
 		fBoxY2 = 480;
 		Anim = 0;
 		ChangeAnim = 0;
-	}
-		
 	}
 	if (Player::PlayerFlg == 0 || Anim == 6) {
 		ChangeAnim++;
@@ -132,6 +131,9 @@ void Fish::Update()
 			if (fBoxY <= 398) {
 				fBoxY += 4;
 				fBoxY2 += 4;
+				Player::PlayerFlg = 1;
+				pBoxY = 50;
+				
 			}
 		}
 
