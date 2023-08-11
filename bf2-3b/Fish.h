@@ -12,6 +12,10 @@ private:
 	int ChangeAnim;
 	int Anim;
 	int playerFlg;
+	int eBoxX, eBoxY, eBoxX2, eBoxY2; //“G‚Ì”»’è
+	int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2; //“G‚Ì•—‘D‚Ì”»’è
+	int rand; // Šm—¦
+	int enemy;
 public:
 
 	//‰æ‘œ—p
@@ -24,4 +28,6 @@ public:
 	void Update();
 	//•`‰æ
 	void Draw();
+
+
 };

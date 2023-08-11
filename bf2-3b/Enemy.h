@@ -61,4 +61,5 @@ public:
 	static int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2;	// “G‚Ì•—‘D‚Ì“–‚½‚è”»’è
 
 	static int Score;
+
 };
