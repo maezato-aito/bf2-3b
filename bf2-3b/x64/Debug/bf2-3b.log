@@ -1,2 +1,24 @@
-﻿  fish.cpp
+﻿  Player.cpp
+C:\PG\bf2-3b\bf2-3b\Player.cpp(20,12): warning C4305: '=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(31,9): warning C4305: '=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(52,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(53,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(58,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(59,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(93,31): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(105,17): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(135,21): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(172,21): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(261,37): warning C4305: '=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(277,35): warning C4305: '=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(403,23): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(403,14): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(408,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(408,18): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(411,28): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(411,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(412,28): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(412,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(427,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
+C:\PG\bf2-3b\bf2-3b\Player.cpp(431,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe

@@ -48,29 +48,29 @@ Player::~Player()
 AbstractScene* Player::Update()
 {
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
-	
-	if (PlayerFlg == 1 || PlayerFlg == 2 || PlayerFlg == 3) {
-		//風船のボックス情報
-		bBoxX = playerX + 6;
-		bBoxY = playerY + 12;
-		bBoxX2 = bBoxX + 50;
-		bBoxY2 = bBoxY + 22;
+	//風船のボックス情報
+	bBoxX = playerX + 6;
+	bBoxY = playerY + 12;
+	bBoxX2 = bBoxX + 50;
+	bBoxY2 = bBoxY + 22;
 
-		//プレイヤーのボックス情報
-		pBoxX = playerX + 6;
-		pBoxY = playerY + 32;
-		pBoxX2 = pBoxX + 50;
-		pBoxY2 = pBoxY + 32;
-		//敵のボックス
-		eBoxX = Enemy::eBoxX;
-		eBoxY = Enemy::eBoxY;
-		eBoxX2 = Enemy::eBoxX2;
-		eBoxY2 = Enemy::eBoxY2;
-		// 敵の風船のボックス
-		ebBoxX = Enemy::ebBoxX;
-		ebBoxY = Enemy::ebBoxY;
-		ebBoxX2 = Enemy::ebBoxX2;
-		ebBoxY2 = Enemy::ebBoxY2;
+	//プレイヤーのボックス情報
+	pBoxX = playerX + 6;
+	pBoxY = playerY + 32;
+	pBoxX2 = pBoxX + 50;
+	pBoxY2 = pBoxY + 32;
+	//敵のボックス
+	eBoxX = Enemy::eBoxX;
+	eBoxY = Enemy::eBoxY;
+	eBoxX2 = Enemy::eBoxX2;
+	eBoxY2 = Enemy::eBoxY2;
+	// 敵の風船のボックス
+	ebBoxX = Enemy::ebBoxX;
+	ebBoxY = Enemy::ebBoxY;
+	ebBoxX2 = Enemy::ebBoxX2;
+	ebBoxY2 = Enemy::ebBoxY2;
+	if (PlayerFlg == 1 || PlayerFlg == 2 || PlayerFlg == 3) {
+		
 
 
 		UpFlg = 0;
@@ -365,10 +365,14 @@ AbstractScene* Player::Update()
 				playerX = -10;
 
 			}
+			if (bBoxY > 480) {
+				PlayerFlg = 0;
+			}
 		}
 	}
-	else if (PlayerFlg == 0) {
-		
+	else if (PlayerFlg == 4) {
+	
+	
 	}
 	return this;
 }
@@ -382,7 +386,7 @@ void Player::Draw() const
 	DrawFormatString(0, 60, 0xffffff, "%f", Gvy, TRUE);
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
-	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:描画無し　1:描画　2:地面　3:空中", PlayerFlg, TRUE);
+	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:描画無し　1:描画　2:地面　3:空中 4倒されたら", PlayerFlg, TRUE);
 	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
 	DrawFormatString(0, 160, 0xffffff, "%d", AnimCount, TRUE);
 

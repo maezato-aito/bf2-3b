@@ -14,15 +14,14 @@ GameOver::~GameOver()
 
 void GameOver::Update()
 {
-	/*pBoxX = player::pBoxX;*/
+	
 }
 
 void GameOver::Draw()
 {
-	
-	/*if (SCREEN_HEIGHT >= pBoxY) {
-		DrawString(300, 200, "GAME OVER", 0xffffff);
+	if (Player::PlayerFlg == 0) {
 
-	}*/
+		DrawString(270, 210, "GAME OVER", 0xffffff);
+	}
 	
 }

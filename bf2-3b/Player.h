@@ -13,9 +13,9 @@ private:
 	float e;			// ”½”­ŒW”
 	int eBoxX, eBoxY, eBoxX2, eBoxY2; //“G‚Ì”»’è
 	int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2; //“G‚Ì•—‘D‚Ì”»’è
-
+	int fall;
 	int AnimCount;
-
+	int add;
 public:
 
 	static int PlayerFlg; //’n–Ê‚Ìó‘Ô‚ğ0@‹ó’†‚È‚ç1‚ğ‚¢‚ê‚é
