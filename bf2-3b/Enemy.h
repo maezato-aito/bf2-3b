@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractScene.h"
+#include "fish.h"
 
 class Enemy
 {
@@ -18,17 +19,15 @@ private:
 	int EnemyGScore[3] = { 750, 1500, 1000 };	// 敵のスコア
 	int EnemyRScore[3] = { 1000, 2000, 1500 };	// 敵のスコア
 
-	int Lv;
-
+	
 	int PointFlg;
 	int AnimFlg;
 	float Count;
 	int Counter;
 	int AnimImg;
 
-	
 	// 敵の構造体
-	struct ENEMY
+	static struct ENEMY
 	{
 		int flg;			// 使用フラグ （ 0:表示なし　1:初期　2:浮遊　3:パラシュート　4:死亡 ）
 		int type;			// タイプ
@@ -38,8 +37,13 @@ private:
 		int score;			// スコア加算ポイント
 	};
 	struct ENEMY enemy[3];
+	
+	Fish* fish;
 
 public:
+	static int Lv;
+
+	static int enemyFlg;
 	// コンストラクタ
 	Enemy();
 	// デストラクタ

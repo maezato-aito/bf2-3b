@@ -4,6 +4,10 @@
 #include"Player.h"
 #include"Enemy.h"
 
+int Fish::fBoxY;
+int Fish::fBoxY2;
+
+
 Fish::Fish()
 {
 	//‰æ‘œ‚Ì“Ç‚Ýž‚Ý
@@ -48,6 +52,9 @@ void Fish::Update()
 	ebBoxY = Enemy::ebBoxY;
 	ebBoxX2 = Enemy::ebBoxX2;
 	ebBoxY2 = Enemy::ebBoxY2;
+
+	
+
 	/*if (pBoxX2 > fBoxX2 && fBoxX2 <= S1_Landright_X) {
 		fBoxX += 3;
 		fBoxX2 += 3;
@@ -107,7 +114,7 @@ void Fish::Update()
 			ChangeAnim = 0;
 		}	
 	}
-	if (Player::PlayerFlg == 0 || Anim == 6) {
+	if (Player::PlayerFlg == 0	||Enemy::enemyFlg == 0|| Anim == 6) {
 		ChangeAnim++;
 		if (ChangeAnim >= 30 && ChangeAnim < 40) {
 			Anim = 3;
@@ -130,7 +137,7 @@ void Fish::Update()
 			}
 		}
 	}
-	if (pBoxY2 <= fishBoxY+10) {
+	if (pBoxY2 <= fishBoxY+10 && fishBoxY <fBoxY) {
 		fBoxY = 410;
 		fBoxY2 = 480;
 		Anim = 0;
@@ -151,11 +158,18 @@ void Fish::Update()
 		if (ChangeAnim >= 10 && ChangeAnim < 20) {
 			Anim = 1;
 		}
-		if (ChangeAnim >= 20 && ChangeAnim < 30) {
-			Anim = 6;
+		if (ChangeAnim >= 20 && ChangeAnim < 30 && Enemy::enemyFlg == 1) {
+			Anim = 7;
+			Enemy::enemyFlg = 0;
+			
 		}
-		else if (ChangeAnim >= 20 && ChangeAnim < 30) {
-			Anim = 2;
+		else if (ChangeAnim >= 20 && ChangeAnim < 30 && Enemy::enemyFlg == 2) {
+			Anim = 8;
+			Enemy::enemyFlg = 0;
+		}
+		else if (ChangeAnim >= 20 && ChangeAnim < 30 && Enemy::enemyFlg == 3) {
+			Anim = 9;
+			Enemy::enemyFlg = 0;
 		}
 
 		if (ChangeAnim >= 30 && ChangeAnim < 40) {
@@ -187,7 +201,7 @@ void Fish::Draw()
 	/*DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xff2255, FALSE);*/
 	DrawExtendGraph(fBoxX, fBoxY, fBoxX2, fBoxY2, fishImg[Anim], TRUE);
 #if _DEBUG
-	DrawFormatString(0, 350, 0xffffff, "ó‘Ô %d", ChangeAnim, TRUE);
+	DrawFormatString(0, 350, 0xffffff, "ó‘Ô %d", Anim, TRUE);
 	DrawFormatString(0, 380, 0xffffff, "Šm—¦ %d", rand, TRUE);
 #endif _DEBUG
 }
