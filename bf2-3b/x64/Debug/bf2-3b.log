@@ -1,4 +1,5 @@
 ﻿  Player.cpp
+C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
 C:\PG\bf2-3b\bf2-3b\Player.cpp(20,12): warning C4305: '=': 'double' から 'float' へ切り詰めます。
 C:\PG\bf2-3b\bf2-3b\Player.cpp(31,9): warning C4305: '=': 'double' から 'float' へ切り詰めます。
 C:\PG\bf2-3b\bf2-3b\Player.cpp(54,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -20,4 +21,16 @@ C:\PG\bf2-3b\bf2-3b\Player.cpp(413,28): warning C4244: '引数': 'const float' �
 C:\PG\bf2-3b\bf2-3b\Player.cpp(413,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
 C:\PG\bf2-3b\bf2-3b\Player.cpp(427,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
 C:\PG\bf2-3b\bf2-3b\Player.cpp(431,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
-  bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe
+  Title.cpp
+C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
+C:\PG\bf2-3b\bf2-3b\Title.cpp(18,1): error C2059: 構文エラー: '.'
+C:\PG\bf2-3b\bf2-3b\Title.cpp(20,1): error C2143: 構文エラー: ';' が '{' の前にありません。
+C:\PG\bf2-3b\bf2-3b\Title.cpp(20,1): error C2447: '{': 対応する関数ヘッダーがありません (旧形式の仮引数リスト?)
+  bubble.cpp
+C:\PG\bf2-3b\bf2-3b\bubble.cpp(98,31): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\bubble.cpp(98,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\bubble.cpp(98,23): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\bubble.cpp(98,18): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  fish.cpp
+C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
+  コードを生成中...
