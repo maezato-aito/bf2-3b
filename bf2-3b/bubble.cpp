@@ -61,30 +61,28 @@ void Bubble::Update()
 	//ƒAƒjƒ[ƒVƒ‡ƒ“
 	if (bubbleY >= 0)
 	{
-		bubbleC = GetNowCount();
-		b = bubbleC % 1000;
-
-		if (b < 10)
+		if (++bubbleC < 241)
 		{
-			bAv++;
-			
-		}
-
-		if (bAv < 1)
-		{
-			bubbleAC = 0;
-		}
-		else if (1 < bAv < 2)
-		{
-			bubbleAC = 1;
-		}
-		else if (2 < bAv < 3)
-		{
-			bubbleAC = 0;
-		}
-		else if (3 < bAv < 4)
-		{
-			bubbleAC = 2;
+			if (0 < bubbleC)
+			{
+				bubbleAC = 0;
+			}
+			if (60 < bubbleC)
+			{
+				bubbleAC = 1;
+			}
+			if (120 < bubbleC)
+			{
+				bubbleAC = 0;
+			}
+			if (180 < bubbleC)
+			{
+				bubbleAC = 2;
+			}
+			if (239 < bubbleC)
+			{
+				bubbleC = 0;
+			}
 		}
 	}
 	//‚Ô‚Â‚©‚Á‚½‚ç
@@ -100,7 +98,7 @@ void Bubble::Draw()
 	DrawExtendGraph(bX0, bY0,bX1,bY1 ,bubbleImg[bubbleAC], TRUE);
 #if _DEBUG
 	DrawFormatString(350, 0, 0xffffff, "–A‚ÌÀ•W X:%3.2f Y:%3.2f",bubbleX,bubbleY,  TRUE);
-	DrawFormatString(350, 20, 0xffffff, "–A‚ÌŽí—Þ:%d",bubbleAC,  TRUE);
+	DrawFormatString(350, 20, 0xffffff, "–A‚ÌŽí—Þ:%d",bubbleC,  TRUE);
 	DrawFormatString(350, 40, 0xffffff,		"ŽžŠÔ: % d",bAv,  TRUE);
 #endif _DEBUG
 }

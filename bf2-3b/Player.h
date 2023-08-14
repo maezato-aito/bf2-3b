@@ -13,12 +13,12 @@ private:
 	float e;			// 反発係数
 	int eBoxX, eBoxY, eBoxX2, eBoxY2; //敵の判定
 	int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2; //敵の風船の判定
-
+	int fall;
 	int AnimCount;
-
+	int add;
 public:
 
-	int PlayerFlg=0; //地面の状態を0　空中なら1をいれる
+	static int PlayerFlg; //地面の状態を0　空中なら1をいれる
 	int HitFlg = 0;	//横に触れていたら0 触れていなかったら１
 	//プレイヤーコリジョン
 	static int pBoxX;
@@ -53,4 +53,6 @@ public:
 	void Draw() const override;
 
 	void pUP();
+
+	void backlash();
 };

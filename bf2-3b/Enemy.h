@@ -1,39 +1,33 @@
 #pragma once
 #include "AbstractScene.h"
+#include "fish.h"
 
 class Enemy
 {
 private:
-	int EnemyG_img[18];	// 敵（緑）の画像
-	int EnemyP_img[18];	// 敵（ピンク）の画像
-	int EnemyR_img[18];	// 敵（赤）の画像
+	int EnemyG_img[18];
+	int EnemyP_img[18];
+	int EnemyR_img[18];
 
 	int InputX, InputY;
 	float SpeedX, SpeedY;
-	int Gvy;	// 重力
-	int Cnt;	// 時間カウント用
-	int Dflg;	// 死亡フラグ
+	int Gvy;
 
-	float eSpeed[3] = { 1, 1.25, 2.5 };		// 敵のスピード
-	int EnemyWait[3] = { 3, 2, 1 };			// 風船をふくらますときの待ち時間
+	int eSpeed[3] = { 1000, 2000, 1500 };
 
-	int EnemyPScore[3] = { 500, 1000, 750 };	// 敵（ピンク）のスコア
-	int EnemyGScore[3] = { 750, 1500, 1000 };	// 敵（緑）のスコア
-	int EnemyRScore[3] = { 1000, 2000, 1500 };	// 敵（赤）のスコア
+	int EnemyPScore[3] = { 500, 1000, 750 };	// 敵のスコア
+	int EnemyGScore[3] = { 750, 1500, 1000 };	// 敵のスコア
+	int EnemyRScore[3] = { 1000, 2000, 1500 };	// 敵のスコア
 
-	int Lv;			//敵のレベル 
-
-	int PointFlg;	// スコアフラグ
-	int AnimFlg;	// アニメーションフラグ
-	float Count;	// 時間カウント用
-	int Counter;	// 時間カウンター
-	int AnimImg;	// イメージ画像用
-
-	int WaitTime;	// 待ち時間
-	int NowTime;	// 今の時間
 	
+	int PointFlg;
+	int AnimFlg;
+	float Count;
+	int Counter;
+	int AnimImg;
+
 	// 敵の構造体
-	struct ENEMY
+	static struct ENEMY
 	{
 		int flg;			// 使用フラグ （ 0:表示なし　1:初期　2:浮遊　3:パラシュート　4:死亡 ）
 		int type;			// タイプ
@@ -43,8 +37,13 @@ private:
 		int score;			// スコア加算ポイント
 	};
 	struct ENEMY enemy[3];
+	
+	Fish* fish;
 
 public:
+	static int Lv;
+
+	static int enemyFlg;
 	// コンストラクタ
 	Enemy();
 	// デストラクタ
@@ -57,7 +56,6 @@ public:
 	void EnemyStart();	// 初期状態処理
 	void Parachute();	// パラシュート処理
 	void Death();		// 死亡処理
-	void Wait();
 
 	static int St_x, St_y;	// スタート時の座標
 	static int Pr_x, Pr_y;	// パラシュート時の座標
@@ -67,4 +65,5 @@ public:
 	static int ebBoxX, ebBoxY, ebBoxX2, ebBoxY2;	// 敵の風船の当たり判定
 
 	static int Score;
+
 };

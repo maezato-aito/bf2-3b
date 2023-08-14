@@ -1,2 +1,11 @@
-﻿  GameMain.cpp
+﻿  Title.cpp
+C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
+  LINK : 前回のインクリメンタル リンクで C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+FpsController.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+PadInput.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+Pause.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+Result.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+SceneManager.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+Stage.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
+thunder.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe
