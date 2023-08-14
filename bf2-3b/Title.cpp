@@ -15,7 +15,7 @@ Title::~Title()
 {
 	/*DeleteGraph(Titleimage);*/
 }
-
+.
 AbstractScene* Title::Update()
 {
 	if (PAD_INPUT::OnButton(XINPUT_BUTTON_B)) {

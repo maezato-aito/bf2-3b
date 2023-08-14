@@ -3,6 +3,7 @@
 #include "common.h"
 #include "PadInput.h"
 #include "Player.h"
+#include "fish.h"
 
 int Enemy::eBoxX;
 int Enemy::eBoxY;
@@ -23,6 +24,9 @@ int Enemy::De_y;
 
 int Enemy::Score;
 
+int Enemy::enemyFlg;
+
+int Enemy::Lv;
 
 Enemy::Enemy() {
 	LoadDivGraph("images/Enemy/Enemy_G_Animation.png", 18, 6, 3, 64, 64, EnemyG_img);
@@ -34,7 +38,7 @@ Enemy::Enemy() {
 
 	enemy[0].flg = 1;
 	enemy[0].type = 0;
-
+	enemyFlg = 1;
 	Lv = 0;
 
 	AnimImg = 0;
@@ -64,6 +68,7 @@ void Enemy::Update() {
 	eBoxX2 = enemy[0].x + 55;
 	eBoxY2 = enemy[0].y + 64;
 
+	
 
 	// ìGÇÃè„è∏
 	if (Player::bBoxY < eBoxY2 && enemy[0].flg == 2 && (Player::pBoxX > eBoxX2 || Player::pBoxX2 < eBoxX))
@@ -230,6 +235,11 @@ void Enemy::Update() {
 		}
 		Death();
 	}
+	if (enemyFlg == 0) {
+		enemy[0].type == 0;
+		enemy[0].flg = 0;
+	}
+	
 
 	EnemyStart();
 
@@ -238,6 +248,7 @@ void Enemy::Update() {
 void Enemy::Draw() const {
 	// ìGÅiÉsÉìÉNÅjÇÃï`âÊ
 	if (enemy[0].flg != 0 && enemy[0].type == 0) {
+		enemyFlg  = 1;
 		// ìGÇÃï`âÊ
 		DrawGraph(enemy[0].x, enemy[0].y, EnemyP_img[AnimImg], TRUE);
 		// âÊñ í[ÉèÅ[Évóp
@@ -260,6 +271,7 @@ void Enemy::Draw() const {
 
 	// ìGÅióŒÅjÇÃï`âÊ
 	if (enemy[0].flg != 0 && enemy[0].type == 1) {
+		enemyFlg = 2;
 		// ìGÇÃï`âÊ
 		DrawGraph(enemy[0].x, enemy[0].y, EnemyG_img[AnimImg], TRUE);
 		// âÊñ í[ÉèÅ[Évóp
@@ -282,6 +294,7 @@ void Enemy::Draw() const {
 
 	// ìGÅiê‘ÅjÇÃï`âÊ
 	if (enemy[0].flg != 0 && enemy[0].type == 2) {
+		enemyFlg = 3;
 		// ìGÇÃï`âÊ
 		DrawGraph(enemy[0].x, enemy[0].y, EnemyR_img[AnimImg], TRUE);
 		// âÊñ í[ÉèÅ[Évóp
@@ -420,7 +433,7 @@ void Enemy::Death() {
 	AnimImg = 13;
 	SpeedX = 0;
 	
-
+	
 	if (enemy[0].y - 150 < De_y) {
 		enemy[0].y -= SpeedY;
 	}
@@ -430,7 +443,7 @@ void Enemy::Death() {
 		enemy[0].y += SpeedY;
 		enemy[0].y += Gvy;
 	}
-	else{
+	else {
 		enemy[0].flg = 0;
 	}
 }
