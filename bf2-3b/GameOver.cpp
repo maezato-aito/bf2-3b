@@ -19,7 +19,7 @@ void GameOver::Update()
 
 void GameOver::Draw()
 {
-	if (Player::PlayerFlg == 0) {
+	if (Player::PlayerFlg == 0 && Player::Life == 0 ) {
 
 		DrawString(270, 210, "GAME OVER", 0xffffff);
 	}

@@ -63,15 +63,15 @@ void Fish::Update()
 		fBoxX -= 3;
 		fBoxX2 -= 3;
 	}*/
-	if (pBoxX <= fishBoxX2 && pBoxX2 >= fishBoxX && pBoxY2 >= fishBoxY + 10 && Player::PlayerFlg != 0) {
+	if (pBoxX <= fishBoxX2 && pBoxX2 >= fishBoxX && pBoxY2 > fishBoxY+1  && Player::PlayerFlg != 0) {
 		rand = GetRand(99);
 		ChangeAnim++;
 		if (ChangeAnim >= 0 && ChangeAnim < 10 && rand <= 30) {
 			Anim = 0;
 			fBoxX = pBoxX;
 			fBoxX2 = pBoxX2;
-			fBoxY -= 6;
-			fBoxY2 -= 6;
+			fBoxY -= 8;
+			fBoxY2 -= 8;
 		}
 		if (ChangeAnim >= 10 && ChangeAnim < 20) {
 			fBoxX = pBoxX;
@@ -100,21 +100,21 @@ void Fish::Update()
 			fBoxX = pBoxX;
 			fBoxX2 = pBoxX2;
 			Anim = 4;
-			fBoxY += 2;
-			fBoxY2 += 2;
+			fBoxY += 4;
+			fBoxY2 += 4;
 		}
 		if (ChangeAnim >= 50 && ChangeAnim < 60) {
 			fBoxX = pBoxX;
 			fBoxX2 = pBoxX2;
 			Anim = 5;
-			fBoxY += 2;
-			fBoxY2 += 2;
+			fBoxY += 4;
+			fBoxY2 += 4;
 		}
 		if (ChangeAnim >= 60) {
 			ChangeAnim = 0;
 		}
 	}
-	if (Player::PlayerFlg == 0 || Enemy::enemyFlg == 0 || Anim == 6) {
+	if (Player::PlayerFlg == 0 || Enemy::enemyFlg == 0 || Player::Life == 1 || Player::Life == 0) {
 		ChangeAnim++;
 		if (ChangeAnim >= 30 && ChangeAnim < 40) {
 			Anim = 3;
@@ -123,8 +123,8 @@ void Fish::Update()
 		if (ChangeAnim >= 40 && ChangeAnim < 50) {
 			Anim = 4;
 			if (fBoxY == 396) {
-				fBoxY += 1;
-				fBoxY2 += 1;
+				fBoxY += 2;
+				fBoxY2 += 2;
 			}
 		}
 		if (ChangeAnim >= 50 && ChangeAnim < 60) {
@@ -137,7 +137,7 @@ void Fish::Update()
 			}
 		}
 	}
-	if (pBoxY2 <= fishBoxY + 10 && fishBoxY < fBoxY) {
+	if (pBoxY2 <= fishBoxY + 10 && fishBoxY < fBoxY && Anim == 5) {
 		fBoxY = 410;
 		fBoxY2 = 480;
 		Anim = 0;
@@ -145,8 +145,8 @@ void Fish::Update()
 	}
 
 
-	if (eBoxY2 >= fishBoxY) {
-
+	if (eBoxY2 > fishBoxY) {
+		
 		ChangeAnim++;
 		if (ChangeAnim >= 0 && ChangeAnim < 10) {
 			Anim = 0;
@@ -187,7 +187,8 @@ void Fish::Update()
 			fBoxY2 += 2;
 		}
 		if (ChangeAnim >= 60) {
-			ChangeAnim = 61;
+			ChangeAnim = 0;
+			
 		}
 
 	}
@@ -201,7 +202,7 @@ void Fish::Draw()
 	/*DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xff2255, FALSE);*/
 	DrawExtendGraph(fBoxX, fBoxY, fBoxX2, fBoxY2, fishImg[Anim], TRUE);
 #if _DEBUG
-	DrawFormatString(0, 350, 0xffffff, "èÛë‘ %d", Anim, TRUE);
+	DrawFormatString(0, 350, 0xffffff, "èÛë‘ %d", ChangeAnim, TRUE);
 	DrawFormatString(0, 380, 0xffffff, "ämó¶ %d", rand, TRUE);
 #endif _DEBUG
 }
