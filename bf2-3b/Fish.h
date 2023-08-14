@@ -8,7 +8,7 @@ private:
 	int fBoxX, fBoxX2;
 	int fishBoxX, fishBoxY, fishBoxX2, fishBoxY2;
 	int fishX, fishY;
-	int pBoxX,pBoxY,pBoxX2,pBoxY2;
+	int pBoxX, pBoxY, pBoxX2, pBoxY2;
 	int ChangeAnim;
 	int Anim;
 	int playerFlg;
@@ -17,10 +17,10 @@ private:
 	int rand; // Šm—¦
 	int enemy;
 	int enemyFlg;
-	
+
 public:
 
-	static int fBoxY,fBoxY2;
+	static int fBoxY, fBoxY2;
 
 	//‰æ‘œ—p
 	int fishImg[10];
