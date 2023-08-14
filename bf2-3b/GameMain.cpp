@@ -38,7 +38,7 @@ AbstractScene* GameMain::Update()
 
 void GameMain::Draw() const
 {
-	Thunder->D_thunder();
+	/*Thunder->D_thunder();*/
 	fish->Draw();
 	stage->Stage1();
 	PlayChar->Draw();

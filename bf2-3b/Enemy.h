@@ -4,33 +4,33 @@
 class Enemy
 {
 private:
-	int EnemyG_img[18];
-	int EnemyP_img[18];
-	int EnemyR_img[18];
+	int EnemyG_img[18];	// 敵（緑）の画像
+	int EnemyP_img[18];	// 敵（ピンク）の画像
+	int EnemyR_img[18];	// 敵（赤）の画像
 
 	int InputX, InputY;
 	float SpeedX, SpeedY;
-	int Gvy;
-	int Cnt;
-	int Dflg;
+	int Gvy;	// 重力
+	int Cnt;	// 時間カウント用
+	int Dflg;	// 死亡フラグ
 
-	float eSpeed[3] = { 1, 1.25, 2.5 };
-	int EnemyWait[3] = { 3, 2, 1 };
+	float eSpeed[3] = { 1, 1.25, 2.5 };		// 敵のスピード
+	int EnemyWait[3] = { 3, 2, 1 };			// 風船をふくらますときの待ち時間
 
-	int EnemyPScore[3] = { 500, 1000, 750 };	// 敵のスコア
-	int EnemyGScore[3] = { 750, 1500, 1000 };	// 敵のスコア
-	int EnemyRScore[3] = { 1000, 2000, 1500 };	// 敵のスコア
+	int EnemyPScore[3] = { 500, 1000, 750 };	// 敵（ピンク）のスコア
+	int EnemyGScore[3] = { 750, 1500, 1000 };	// 敵（緑）のスコア
+	int EnemyRScore[3] = { 1000, 2000, 1500 };	// 敵（赤）のスコア
 
-	int Lv;
+	int Lv;			//敵のレベル 
 
-	int PointFlg;
-	int AnimFlg;
-	float Count;
-	int Counter;
-	int AnimImg;
+	int PointFlg;	// スコアフラグ
+	int AnimFlg;	// アニメーションフラグ
+	float Count;	// 時間カウント用
+	int Counter;	// 時間カウンター
+	int AnimImg;	// イメージ画像用
 
-	int WaitTime;
-	int NowTime;
+	int WaitTime;	// 待ち時間
+	int NowTime;	// 今の時間
 	
 	// 敵の構造体
 	struct ENEMY

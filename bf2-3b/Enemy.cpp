@@ -25,25 +25,26 @@ int Enemy::Score;
 
 
 Enemy::Enemy() {
+	// 画像読込
 	LoadDivGraph("images/Enemy/Enemy_G_Animation.png", 18, 6, 3, 64, 64, EnemyG_img);
 	LoadDivGraph("images/Enemy/Enemy_P_Animation.png", 18, 6, 5, 64, 64, EnemyP_img);
 	LoadDivGraph("images/Enemy/Enemy_R_Animation.png", 18, 6, 5, 64, 64, EnemyR_img);
 
-	enemy[0].x = S1_Flooting_X;
-	enemy[0].y = S1_Flooting_Y - 65;
+	enemy[0].x = S1_Flooting_X;			// 初期座標ｘ
+	enemy[0].y = S1_Flooting_Y - 65;	// 初期座標ｙ
 
-	enemy[0].flg = 1;
-	enemy[0].type = 0;
+	enemy[0].flg = 1;		// フラグの初期化
+	enemy[0].type = 0;		// タイプの初期化
 
-	Lv = 0;
+	Lv = 0;			// レベルの初期化
 
-	AnimImg = 0;
-	Count = 15;
-	Counter = 0;
-	Gvy = 0;
-	SpeedX = 0;
-	SpeedY = 0;
-	Pr_y = 0;
+	AnimImg = 0;	// イメージ画像用変数の初期化
+	Count = 15;		// 時間カウント変数の初期化
+	Counter = 0;	// 時間カウンター変数の初期化
+	Gvy = 0;		// 重力の初期化
+	SpeedX = 0;	
+	SpeedY = 0;	 
+	Pr_y = 0;		// パラシュート時の座標ぼ初期化
 }
 
 Enemy::~Enemy() {
@@ -210,7 +211,7 @@ void Enemy::Update() {
 		else {
 			Score += EnemyRScore[0];
 		}
-		
+		// パラシュート状態へ
 		Parachute();
 	}
 	
@@ -230,7 +231,7 @@ void Enemy::Update() {
 		}
 		Death();
 	}
-
+	// 初期状態へ
 	EnemyStart();
 
 }
