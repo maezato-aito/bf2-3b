@@ -167,7 +167,6 @@ void Fish::Update()
 		if (ChangeAnim >= 20 && ChangeAnim < 30 && Enemy::enemyFlg == 1) {
 			Anim = 7;
 			Enemy::enemyFlg = 0;
-
 		}
 		else if (ChangeAnim >= 20 && ChangeAnim < 30 && Enemy::enemyFlg == 2) {
 			Anim = 8;
@@ -193,10 +192,12 @@ void Fish::Update()
 			fBoxY2 += 2;
 		}
 		if (ChangeAnim >= 60) {
-			ChangeAnim = 0;
+			ChangeAnim = 60;
 			
 		}
-
+		if (Anim == 7 || Anim == 8 || Anim == 9) {
+			Enemy::EnemyDeath();
+		}
 	}
 	if (count > 180 && playerFlg == 0 || pBoxY2 < fishBoxY ) {
 		count = 0;
