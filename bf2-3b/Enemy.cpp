@@ -248,7 +248,7 @@ void Enemy::Update() {
 void Enemy::Draw() const {
 	// 敵（ピンク）の描画
 	if (enemy[0].flg != 0 && enemy[0].type == 0) {
-		enemyFlg  = 1;
+		
 		// 敵の描画
 		DrawGraph(enemy[0].x, enemy[0].y, EnemyP_img[AnimImg], TRUE);
 		// 画面端ワープ用
@@ -271,7 +271,7 @@ void Enemy::Draw() const {
 
 	// 敵（緑）の描画
 	if (enemy[0].flg != 0 && enemy[0].type == 1) {
-		enemyFlg = 2;
+	
 		// 敵の描画
 		DrawGraph(enemy[0].x, enemy[0].y, EnemyG_img[AnimImg], TRUE);
 		// 画面端ワープ用
@@ -294,7 +294,7 @@ void Enemy::Draw() const {
 
 	// 敵（赤）の描画
 	if (enemy[0].flg != 0 && enemy[0].type == 2) {
-		enemyFlg = 3;
+		
 		// 敵の描画
 		DrawGraph(enemy[0].x, enemy[0].y, EnemyR_img[AnimImg], TRUE);
 		// 画面端ワープ用
@@ -316,7 +316,7 @@ void Enemy::Draw() const {
 	}
 #if _DEBUG
 	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
-	DrawFormatString(100, 150, 0xffffff, "%d", enemy[0].type, TRUE);
+	DrawFormatString(200, 150, 0xffffff, "%d", enemyFlg, TRUE);
 #endif _DEBUG
 }
 
@@ -387,9 +387,11 @@ void Enemy::EnemyStart() {
 				if (Count == 0)
 				{
 					if (0 < Lv && Lv <= 1) {
+						enemyFlg = 2;
 						enemy[0].type = 1;
 					}
 					else if (Lv == 2) {
+						enemyFlg = 3;
 						enemy[0].type = 2;
 					}
 
@@ -446,4 +448,9 @@ void Enemy::Death() {
 	else {
 		enemy[0].flg = 0;
 	}
+}
+
+int Enemy::EnemyDeath() {
+	enemyFlg = 0;
+	return enemyFlg;
 }

@@ -66,4 +66,6 @@ public:
 
 	static int Score;
 
+	static int EnemyDeath();
+
 };
