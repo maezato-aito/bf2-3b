@@ -172,8 +172,9 @@ void Enemy::Update() {
 	}
 
 	// ŠC
-	if (Searight_Y <= enemy[0].y) {
+	if (480 <= enemy[0].y) {
 		enemy[0].flg = 0;
+		enemyFlg = 0;
 	}
 
 	// ‰æ–Ê’[ƒ[ƒv
@@ -245,15 +246,6 @@ void Enemy::Draw() const {
 		// “–‚½‚è”»’è‚Ì”ÍˆÍ
 		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
 		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
-#if _DEBUG
-		if (enemy[0].flg == 3) {
-			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyPScore[0], TRUE);
-		}
-	
-		if (enemy[0].flg == 4) {
-			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[2], TRUE);
-		}
-#endif _DEBUG
 	}
 
 	// “Gi—Îj‚Ì•`‰æ
@@ -299,8 +291,16 @@ void Enemy::Draw() const {
 		if (enemy[0].flg == 4) {
 			DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyRScore[2], TRUE);
 		}
-
 	}
+
+	if (enemy[0].flg == 3) {
+		DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyPScore[0], TRUE);
+	}
+
+	if (enemy[0].flg == 4) {
+		DrawFormatString(De_x + 20, De_y - 10, 0xff0000, "%d", EnemyPScore[2], TRUE);
+	}
+
 #if _DEBUG
 	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
 	DrawFormatString(200, 150, 0xffffff, "%d", enemyFlg, TRUE);
@@ -421,7 +421,6 @@ void Enemy::EnemyStart() {
 void Enemy::Parachute() {
 	AnimImg = 17;
 	
-
 	/*if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY) {
 		enemy[0].flg = 4;
 		Death();
@@ -441,20 +440,24 @@ void Enemy::Death() {
 	AnimImg = 13;
 	SpeedX = 0;
 	
+	if (enemy[0].flg != 0) {
+
+		if (enemy[0].y - 150 < De_y) {
+			enemy[0].y -= SpeedY;
+		}
+		else if (enemy[0].y > 300 && enemy[0].y - 150 >= De_y) {
+
+			SpeedY += 1.0f;
+			enemy[0].y += SpeedY;
+			enemy[0].y += Gvy;
+		}
+		else {
+			enemy[0].flg = 0;
+			
+		}
+
+	}
 	
-	if (enemy[0].y - 150 < De_y) {
-		enemy[0].y -= SpeedY;
-	}
-	else if(enemy[0].y > 300 && enemy[0].y - 150 >= De_y) {
-		
-		SpeedY += 1.0f;
-		enemy[0].y += SpeedY;
-		enemy[0].y += Gvy;
-	}
-	else {
-		enemy[0].flg = 0;
-		
-	}
 }
 
 int Enemy::EnemyDeath() {

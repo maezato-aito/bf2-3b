@@ -35,6 +35,7 @@ AbstractScene* GameMain::Update()
 	ui->Update();
 
 	if (Enemy::enemyFlg == 0) {
+		WaitTimer(2000);
 		EnemyChar->EnemyInit();
 		Stage::NowStage += 1;
 	}
@@ -44,14 +45,7 @@ AbstractScene* GameMain::Update()
 
 void GameMain::Draw() const
 {
-	/*Thunder->D_thunder();*/
 	fish->Draw();
-	PlayChar->Draw();
-	EnemyChar->Draw();
-	bubble->Draw();
-	ui->Draw();
-	DrawFormatString(640, 360, 0xffffff, "GameMain");
-	gameover->Draw();
 
 	switch (Stage::NowStage)
 	{
@@ -74,5 +68,15 @@ void GameMain::Draw() const
 		Stage::NowStage = 1;
 		break;
 	}
+
+	/*Thunder->D_thunder();*/
+	
+	PlayChar->Draw();
+	EnemyChar->Draw();
+	bubble->Draw();
+	ui->Draw();
+	DrawFormatString(640, 360, 0xffffff, "GameMain");
+	gameover->Draw();
+
 }
 
