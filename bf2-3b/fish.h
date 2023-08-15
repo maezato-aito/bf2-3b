@@ -17,7 +17,7 @@ private:
 	int rand; // Šm—¦
 	int enemy;
 	int enemyFlg;
-
+	int count;
 public:
 
 	static int fBoxY, fBoxY2;
