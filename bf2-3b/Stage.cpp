@@ -27,6 +27,7 @@ Stage::Stage() {
 	LoadDivGraph("images/stage/Stage_CloudAnimation.png", 3, 3, 1, 128, 64, CloudImg);
 	
 	// ƒTƒ“ƒvƒ‹‰æ‘œ‚Ì“Ç
+	Stage1Sample = LoadGraph("images/StageSample/Stage_1.png");
 	Stage2Sample = LoadGraph("images/StageSample/Stage_2.png");
 	Stage3Sample = LoadGraph("images/StageSample/Stage_3.png");
 	Stage4Sample = LoadGraph("images/StageSample/Stage_4.png");
@@ -60,6 +61,10 @@ void Stage::Draw() const {
 }
 
 void Stage::Stage1() {
+
+	/*SetDrawBlendMode(DX_BLENDMODE_ALPHA, 122);
+	DrawGraph(0, 0, Stage1Sample, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);*/
 
 	// ‹ó’†°‚Ì•`‰æ
 	DrawGraph(S1_Flooting_X, S1_Flooting_Y, FlootingImg[0], TRUE);

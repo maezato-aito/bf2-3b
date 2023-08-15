@@ -2,6 +2,17 @@
 class UI
 {
 private:
+	int Iimg;
+	int Topimg;
+	int Numberimg[10];
+	int INumber[6];
+	int TopNumber[6];
+	int Ballonimg;
+
+	int FontHandle;
+	int CharGrHandle[10][1];
+	int i;
+	int j;
 
 public:
 	// コンストラクタ

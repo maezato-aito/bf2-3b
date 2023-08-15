@@ -7,6 +7,12 @@ int UI::NowScore;
 
 UI::UI() {
 	NowScore = 0;
+	Iimg = LoadGraph("images/UI/UI_Score.png");
+	Topimg = LoadGraph("images/UI/UI_HiScore.png");
+	Ballonimg = LoadGraph("images/UI/UI_Stock.png");
+	LoadDivGraph("images/UI/UI_NumAnimation.png", 10, 10, 1, 32, 32, Numberimg);
+
+	
 }
 
 UI::~UI() {
@@ -18,12 +24,16 @@ void UI::Update() {
 	if (BestScore <= NowScore) {
 		BestScore = NowScore;
 	}
+
+
 }
 
 void UI::Draw() const {
-
-	DrawFormatString(100, 10, 0xc71585, "IE", NowScore, TRUE);
-	DrawFormatString(130, 10, 0xffffff, "%06d", NowScore, TRUE);
-	DrawFormatString(250, 10, 0xffd700, "TOPE", NowScore, TRUE);
-	DrawFormatString(300, 10, 0xffffff, "%06d", BestScore, TRUE);
+	/*SetFontSize(30);*/
+	DrawGraph(60, 14, Iimg, TRUE);
+	DrawFormatString(85, 8, 0xffffff, "%06d", NowScore, TRUE);
+	DrawGraph(240, 14, Topimg, TRUE);
+	DrawFormatString(285, 8, 0xffffff, "%06d", BestScore, TRUE);
+	DrawGraph(165, 34, Ballonimg, TRUE);
+	DrawGraph(145, 34, Ballonimg, TRUE);
 }

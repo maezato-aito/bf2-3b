@@ -8,6 +8,7 @@ private:
     int SeaImg;    // ŠC‚Ì‰æ‘œ
     int CloudImg[3];     // ‰_‚Ì‰æ‘œ 
 
+    int Stage1Sample;
     int Stage2Sample;
     int Stage3Sample;
     int Stage4Sample;
