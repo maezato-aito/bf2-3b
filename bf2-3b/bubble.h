@@ -3,7 +3,7 @@
 class Bubble
 {
 private:
-
+	int bubbleFlg;
 public:
 
 	//–A‚ÌˆÊ’u
