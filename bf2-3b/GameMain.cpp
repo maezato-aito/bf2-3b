@@ -40,8 +40,9 @@ void GameMain::Draw() const
 {
 	Thunder->D_thunder();
 	fish->Draw();
-	stage->Stage1();
 	PlayChar->Draw();
+	stage->Stage1();
+	
 	EnemyChar->Draw();
 	bubble->Draw();
 	

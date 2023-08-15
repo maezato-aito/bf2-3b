@@ -26,6 +26,6 @@
 
 // ŠC‚ÌÀ•W
 #define Searight_X (0)
-#define Searight_Y (440)
+#define Searight_Y (444)
 #define Sealeft_X (320)
-#define Sealeft_Y (440)
+#define Sealeft_Y (444)
