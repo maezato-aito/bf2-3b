@@ -27,6 +27,7 @@ Fish::Fish()
 	ChangeAnim = 0;
 	Anim = 0;
 	rand = 100;
+	count = 0;
 }
 
 Fish::~Fish()
@@ -65,53 +66,57 @@ void Fish::Update()
 	}*/
 	if (pBoxX <= fishBoxX2 && pBoxX2 >= fishBoxX && pBoxY2 > fishBoxY+1  && Player::PlayerFlg != 0) {
 		rand = GetRand(99);
-		ChangeAnim++;
-		if (ChangeAnim >= 0 && ChangeAnim < 10 && rand <= 30) {
-			Anim = 0;
-			fBoxX = pBoxX;
-			fBoxX2 = pBoxX2;
-			fBoxY -= 8;
-			fBoxY2 -= 8;
-		}
-		if (ChangeAnim >= 10 && ChangeAnim < 20) {
-			fBoxX = pBoxX;
-			fBoxX2 = pBoxX2;
-			Anim = 1;
-		}
-		if (ChangeAnim >= 20 && ChangeAnim < 30 && pBoxY <= fBoxY2) {
-			fBoxX = pBoxX;
-			fBoxX2 = pBoxX2;
-			Anim = 6;
-			Player::PlayerFlg = 0;
-		}
-		else if (ChangeAnim >= 20 && ChangeAnim < 30) {
-			fBoxX = pBoxX;
-			fBoxX2 = pBoxX2;
-			Anim = 2;
-		}
+		count++;
+		if (count > 180) {
+			ChangeAnim++;
+			if (count > 180 && ChangeAnim >= 0 && ChangeAnim < 10 && rand <= 30) {
+				Anim = 0;
+				fBoxX = pBoxX;
+				fBoxX2 = pBoxX2;
+				fBoxY -= 8;
+				fBoxY2 -= 8;
+			}
+			if (ChangeAnim >= 10 && ChangeAnim < 20) {
+				fBoxX = pBoxX;
+				fBoxX2 = pBoxX2;
+				Anim = 1;
+			}
+			if (ChangeAnim >= 20 && ChangeAnim < 30 && pBoxY <= fBoxY2) {
+				fBoxX = pBoxX;
+				fBoxX2 = pBoxX2;
+				Anim = 6;
+				Player::PlayerFlg = 0;
+			}
+			else if (ChangeAnim >= 20 && ChangeAnim < 30) {
+				fBoxX = pBoxX;
+				fBoxX2 = pBoxX2;
+				Anim = 2;
+			}
 
-		if (ChangeAnim >= 30 && ChangeAnim < 40) {
-			fBoxX = pBoxX;
-			fBoxX2 = pBoxX2;
-			Anim = 3;
-		}
+			if (ChangeAnim >= 30 && ChangeAnim < 40) {
+				fBoxX = pBoxX;
+				fBoxX2 = pBoxX2;
+				Anim = 3;
+			}
 
-		if (ChangeAnim >= 40 && ChangeAnim < 50) {
-			fBoxX = pBoxX;
-			fBoxX2 = pBoxX2;
-			Anim = 4;
-			fBoxY += 4;
-			fBoxY2 += 4;
-		}
-		if (ChangeAnim >= 50 && ChangeAnim < 60) {
-			fBoxX = pBoxX;
-			fBoxX2 = pBoxX2;
-			Anim = 5;
-			fBoxY += 4;
-			fBoxY2 += 4;
-		}
-		if (ChangeAnim >= 60) {
-			ChangeAnim = 0;
+			if (ChangeAnim >= 40 && ChangeAnim < 50) {
+				fBoxX = pBoxX;
+				fBoxX2 = pBoxX2;
+				Anim = 4;
+				fBoxY += 4;
+				fBoxY2 += 4;
+			}
+			if (ChangeAnim >= 50 && ChangeAnim < 60) {
+				fBoxX = pBoxX;
+				fBoxX2 = pBoxX2;
+				Anim = 5;
+				fBoxY += 4;
+				fBoxY2 += 4;
+			}
+			if (ChangeAnim >= 60) {
+				ChangeAnim = 0;
+				
+			}
 		}
 	}
 	if (Player::PlayerFlg == 0 || Enemy::enemyFlg == 0 || Player::Life == 1 || Player::Life == 0) {
@@ -142,10 +147,11 @@ void Fish::Update()
 		fBoxY2 = 480;
 		Anim = 0;
 		ChangeAnim = 0;
+		count = 0;
 	}
 
 
-	if (eBoxY2 > fishBoxY) {
+	if (eBoxY2 > fishBoxY &&eBoxX > 160 && eBoxX2 < 480 ) {
 		
 		ChangeAnim++;
 		if (ChangeAnim >= 0 && ChangeAnim < 10) {
@@ -192,7 +198,9 @@ void Fish::Update()
 		}
 
 	}
-
+	if (count > 180 && playerFlg == 0 || pBoxY2 < fishBoxY ) {
+		count = 0;
+	}
 }
 
 void Fish::Draw()
@@ -202,7 +210,7 @@ void Fish::Draw()
 	/*DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xff2255, FALSE);*/
 	DrawExtendGraph(fBoxX, fBoxY, fBoxX2, fBoxY2, fishImg[Anim], TRUE);
 #if _DEBUG
-	DrawFormatString(0, 350, 0xffffff, "ó‘Ô %d", ChangeAnim, TRUE);
+	DrawFormatString(0, 350, 0xffffff, "ó‘Ô %d", count, TRUE);
 	DrawFormatString(0, 380, 0xffffff, "Šm—¦ %d", rand, TRUE);
 #endif _DEBUG
 }
