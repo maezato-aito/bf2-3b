@@ -1,30 +1,3 @@
-﻿  main.cpp
+﻿  UI.cpp
 C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4476: 'fprintf_s' : 形式指定子に不明な種類フィールド文字 '\xe6' があります
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4477: 'fprintf_s' : 書式文字列 '% s' には、型 'char *' の引数が必要ですが、可変個引数 5 は型 'int' です
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,17): warning C4313: 'fprintf_s': 書式文字列内の '%s' が引数 5 ('int' 型) と競合しています
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,151): warning C4474: 'fprintf_s': 書式文字列に渡された引数の数が多すぎます
-C:\PG\bf2-3b\bf2-3b\main.cpp(59,151): message : プレースホルダーとそのパラメーターには 5 の可変個引数が必要ですが、7 が指定されています。
-  Stage.cpp
-C:\PG\bf2-3b\bf2-3b\common.h(66,1): warning C4005: 'S3_Flooting_X': マクロが再定義されました。
-C:\PG\bf2-3b\bf2-3b\common.h(54): message : 'S3_Flooting_X' の以前の定義を確認してください
-C:\PG\bf2-3b\bf2-3b\common.h(67,1): warning C4005: 'S3_Flooting_Y': マクロが再定義されました。
-C:\PG\bf2-3b\bf2-3b\common.h(55): message : 'S3_Flooting_Y' の以前の定義を確認してください
-C:\PG\bf2-3b\bf2-3b\common.h(68,1): warning C4005: 'S3_Flooting_W': マクロが再定義されました。
-C:\PG\bf2-3b\bf2-3b\common.h(56): message : 'S3_Flooting_W' の以前の定義を確認してください
-C:\PG\bf2-3b\bf2-3b\common.h(77,1): warning C4005: 'S3_2Flooting_X': マクロが再定義されました。
-C:\PG\bf2-3b\bf2-3b\common.h(60): message : 'S3_2Flooting_X' の以前の定義を確認してください
-C:\PG\bf2-3b\bf2-3b\common.h(78,1): warning C4005: 'S3_2Flooting_Y': マクロが再定義されました。
-C:\PG\bf2-3b\bf2-3b\common.h(61): message : 'S3_2Flooting_Y' の以前の定義を確認してください
-C:\PG\bf2-3b\bf2-3b\common.h(79,1): warning C4005: 'S3_2Flooting_W': マクロが再定義されました。
-C:\PG\bf2-3b\bf2-3b\common.h(62): message : 'S3_2Flooting_W' の以前の定義を確認してください
-  Title.cpp
-C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
-  コードを生成中...
-  LINK : 前回のインクリメンタル リンクで C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
-FpsController.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
-PadInput.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
-Pause.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
-Result.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
-SceneManager.obj : warning LNK4204: 'C:\PG\bf2-3b\bf2-3b\x64\Debug\vc143.pdb' に参照するモジュールのデバッグ情報がありません。デバッグ情報を無視してオブジェクトをリンクします。
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe

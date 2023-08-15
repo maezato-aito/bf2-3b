@@ -1,6 +1,7 @@
 #include "UI.h"
 #include "DxLib.h"
 #include "Enemy.h"
+#include "Player.h"
 
 int UI::BestScore;
 int UI::NowScore;
@@ -34,6 +35,12 @@ void UI::Draw() const {
 	DrawFormatString(85, 8, 0xffffff, "%06d", NowScore, TRUE);
 	DrawGraph(240, 14, Topimg, TRUE);
 	DrawFormatString(285, 8, 0xffffff, "%06d", BestScore, TRUE);
-	DrawGraph(165, 34, Ballonimg, TRUE);
-	DrawGraph(145, 34, Ballonimg, TRUE);
+
+	if (Player::Life == 2) {
+		DrawGraph(145, 34, Ballonimg, TRUE);
+	}
+	if (Player::Life >= 1) {
+		DrawGraph(165, 34, Ballonimg, TRUE);
+	}
+	
 }
