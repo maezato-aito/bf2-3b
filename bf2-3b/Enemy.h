@@ -53,6 +53,7 @@ public:
 	//描画処理
 	void Draw() const;
 
+	void EnemyInit();	// 敵初期化処理
 	void EnemyStart();	// 初期状態処理
 	void Parachute();	// パラシュート処理
 	void Death();		// 死亡処理

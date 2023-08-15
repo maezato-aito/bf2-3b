@@ -2,7 +2,11 @@
 #include "DxLib.h"
 #include"common.h"
 
+int Stage::NowStage;
+
 Stage::Stage() {
+
+	NowStage = 1;
 
 	// 空中床の画像読込
 	FlootingImg[0] = LoadGraph("images/Stage/Stage_Footing01.png");
@@ -156,7 +160,7 @@ void Stage::Stage5() {
 	DrawGraph(S5_3Flooting_X, S5_3Flooting_Y, FlootingImg[5], TRUE);
 
 	// 鍾乳石の描画
-	DrawGraph(S5_Stalactite_X, S5_Stalactite_Y, FlootingImg[6], TRUE);	// 右
+	DrawGraph(S5_Stalactite_X, S5_Stalactite_Y, FlootingImg[6], TRUE);		// 右
 	DrawGraph(S5_2Stalactite_X, S5_2Stalactite_Y, FlootingImg[6], TRUE);	// 真ん中
 	DrawGraph(S5_3Stalactite_X, S5_3Stalactite_Y, FlootingImg[7], TRUE);	// 右
 

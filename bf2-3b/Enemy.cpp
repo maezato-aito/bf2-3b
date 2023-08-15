@@ -4,6 +4,7 @@
 #include "PadInput.h"
 #include "Player.h"
 #include "fish.h"
+#include "Stage.h"
 
 int Enemy::eBoxX;
 int Enemy::eBoxY;
@@ -33,21 +34,7 @@ Enemy::Enemy() {
 	LoadDivGraph("images/Enemy/Enemy_P_Animation.png", 18, 6, 5, 64, 64, EnemyP_img);
 	LoadDivGraph("images/Enemy/Enemy_R_Animation.png", 18, 6, 5, 64, 64, EnemyR_img);
 
-	enemy[0].x = S1_Flooting_X;
-	enemy[0].y = S1_Flooting_Y - 65;
-
-	enemy[0].flg = 1;
-	enemy[0].type = 0;
-	enemyFlg = 1;
-	Lv = 0;
-
-	AnimImg = 0;
-	Count = 15;
-	Counter = 0;
-	Gvy = 0;
-	SpeedX = 0;
-	SpeedY = 0;
-	Pr_y = 0;
+	EnemyInit();
 }
 
 Enemy::~Enemy() {
@@ -320,6 +307,25 @@ void Enemy::Draw() const {
 #endif _DEBUG
 }
 
+// “G‰Šú‰»ˆ—
+void Enemy::EnemyInit() {
+	enemy[0].x = S1_Flooting_X;
+	enemy[0].y = S1_Flooting_Y - 65;
+
+	enemy[0].flg = 1;
+	enemy[0].type = 0;
+	enemyFlg = 1;
+	Lv = 0;
+
+	AnimImg = 0;
+	Count = 15;
+	Counter = 0;
+	Gvy = 0;
+	SpeedX = 0;
+	SpeedY = 0;
+	Pr_y = 0;
+}
+
 // ‰Šúó‘Ô
 void Enemy::EnemyStart() {
 	if(enemy[0].flg == 1) {
@@ -447,6 +453,7 @@ void Enemy::Death() {
 	}
 	else {
 		enemy[0].flg = 0;
+		
 	}
 }
 

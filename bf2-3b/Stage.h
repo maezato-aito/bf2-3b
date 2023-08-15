@@ -28,4 +28,5 @@ public:
     void Stage4();      // ステージ１
     void Stage5();      // ステージ１
 
+    static int NowStage;
 };
