@@ -17,6 +17,7 @@ private:
 	int centerY;
 	int ranDirection;
 	int incFlg;
+	int TimeFlg;
 	int moveAmount;
 	int x;
 	int y;
@@ -35,6 +36,9 @@ private:
 	int speed;
 	float BallAngle;
 	float rad;
+	int centerx;
+	int centery;
+	int MoveAmount;
 public:
 
 	// コンストラクタ

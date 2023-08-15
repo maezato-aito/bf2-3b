@@ -19,10 +19,14 @@ thunder::thunder()
 	centerX = 200;
 	centerY = 100;
 	ranDirection = 0;
-	incFlg = 30;
+	incFlg = 24;
+	TimeFlg = 0;
 	moveAmount = 28;
+	MoveAmount = 28;
 	x = 0;
 	y = 0;
+	centerx = 200;
+	centery = 100;
 	once = false;
 	A_Flg = 3;
 	C_Flg = 0;
@@ -44,8 +48,8 @@ thunder::~thunder()
 
 void thunder::Update()
 {
-	if (++incFlg < 100000000) {
-		if (incFlg > 200) {
+	if (++TimeFlg < 100000000) {
+		if (TimeFlg > 300) {
 			BallX += MoveX;
 			BallY += MoveY;
 			// 壁・天井での反射
@@ -124,18 +128,26 @@ void thunder::Circle()
 		case 0: // 斜め右上
 			x = centerX += moveAmount;
 			y = centerY -= moveAmount;
+			BallX = centerx += MoveAmount;
+			BallY = centery -= MoveAmount;
 			break;
 		case 1: // 斜め右下
 			x = centerX += moveAmount;
 			y = centerY += moveAmount;
+			BallX = centerx += MoveAmount;
+			BallY = centery += MoveAmount;
 			break;
 		case 2: // 斜め左下
 			x = centerX -= moveAmount;
 			y = centerY += moveAmount;
+			BallX = centerx -= MoveAmount + 10;
+			BallY = centery += MoveAmount + 10;
 			break;
 		case 3: // 斜め左上
 			x = centerX -= moveAmount;
 			y = centerY -= moveAmount;
+			BallX = centerx -= MoveAmount;
+			BallY = centery -= MoveAmount;
 			break;
 		default:
 			break;
@@ -167,7 +179,7 @@ void thunder::Anim() {
 	if (++incFlg < 200) {
 		if (incFlg > 100) {
 			if (A_nimFlg == 0b0000) {
-				C_Flg = incFlg % 30;
+				C_Flg = incFlg % 24;
 				if (C_Flg == 0) {
 					A_ThunderImg = 0;
 				}
@@ -181,7 +193,7 @@ void thunder::Anim() {
 					A_ThunderImg = 0;
 				}
 				if (C_Flg == 4) {
-					A_ThunderImg = 1;
+					A_ThunderImg = 0;
 				}
 				if (C_Flg == 5) {
 					A_ThunderImg = 1;
@@ -193,10 +205,10 @@ void thunder::Anim() {
 					A_ThunderImg = 1;
 				}
 				if (C_Flg == 8) {
-					A_ThunderImg = 2;
+					A_ThunderImg = 1;
 				}
 				if (C_Flg == 9) {
-					A_ThunderImg = 2;
+					A_ThunderImg = 1;
 				}
 				if (C_Flg == 10) {
 					A_ThunderImg = 2;
@@ -205,28 +217,46 @@ void thunder::Anim() {
 					A_ThunderImg = 2;
 				}
 				if (C_Flg == 12) {
-					A_ThunderImg = 3;
+					A_ThunderImg = 2;
 				}
 				if (C_Flg == 13) {
-					A_ThunderImg = 3;
+					A_ThunderImg = 2;
 				}
 				if (C_Flg == 14) {
-					A_ThunderImg = 3;
+					A_ThunderImg = 2;
 				}
 				if (C_Flg == 15) {
 					A_ThunderImg = 3;
 				}
 				if (C_Flg == 16) {
-					A_ThunderImg = 4;
+					A_ThunderImg = 3;
 				}
 				if (C_Flg == 17) {
+					A_ThunderImg = 3;
+				}
+				if (C_Flg == 18) {
+					A_ThunderImg = 3;
+				}
+				if (C_Flg == 19) {
+					A_ThunderImg = 3;
+				}
+				if (C_Flg == 20) {
+					A_ThunderImg = 4;
+				}
+				if (C_Flg == 21) {
+					A_ThunderImg = 4;
+				}
+				if (C_Flg == 22) {
+					A_ThunderImg = 4;
+				}
+				if (C_Flg == 23) {
 					A_ThunderImg = 4;
 				}
 				if (C_Flg == 18) {
 					A_ThunderImg = 4;
 				}
 				if (C_Flg == 19) {
-					A_ThunderImg = 4;
+					A_ThunderImg = 5;
 				}
 				if (C_Flg == 20) {
 					A_ThunderImg = 5;
@@ -240,7 +270,6 @@ void thunder::Anim() {
 				if (C_Flg == 23) {
 					A_ThunderImg = 5;
 				}
-
 			}
 		}
 	}
@@ -248,8 +277,16 @@ void thunder::Anim() {
 
 void thunder::D_thunder()
 {
-	DrawRotaGraph(BallX, BallY, 0.8f, 0, BallImg[A_BallImg], TRUE, FALSE);
-	DrawRotaGraph(x, y, 0.8f, 0, ThunderImg[A_ThunderImg], TRUE, FALSE);
+	if (++TimeFlg < 100000000) {
+		if (TimeFlg > 300) {
+			DrawRotaGraph(BallX, BallY, 0.8f, 0, BallImg[A_BallImg], TRUE, FALSE);
+		}
+	}
+	if (++TimeFlg < 300) {
+		if (TimeFlg > 200) {
+			DrawRotaGraph(x, y, 0.8f, 0, ThunderImg[A_ThunderImg], TRUE, FALSE);
+		}
+	}
 	DrawRotaGraph(S1_Thunder_X, S1_Thunder_Y, 0.8f, 0, CloudImg[C_AnimImg], TRUE, FALSE);
 	DrawCircle(centerX, centerY, 2, GetColor(255, 0, 0), TRUE);
 	//DrawGraph(S1_Thunder_X, S1_Thunder_Y, ThunderImg[0], TRUE);
