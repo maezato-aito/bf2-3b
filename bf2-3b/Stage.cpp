@@ -89,7 +89,7 @@ void Stage::Stage2() {
 	// ãÛíÜè∞ÇÃï`âÊ
 	DrawGraph(S1_Flooting_X, S1_Flooting_Y, FlootingImg[0], TRUE);
 	DrawGraph(S2_Flooting_X, S2_Flooting_Y, FlootingImg[1], TRUE);
-	DrawGraph(S2_Flooting2_X, S2_Flooting2_Y, FlootingImg[1], TRUE);
+	DrawGraph(S2_2Flooting_X, S2_2Flooting_Y, FlootingImg[1], TRUE);
 
 	// äCÇÃï`âÊ
 	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
@@ -108,12 +108,12 @@ void Stage::Stage3() {
 
 	// ãÛíÜè∞ÇÃï`âÊ
 	DrawGraph(S3_Flooting_X, S3_Flooting_Y, FlootingImg[2], TRUE);
-	DrawGraph(S3_Flooting2_X, S3_Flooting2_Y, FlootingImg[4], TRUE);
+	DrawGraph(S3_2Flooting_X, S3_2Flooting_Y, FlootingImg[4], TRUE);
 
 	// èﬂì˚êŒÇÃï`âÊ
-	DrawGraph(S3_Flootingleft_X, S3_Flootingleft_Y, FlootingImg[3], TRUE);	// âE
-	DrawGraph(S3_Flootingcenter_X, S3_Flootingcenter_Y, FlootingImg[3], TRUE);	// ê^ÇÒíÜ
-	DrawGraph(S3_Flootingright_X, S3_Flootingright_Y, FlootingImg[3], TRUE);	// âE
+	DrawGraph(S3_Flooting_X, S3_Flooting_Y, FlootingImg[3], TRUE);	// âE
+	DrawGraph(S3_2Flooting_X, S3_2Flooting_Y, FlootingImg[3], TRUE);	// ê^ÇÒíÜ
+	DrawGraph(S3_3Flooting_X, S3_3Flooting_Y, FlootingImg[3], TRUE);	// âE
 
 	// äCÇÃï`âÊ
 	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
@@ -131,10 +131,10 @@ void Stage::Stage4() {
 
 	// ãÛíÜè∞ÇÃï`âÊ
 	DrawGraph(S4_Flooting_X, S4_Flooting_Y, FlootingImg[5], TRUE);
-	DrawGraph(S4_Flooting2_X, S4_Flooting2_Y, FlootingImg[5], TRUE);
-	DrawGraph(S4_Flooting3_X, S4_Flooting3_Y, FlootingImg[5], TRUE);
-	DrawGraph(S4_Flooting4_X, S4_Flooting4_Y, FlootingImg[5], TRUE);
-	DrawGraph(S4_Flooting5_X, S4_Flooting5_Y, FlootingImg[5], TRUE);
+	DrawGraph(S4_2Flooting_X, S4_2Flooting_Y, FlootingImg[5], TRUE);
+	DrawGraph(S4_3Flooting_X, S4_3Flooting_Y, FlootingImg[5], TRUE);
+	DrawGraph(S4_4Flooting_X, S4_4Flooting_Y, FlootingImg[5], TRUE);
+	DrawGraph(S4_5Flooting_X, S4_5Flooting_Y, FlootingImg[5], TRUE);
 
 	// äCÇÃï`âÊ
 	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
@@ -152,13 +152,13 @@ void Stage::Stage5() {
 
 	// ãÛíÜè∞ÇÃï`âÊ
 	DrawGraph(S5_Flooting_X, S5_Flooting_Y, FlootingImg[5], TRUE);
-	DrawGraph(S5_Flooting2_X, S5_Flooting2_Y, FlootingImg[5], TRUE);
-	DrawGraph(S5_Flooting3_X, S5_Flooting3_Y, FlootingImg[5], TRUE);
+	DrawGraph(S5_2Flooting_X, S5_2Flooting_Y, FlootingImg[5], TRUE);
+	DrawGraph(S5_3Flooting_X, S5_3Flooting_Y, FlootingImg[5], TRUE);
 
 	// èﬂì˚êŒÇÃï`âÊ
-	DrawGraph(S5_StalactiteL_X, S5_StalactiteL_Y, FlootingImg[6], TRUE);	// âE
-	DrawGraph(S5_StalactiteC_X, S5_StalactiteC_Y, FlootingImg[6], TRUE);	// ê^ÇÒíÜ
-	DrawGraph(S5_StalactiteR_X, S5_StalactiteR_Y, FlootingImg[7], TRUE);	// âE
+	DrawGraph(S5_Stalactite_X, S5_Stalactite_Y, FlootingImg[6], TRUE);	// âE
+	DrawGraph(S5_2Stalactite_X, S5_2Stalactite_Y, FlootingImg[6], TRUE);	// ê^ÇÒíÜ
+	DrawGraph(S5_3Stalactite_X, S5_3Stalactite_Y, FlootingImg[7], TRUE);	// âE
 
 	// äCÇÃï`âÊ
 	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
