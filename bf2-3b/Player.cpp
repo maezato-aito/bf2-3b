@@ -3,6 +3,7 @@
 #include"PadInput.h"
 #include"common.h"
 #include"Enemy.h"
+#include"fish.h"
 
  int Player::pBoxX;
  int Player::pBoxY;
@@ -14,6 +15,7 @@
  int Player::bBoxX2;
  int Player::bBoxY2;
  int Player::PlayerFlg;
+ int Player::Life;
 
 Player::Player()
 {
@@ -40,6 +42,8 @@ Player::Player()
 	UpFlg = 0;
 	UpNum = 0;
 	buttonC = 0;
+
+	Life = 2;
 }
 Player::~Player()
 {
@@ -227,7 +231,7 @@ AbstractScene* Player::Update()
 					}
 				}
 				Gvy = 0.0f;
-				PlayerFlg = 0;
+				PlayerFlg = 2;
 				HitFlg = 0;
 			}
 
@@ -370,11 +374,14 @@ AbstractScene* Player::Update()
 				playerX = -10;
 
 			}
+			if (bBoxY > 480) {
+				PlayerFlg = 0;
+			}
 		}
 	}
 	else if (PlayerFlg == 0) {
-
-}
+		life();
+	}
 	return this;
 }
 
@@ -429,5 +436,31 @@ void Player::backlash()
 	// 右側に触れたとき
 	if (HitFlg == 2 && Speed > 0.5) {
 		Speed *= -0.8;
+	}
+}
+
+void Player::life()
+{
+	if (PlayerFlg == 0 && Life == 2 || Life == 1)
+	{
+		PlayerFlg = 1;
+		Life--;
+		playerX = 100;
+		playerY = 336;
+		//風船のボックス情報
+		bBoxX = playerX + 6;
+		bBoxY = playerY + 12;
+		bBoxX2 = bBoxX + 50;
+		bBoxY2 = bBoxY + 22;
+
+		//プレイヤーのボックス情報
+		pBoxX = playerX + 6;
+		pBoxY = playerY + 32;
+		pBoxX2 = pBoxX + 50;
+		pBoxY2 = pBoxY + 32;
+	}
+	else if(PlayerFlg == 0 && Life == 0)
+	{
+		
 	}
 }
