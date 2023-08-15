@@ -5,7 +5,7 @@ class Stage
 private:
     int FlootingImg[8];  // ‹ó’†°‚Ì‰æ‘œ
     int LandImg[4];     // ’n–Ê‚Ì‰æ‘œ
-    int SeaImg;    // ŠC‚Ì‰æ‘œ
+    int SeaImg;      // ŠC‚Ì‰æ‘œ
     int CloudImg[3];     // ‰_‚Ì‰æ‘œ 
 
     int Stage1Sample;
