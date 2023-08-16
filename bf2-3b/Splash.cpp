@@ -34,8 +34,7 @@ void Splash::Update()
 		if (SplashAnimCount >= 9 && SplashAnimCount < 12) {
 			SplashAnim = 3;
 		}
-		if (Player::PlayerFlg == 4 || Enemy::enemyFlg == 4 && SplashAnimCount >= 60) {
-			Enemy::enemyFlg = 0;
+		if (Player::PlayerFlg == 0 && SplashAnimCount >= 70) {
 			SplashAnimCount = 0;
 		}
 	}

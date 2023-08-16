@@ -28,7 +28,7 @@ Player::Player()
 	playerX = 100;
 	playerY = 240;
 
-	PlayerFlg = 1;
+	PlayerFlg = 4;
 	HitFlg = 1;		
 	vx = 0.5;
 	vy = 0.5;
