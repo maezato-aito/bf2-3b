@@ -58,40 +58,64 @@ void Enemy::Update() {
 	eBoxX2 = enemy[0].x + 55;
 	eBoxY2 = enemy[0].y + 64;
 
+	UpFlg = 0;
+
+	if (1 < Gvy)
+	{
+		Gvy = 1;
+	}
 	
+	enemy[0].y += (Gvy - UpNum);
+
+	// 重力
+	if (enemy[0].flg == 2 || enemy[0].flg == 3 || enemy[0].flg == 4)
+	{
+		Gvy += 0.01;
+	}
+
+	// 左右移動
+	if (enemy[0].flg == 2)
+	{
+		enemy[0].x += Speed;
+	}
 
 	// 敵の上昇
-	if (Player::bBoxY < eBoxY2 && enemy[0].flg == 2 && (Player::pBoxX > eBoxX2 || Player::pBoxX2 < eBoxX))
+	if (Player::bBoxY < eBoxY2 && enemy[0].flg == 2/* && (Player::pBoxX > eBoxX2 || Player::pBoxX2 < eBoxX)*/)
 	{
-		if (enemy[0].y > 4 && SpeedY <= 3)
+		if (ebBoxY > 0)
 		{
-			SpeedY += 0.03f;
-			enemy[0].y -= SpeedY;
+			UpNum = 1.5;
+			UpFlg = 1;
 		}
-		else if (enemy[0].y > 4 && SpeedY > 3) {
-			enemy[0].y -= SpeedY;
+		else
+		{
+			UpNum = 0;
 		}
 	}
-	else if (SpeedY > 0.05f && enemy[0].flg == 2) {
-		SpeedY -= 0.5f;
-		enemy[0].y += SpeedY;
-		enemy[0].y += Gvy;
-
+	else{
+	
+		if (0.01 < UpNum) 
+		{
+			UpNum -= 0.1;
+		}
 	}
 	
 	// 左移動
 	if (Player::pBoxX2 < eBoxX && enemy[0].flg == 2)
 	{
-		if (SpeedX < 1) {
-			SpeedX += 0.1f;
+		if (UpFlg == 1 && Speed < eSpeed[Lv])
+		{
+			Speed += 0.1f;
+			if (Speed > eSpeed[Lv])Speed = eSpeed[Lv];
 		}
 	
 	}
 	else if (Player::pBoxX2 <= eBoxX && enemy[0].flg == 2) {
 		// 回避
-		if (SpeedX > -2) {
-			SpeedX -= 0.4f;
-			enemy[0].y -= SpeedY;
+		if (UpFlg == 1 && Speed < eSpeed2[Lv])
+		{
+			Speed += 0.2f;
+			if (Speed > eSpeed2[Lv])Speed = eSpeed2[Lv];
 		}
 	
 	}
@@ -99,82 +123,93 @@ void Enemy::Update() {
 	// 右移動
 	if (Player::pBoxX > eBoxX2 && enemy[0].flg == 2)
 	{
-		if (SpeedX > -1) {
-			SpeedX -= 0.1f;
+		if (UpFlg == 1 && Speed > -eSpeed[Lv])
+		{
+			Speed -= 0.1f;
+			if (Speed > -eSpeed[Lv])Speed = -eSpeed[Lv];
 		}
+		
 	}
 	else if (Player::pBoxX >= eBoxX2 && enemy[0].flg == 2) {
 		// 回避
-		if (SpeedX > -2) {
-			SpeedX -= 0.4f;
-			enemy[0].y -= SpeedY;
+		if (UpFlg == 1 && Speed > -eSpeed2[Lv])
+		{
+			Speed -= 0.2f;
+			if (Speed > -eSpeed2[Lv])Speed = -eSpeed2[Lv];
 		}
 	}
 
 
 	if (InputX == 0 && enemy[0].flg == 2) {
 		//慣性の作成
-		SpeedX *= 0.99f;
+		Speed *= 0.96f;
 	}
 
-	enemy[0].x += SpeedX;
-
+	
 	
 	// 右地面
 	if ((S1_Landright_X <= enemy[0].x + 32 && S1_Landright_Width >= enemy[0].x) && S1_Landright_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
-		Gvy = 0;
-		SpeedX = 0;
+		
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
-			Lv += 1;
+			Gvy = 0;
+			if (Lv < 2)
+			{
+				Lv += 1;
+			}
+			
 			EnemyStart();
 		}
 	}
 	// 右地面左側面
 	else if (S1_Landright_X <= enemy[0].x + 64 && S1_Landright_Y < enemy[0].y + 64) {
 		/*vx -= vx*e;*/
-		Gvy = 1;
+		/*Gvy = 1;
 		
-		enemy[0].y += Gvy;
+		enemy[0].y += Gvy;*/
 	}
 
 	//左地面
 	else if (S1_Landleft_X <= enemy[0].x + 64 && S1_Landleft_Width >= enemy[0].x + 64 && S1_Landleft_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
-		Gvy = 0;
-		SpeedX = 0;
+		
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
-			Lv += 1;
+			Gvy = 0;
+			if (Lv < 2)
+			{
+				Lv += 1;
+			}
+			
 			EnemyStart();
 		}
 	}
 	// 左地面右側面
 	else if (S1_Landleft_Width >= enemy[0].x && S1_Landleft_Y < enemy[0].h) {
-		Gvy = 1;
-		enemy[0].x = Gvy;		
-		enemy[0].y += Gvy;
+		
+	/*	enemy[0].x = Gvy;		
+		enemy[0].y += Gvy;*/
 	}
 
 	//空中床
 	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_Width >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && S1_Flooting_Y + 20 >= enemy[0].y && enemy[0].flg != 4) {
-		Gvy = 0;
-		SpeedX = 0;
+		
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
-			Lv += 1;
 			Count = 15;
+			Gvy = 0;
+			if (Lv < 2)
+			{
+				Lv += 1;
+			}
 			EnemyStart();
 		}
 	}
-	else {
-		// ジャンプが押されていない
-		Gvy = 1;
-		enemy[0].y += Gvy;
-		enemy[0].h += Gvy;
-		/*	Speed = 0;*/
-	}
+	
+	
+	
+	
 
 	// 海
 	if (480 <= enemy[0].y) {
@@ -310,13 +345,16 @@ void Enemy::Draw() const {
 #if _DEBUG
 	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
 	DrawFormatString(200, 150, 0xffffff, "%d", enemyFlg, TRUE);
+	DrawFormatString(200, 170, 0xffffff, "UpNum:%d", UpNum, TRUE);
+	DrawFormatString(200, 190, 0xffffff, "Gvy:%f", Gvy, TRUE);
+	DrawFormatString(200, 210, 0xffffff, "a:%f", a, TRUE);
 #endif _DEBUG
 }
 
 // 敵初期化処理
 void Enemy::EnemyInit() {
 	enemy[0].x = S1_Flooting_X;
-	enemy[0].y = S1_Flooting_Y - 65;
+	enemy[0].y = S1_Flooting_Y - 60;
 
 	enemy[0].flg = 1;
 	enemy[0].type = 0;
@@ -327,9 +365,10 @@ void Enemy::EnemyInit() {
 	Count = 15;
 	Counter = 0;
 	Gvy = 0;
-	SpeedX = 0;
+	Speed = 0;
 	SpeedY = 0;
 	Pr_y = 0;
+	a = 0;
 }
 
 // 初期状態
@@ -408,43 +447,35 @@ void Enemy::EnemyStart() {
 					}
 
 					AnimImg = 8;
-					SpeedY += 0.05f;
-					for (int i = 0; i < 10; i++) {
-						enemy[0].flg = 2;
-						enemy[0].y -= 0.1f;
-					}
+					enemy[0].flg = 2;
 				}
 			}
 			Counter = 0;
 		}
 	}
-
-	
-
 }
 
 // パラシュート状態
 void Enemy::Parachute() {
 	AnimImg = 17;
-	
 	/*if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY) {
 		enemy[0].flg = 4;
 		Death();
 	}*/
 
 	if (Pr_x + 5 > enemy[0].x) {
-		enemy[0].x += SpeedX;
+		enemy[0].x += Speed;
 	}
 	
 	if (Pr_x - 5 < enemy[0].x) {
-		enemy[0].x -= SpeedX;
+		enemy[0].x -= Speed;
 	}	
 }
 
 // 死亡処理
 void Enemy::Death() {
 	AnimImg = 13;
-	SpeedX = 0;
+	Speed = 0;
 	
 	if (enemy[0].flg != 0) {
 
