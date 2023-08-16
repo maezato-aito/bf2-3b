@@ -56,6 +56,8 @@ Player::Player()
 	SplashAnim = 0;
 
 	Time = 0; // 待機時間
+
+	a = 0;
 }
 Player::~Player()
 {
@@ -91,12 +93,14 @@ AbstractScene* Player::Update()
 
 		UpFlg = 0;
 
-		if (1 < Gvy)
+		if (3 <= Gvy)
 		{
-			Gvy = 1;
+			Gvy = 3;
 		}
 		//重力の加算
-		playerY += (Gvy - UpNum);
+		playerY += a;
+
+		a = Gvy - UpNum;
 
 		if ((0.1 > Gvy - UpNum) && 45 > bBoxY)
 		{
@@ -107,7 +111,7 @@ AbstractScene* Player::Update()
 			if (bBoxY > 0)
 			{
 
-				UpNum = 2;
+				UpNum = 4;
 				UpFlg = 1;
 			}
 			else
@@ -324,13 +328,13 @@ AbstractScene* Player::Update()
 				HitFlg = 2;
 			}
 			//空中床左壁
-			if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-				S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed > 0.5) {
+			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed > 0.5) {
 				HitFlg = 2;
 			}
 			// 空中床右壁
-			if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-				S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed < -0.5) {
+			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed < -0.5) {
 				HitFlg = 1;
 			}
 			if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
@@ -430,7 +434,7 @@ void Player::Draw() const
 	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
 	DrawFormatString(0, 20, 0xffffff, "Speed:%5.2f", Speed, TRUE);
 	DrawFormatString(0, 40, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
-	DrawFormatString(0, 60, 0xffffff, "%f", Gvy, TRUE);
+	DrawFormatString(0, 60, 0xffffff, "%f", a, TRUE);
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);

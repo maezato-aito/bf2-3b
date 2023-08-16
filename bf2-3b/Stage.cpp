@@ -69,6 +69,7 @@ void Stage::Stage1() {
 	// ãÛíÜè∞ÇÃï`âÊ
 	DrawGraph(S1_Flooting_X, S1_Flooting_Y, FlootingImg[0], TRUE);
 	DrawBox(S1_Flooting_X, S1_Flooting_Y, S1_Flooting_Width, S1_Flooting_height, 0xff2255, FALSE);
+	DrawBox(S1_FinSide_X, S1_FinSide_Y, S1_FinSide_W, S1_FinSide_H, 0xff2255, FALSE);
 	// äCÇÃï`âÊ
 	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
 	DrawGraph(Sealeft_X, Sealeft_Y, SeaImg, TRUE);

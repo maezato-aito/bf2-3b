@@ -17,6 +17,8 @@ private:
 	int AnimCount;
 	int add;
 	int fBoxY;
+
+	float a;
 public:
 	static int Time; // ‘Ò‹@ŠÔ
 	static int Splashimg[4]; // …‚µ‚Ô‚«

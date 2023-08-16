@@ -8,11 +8,18 @@
 
 // ステージ１・２の真ん中の空中床座標
 #define S1_Flooting_X (180)
+#define S1_FinSide_X (183)
+
 #define S1_Flooting_Y (280)
+#define S1_FinSide_Y (283)
 
 // 空中床の左側面
 #define S1_Flooting_Width (S1_Flooting_X + 280)
+#define S1_FinSide_W (S1_FinSide_X + 274)
+
+
 #define S1_Flooting_height (S1_Flooting_Y + 20)
+#define S1_FinSide_H (S1_FinSide_Y + 14)
 
 // ステージ１～５の地面座標（右）
 #define S1_Landright_X (480)
