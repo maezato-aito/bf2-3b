@@ -1,6 +1,6 @@
 #pragma once
 #include "AbstractScene.h"
-#define S1_Thunder_X (200)
+#define S1_Thunder_X (400)
 #define S1_Thunder_Y (100)
 
 class thunder
@@ -35,6 +35,7 @@ private:
 	int A_BallImg;
 	int speed;
 	float BallAngle;
+	float T_Angle;
 	float rad;
 	int centerx;
 	int centery;

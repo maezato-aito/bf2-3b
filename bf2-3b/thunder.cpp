@@ -16,7 +16,7 @@ thunder::thunder()
 	countFlg = 0;
 	AnimFlg = 0b0000;
 	A_nimFlg = 0b0000;
-	centerX = 200;
+	centerX = 400;
 	centerY = 100;
 	ranDirection = 0;
 	incFlg = 24;
@@ -25,19 +25,20 @@ thunder::thunder()
 	MoveAmount = 28;
 	x = 0;
 	y = 0;
-	centerx = 200;
+	centerx = 400;
 	centery = 100;
 	once = false;
 	A_Flg = 3;
 	C_Flg = 0;
-	BallX = 200;
+	BallX = 400;
 	BallY = 100 - 5;
 	A_BallImg = 0;
 	MoveX = 0;
 	MoveY = 0;
 	speed = 5;
-	BallAngle = 0.575f;
-	ChangeAngle();
+	T_Angle = 0;
+	BallAngle = 0;
+	
 }
 
 thunder::~thunder()
@@ -54,19 +55,21 @@ void thunder::Update()
 			BallY += MoveY;
 			// 壁・天井での反射
 			if (BallX < 4 || BallX > 640 - 4) { // 横の壁
-				if (BallX < 4) {
-					BallX = 4;
+				if (BallY <= 400) {
+					if (BallX < 4) {
+						BallX = 4;
+					}
+					else {
+						BallX = 640 - 4;
+					}
+					BallAngle = (1 - BallAngle) + 0.5f;
+					if (BallAngle > 1) BallAngle -= 1.0f;
+					ChangeAngle();
 				}
-				else {
-					BallX = 640 - 4;
-				}
-				BallAngle = (1 - BallAngle) + 0.5f;
-				if (BallAngle > 1) BallAngle -= 1.0f;
-				ChangeAngle();
 			}
-			if (BallX >= 200) {
-				if (BallX <= 500) {
-					if (BallY >= 275) {
+			if (BallX >= 190) {
+				if (BallX <= 480) {
+					if (BallY >= 280) {
 						if (BallY <= 300) {
 							BallAngle = (1 - BallAngle);
 							ChangeAngle();
@@ -80,19 +83,21 @@ void thunder::Update()
 			}
 			if (BallX >= 0) {
 				if (BallX <= 200) {
-					if (BallY >= 400) {
+					if (BallY <= 400) {
 						BallAngle = (1 - BallAngle);
 						ChangeAngle();
 					}
 				}
 			}
 			if (BallX >= 500) {
-				if (BallX <= 700) {
+				//if (BallX <= 700) {
 					if (BallY >= 400) {
-						BallAngle = (1 - BallAngle);
-						ChangeAngle();
+						if (BallY <= 450) {
+							BallAngle = (1 - BallAngle);
+							ChangeAngle();
+						}
 					}
-				}
+				//}
 			}
 		}
 		if (++pointFlg < 100) {
@@ -122,32 +127,43 @@ void thunder::Circle()
 {
 
 	if (once == false) {
-		ranDirection = 2;//GetRand(3);
+		ranDirection = GetRand(3);
 
 		switch (ranDirection) {
 		case 0: // 斜め右上
 			x = centerX += moveAmount;
 			y = centerY -= moveAmount;
-			BallX = centerx += MoveAmount;
-			BallY = centery -= MoveAmount;
+			BallX = centerx += MoveAmount + 13;
+			BallY = centery -= MoveAmount + 13;
+			T_Angle = -170.0f;
+			BallAngle = 0.875f;
+			ChangeAngle();
 			break;
 		case 1: // 斜め右下
 			x = centerX += moveAmount;
 			y = centerY += moveAmount;
-			BallX = centerx += MoveAmount;
-			BallY = centery += MoveAmount;
+			BallX = centerx += MoveAmount + 13;
+			BallY = centery += MoveAmount + 13;
+			T_Angle = -60.0f;
+			BallAngle = 0.125f;
+			ChangeAngle();
 			break;
 		case 2: // 斜め左下
 			x = centerX -= moveAmount;
 			y = centerY += moveAmount;
-			BallX = centerx -= MoveAmount + 10;
-			BallY = centery += MoveAmount + 10;
+			BallX = centerx -= MoveAmount + 13;
+			BallY = centery += MoveAmount + 13;
+			BallAngle = 0.375f;
+			ChangeAngle();
 			break;
 		case 3: // 斜め左上
-			x = centerX -= moveAmount;
-			y = centerY -= moveAmount;
-			BallX = centerx -= MoveAmount;
-			BallY = centery -= MoveAmount;
+			x = centerX -= moveAmount + 8;
+			y = centerY -= moveAmount + 8;
+			BallX = centerx -= MoveAmount + 18;
+			BallY = centery -= MoveAmount + 18;
+			T_Angle = 140.0f;
+			BallAngle = 0.625f;
+			ChangeAngle();
 			break;
 		default:
 			break;
@@ -279,15 +295,15 @@ void thunder::D_thunder()
 {
 	if (++TimeFlg < 100000000) {
 		if (TimeFlg > 300) {
-			DrawRotaGraph(BallX, BallY, 0.8f, 0, BallImg[A_BallImg], TRUE, FALSE);
+			DrawRotaGraph(BallX, BallY, 1, 0, BallImg[A_BallImg], TRUE, FALSE);
 		}
 	}
 	if (++TimeFlg < 300) {
 		if (TimeFlg > 200) {
-			DrawRotaGraph(x, y, 0.8f, 0, ThunderImg[A_ThunderImg], TRUE, FALSE);
+			DrawRotaGraph(x, y, 1,T_Angle * DX_PI_F / 180.0f, ThunderImg[A_ThunderImg], TRUE, FALSE);
 		}
 	}
-	DrawRotaGraph(S1_Thunder_X, S1_Thunder_Y, 0.8f, 0, CloudImg[C_AnimImg], TRUE, FALSE);
+	DrawRotaGraph(S1_Thunder_X, S1_Thunder_Y, 1, 0, CloudImg[C_AnimImg], TRUE, FALSE);
 	DrawCircle(centerX, centerY, 2, GetColor(255, 0, 0), TRUE);
 	//DrawGraph(S1_Thunder_X, S1_Thunder_Y, ThunderImg[0], TRUE);
 }
