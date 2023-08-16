@@ -131,11 +131,11 @@ AbstractScene* Player::Update()
 		{
 			//地面に立っているとか
 			if (//左の床
-				(S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
-					S1_Landleft_Y <= pBoxY2) ||
+				(S1_Landleft_X-2 <= pBoxX2 && S1_Landleft_Width+2 >= pBoxX &&
+					S1_Landleft_Y-2 <= pBoxY2) ||
 				//右の床
-				(S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
-					S1_Landright_Y <= pBoxY2) ||
+				(S1_Landright_X-2 <= pBoxX2 && S1_Landright_Width+2 >= pBoxX &&
+					S1_Landright_Y-2 <= pBoxY2) ||
 				//空中の床
 				(S1_Flooting_X-2 <= pBoxX2 && S1_Flooting_Width+2 >= pBoxX &&
 					S1_Flooting_Y-2 <= pBoxY2 && S1_Flooting_height+2 >= pBoxY)
@@ -155,12 +155,8 @@ AbstractScene* Player::Update()
 							{
 								Speed -= 0.3;
 							}
-							if (Speed < -0.1 && 100 < InputX)
-							{
-								Speed *= 0.5f;
-							}
 						}
-
+						//アニメーション
 						if (0 <= AnimCount)
 						{
 							Image = 8;
@@ -198,6 +194,7 @@ AbstractScene* Player::Update()
 							}
 						}
 
+						//アニメーション
 						if (0 <= AnimCount)
 						{
 							Image = 8;
@@ -318,13 +315,13 @@ AbstractScene* Player::Update()
 				HitFlg = 0;
 			}
 			//左地面壁
-			if (S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
-				S1_Landleft_height >= bBoxY && S1_Landleft_Y + 1 < pBoxY2) {
+			if (S1_LEinSide_X <= pBoxX2 && S1_LEinSide_Width >= pBoxX &&
+				S1_LEinSide_height >= bBoxY && S1_LEinSide_Y + 1 < pBoxY2) {
 				HitFlg = 1;
 			}
 			// 右地面壁
-			if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
-				S1_Landright_height >= bBoxY && S1_Landright_Y + 1 < pBoxY2) {
+			if (S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX &&
+				S1_LIinSide_height>= bBoxY && S1_LIinSide_Y + 1 < pBoxY2) {
 				HitFlg = 2;
 			}
 			//空中床左壁
@@ -431,14 +428,12 @@ AbstractScene* Player::Update()
 void Player::Draw() const
 {
 #if _DEBUG
-	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
-	DrawFormatString(0, 20, 0xffffff, "Speed:%5.2f", Speed, TRUE);
-	DrawFormatString(0, 40, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
+	DrawFormatString(0, 40, 0xffffff, "Speed:%5.2f", Speed, TRUE);
 	DrawFormatString(0, 60, 0xffffff, "%f", a, TRUE);
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
-	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
+
 	DrawFormatString(0, 160, 0xffffff, "%d", AnimCount, TRUE);
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox

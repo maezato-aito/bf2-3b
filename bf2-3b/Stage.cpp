@@ -77,8 +77,11 @@ void Stage::Stage1() {
 	// ’n–Ê‚Ì•`‰æ
 	DrawGraph(S1_Landright_X, S1_Landright_Y, LandImg[0], TRUE);
 	DrawBox(S1_Landright_X, S1_Landright_Y, S1_Landright_Width, S1_Landright_height, 0xff2255, FALSE);
+	DrawBox(S1_LIinSide_X, S1_LIinSide_Y, S1_LIinSide_Width, S1_LIinSide_height, 0xff2255, FALSE);
+
 	DrawGraph(S1_Landleft_X, S1_Landleft_Y, LandImg[2], TRUE);
 	DrawBox(S1_Landleft_X, S1_Landleft_Y, S1_Landleft_Width, S1_Landleft_height, 0xff2255, FALSE);
+	DrawBox(S1_LEinSide_X, S1_LEinSide_Y, S1_LEinSide_Width, S1_LEinSide_height, 0xff2255, FALSE);
 }
 
 void Stage::Stage2() {

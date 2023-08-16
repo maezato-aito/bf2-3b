@@ -23,15 +23,30 @@
 
 // ステージ１～５の地面座標（右）
 #define S1_Landright_X (480)
+#define S1_LIinSide_X (483)
+
 #define S1_Landright_Y (410)
+#define S1_LIinSide_Y (413)
+
 #define S1_Landright_Width (S1_Landright_X + 160)
+#define S1_LIinSide_Width (S1_LIinSide_X + 154)
+
 #define S1_Landright_height (S1_Landright_Y + 40)
+#define S1_LIinSide_height (S1_LIinSide_Y + 34)
 
 // ステージ１～５の地面座標（左）
 #define S1_Landleft_X (0)
+#define S1_LEinSide_X (3)
+
 #define S1_Landleft_Y (410)
+#define S1_LEinSide_Y (413)
+
 #define S1_Landleft_Width (S1_Landleft_X + 160)
+#define S1_LEinSide_Width (S1_LEinSide_X + 154)
+
 #define S1_Landleft_height (S1_Landleft_Y + 40)
+#define S1_LEinSide_height (S1_LEinSide_Y + 34)
+
 
 // ステージ１の雲座標
 #define S1_Cloud_X (300)
