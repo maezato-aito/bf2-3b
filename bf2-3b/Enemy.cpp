@@ -222,6 +222,7 @@ void Enemy::Update() {
 	// 死亡判定
 	if (Player::pBoxX < eBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < eBoxY2 && Player::pBoxY2 > ebBoxY && enemy[0].flg == 1) {
 		enemy[0].flg = 4;
+		enemyFlg = 4;
 		De_x = enemy[0].x;
 		De_y = enemy[0].y;
 		if (enemy[0].type == 0) {
@@ -234,6 +235,10 @@ void Enemy::Update() {
 			Score += EnemyRScore[2];
 		}
 		Death();
+	}
+	if (ebBoxY > 440)
+	{
+		enemyFlg = 4;
 	}
 	if (enemyFlg == 0) {
 		enemy[0].type == 0;
@@ -408,7 +413,6 @@ void Enemy::EnemyStart() {
 	}
 
 	
-
 }
 
 // パラシュート状態
@@ -435,7 +439,6 @@ void Enemy::Death() {
 	AnimImg = 13;
 	SpeedX = 0;
 	
-	
 	if (enemy[0].y - 150 < De_y) {
 		enemy[0].y -= SpeedY;
 	}
@@ -448,6 +451,7 @@ void Enemy::Death() {
 	else {
 		enemy[0].flg = 0;
 	}
+	
 }
 
 int Enemy::EnemyDeath() {

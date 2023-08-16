@@ -164,6 +164,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="thunder.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Pause.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Splash.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="thunder.h" />
     <ClInclude Include="Title.h" />
