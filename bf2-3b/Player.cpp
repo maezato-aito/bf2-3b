@@ -93,9 +93,9 @@ AbstractScene* Player::Update()
 
 		UpFlg = 0;
 
-		if (3 <= Gvy)
+		if (2 <= Gvy)
 		{
-			Gvy = 3;
+			Gvy = 2;
 		}
 		//èdóÕÇÃâ¡éZ
 		playerY += a;
@@ -111,7 +111,7 @@ AbstractScene* Player::Update()
 			if (bBoxY > 0)
 			{
 
-				UpNum = 4;
+				UpNum = 3;
 				UpFlg = 1;
 			}
 			else
@@ -137,8 +137,8 @@ AbstractScene* Player::Update()
 				(S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
 					S1_Landright_Y <= pBoxY2) ||
 				//ãÛíÜÇÃè∞
-				(S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-					S1_Flooting_Y <= pBoxY2 && S1_Flooting_height >= pBoxY)
+				(S1_Flooting_X-2 <= pBoxX2 && S1_Flooting_Width+2 >= pBoxX &&
+					S1_Flooting_Y-2 <= pBoxY2 && S1_Flooting_height+2 >= pBoxY)
 				)
 			{
 
@@ -148,7 +148,7 @@ AbstractScene* Player::Update()
 					if (InputX < -1)
 					{
 
-						if (Speed > -3.5)
+						if (Speed > -4.5)
 						{
 							Speed -= 0.05f;
 							if (-1.0 > Speed)
@@ -189,7 +189,7 @@ AbstractScene* Player::Update()
 					if (InputX > 1)
 					{
 
-						if (Speed < 3.5)
+						if (Speed < 4.5)
 						{
 							Speed += 0.05f;
 							if (1.0 < Speed)
@@ -280,10 +280,10 @@ AbstractScene* Player::Update()
 					//ç∂à⁄ìÆ
 					if (InputX < -1)
 					{
-						if (UpFlg == 1 && Speed > -3.2)
+						if (UpFlg == 1 && Speed > -4.2)
 						{
 							Speed -= 1.1f;
-							if (Speed > -3.2)Speed = -3.2;
+							if (Speed > -4.2)Speed = -4.2;
 						}
 
 						playerLR = 1;
@@ -296,10 +296,10 @@ AbstractScene* Player::Update()
 					//âEà⁄ìÆ
 					if (InputX > 1)
 					{
-						if (UpFlg == 1 && Speed < 3.2)
+						if (UpFlg == 1 && Speed < 4.2)
 						{
 							Speed += 1.1f;
-							if (Speed > 3.2)Speed = 3.2;
+							if (Speed > 4.2)Speed = 4.2;
 						}
 
 
@@ -313,7 +313,7 @@ AbstractScene* Player::Update()
 					//äµê´ÇÃçÏê¨
 					Speed *= 0.96f;
 				}
-				Gvy += 0.01f;
+				Gvy += 0.1f;
 				PlayerFlg = 1;
 				HitFlg = 0;
 			}
