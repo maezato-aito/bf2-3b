@@ -9,7 +9,7 @@ private:
 	int EnemyP_img[18];
 	int EnemyR_img[18];
 
-	int InputX, InputY;
+	int InputX = 0, InputY = 0;
 	float SpeedX, SpeedY;
 	int Gvy;
 
@@ -25,6 +25,8 @@ private:
 	float Count;
 	int Counter;
 	int AnimImg;
+
+	int rand;
 
 	// “G‚Ì\‘¢‘Ì
 	static struct ENEMY

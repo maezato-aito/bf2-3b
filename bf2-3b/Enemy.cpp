@@ -43,6 +43,9 @@ Enemy::~Enemy() {
 
 void Enemy::Update() {
 	
+	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
+	rand = GetRand(99);
+
 	// “G‚Ì•—‘D‚Ì“–‚½‚è”»’è
 	ebBoxX  = enemy[0].x + 6;
 	ebBoxY  = enemy[0].y + 10;
@@ -79,9 +82,10 @@ void Enemy::Update() {
 	// ¶ˆÚ“®
 	if (Player::pBoxX2 < eBoxX && enemy[0].flg == 2)
 	{
-		if (SpeedX > -1) {
-			SpeedX -= 0.1f;
+		if (SpeedX < 1) {
+			SpeedX += 0.1f;
 		}
+	
 	}
 	else if (Player::pBoxX2 <= eBoxX && enemy[0].flg == 2) {
 		// ‰ñ”ğ
@@ -89,13 +93,14 @@ void Enemy::Update() {
 			SpeedX -= 0.4f;
 			enemy[0].y -= SpeedY;
 		}
+	
 	}
 
 	// ‰EˆÚ“®
 	if (Player::pBoxX > eBoxX2 && enemy[0].flg == 2)
 	{
-		if (SpeedX < 1) {
-			SpeedX += 0.1f;
+		if (SpeedX > -1) {
+			SpeedX -= 0.1f;
 		}
 	}
 	else if (Player::pBoxX >= eBoxX2 && enemy[0].flg == 2) {
