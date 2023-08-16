@@ -16,6 +16,10 @@
  int Player::bBoxY2;
  int Player::PlayerFlg;
  int Player::Life;
+ int Player::Splashimg[4];
+ int Player::SplashAnimCount;
+ int Player::SplashAnim;
+ int Player::Time;
 
 Player::Player()
 {
@@ -33,6 +37,9 @@ Player::Player()
 	e = 0.8;		//反発係数
 
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
+	LoadDivGraph("images/Stage/Stage_SplashAnimation.png", 4, 4, 1, 64, 32, Splashimg);//プレイヤー画像
+
+
 	AnimCount = 0;
 
 	Image = 0;
@@ -44,6 +51,11 @@ Player::Player()
 	buttonC = 0;
 
 	Life = 2;
+
+	SplashAnimCount = 0;
+	SplashAnim = 0;
+
+	Time = 0; // 待機時間
 }
 Player::~Player()
 {
@@ -380,7 +392,34 @@ AbstractScene* Player::Update()
 		}
 	}
 	else if (PlayerFlg == 0) {
-		life();
+		Time++;
+		if (Time >= 60) {
+			life();
+		}
+	}
+
+	if (PlayerFlg == 4) {
+		playerY += 4.0f;
+	}
+
+	// 水しぶきのアニメーション
+	if (bBoxY > 480) {
+		SplashAnimCount++;
+		if (SplashAnimCount >= 0 && SplashAnimCount < 3) {
+			SplashAnim = 0;
+		}
+		if (SplashAnimCount >= 3 && SplashAnimCount < 6) {
+			SplashAnim = 1;
+		}
+		if (SplashAnimCount >= 6 && SplashAnimCount < 9) {
+			SplashAnim = 2;
+		}
+		if (SplashAnimCount >= 9 && SplashAnimCount < 12) {
+			SplashAnim = 3;
+		}
+		if (SplashAnim >= 12) {
+			SplashAnimCount = 0;
+		}
 	}
 	return this;
 }
@@ -402,7 +441,9 @@ void Player::Draw() const
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
 
 #endif _DEBUG
-
+	if (bBoxY > 448 && PlayerFlg == 0 && SplashAnimCount < 12) {
+		DrawGraph(playerX, 412, Splashimg[SplashAnim], TRUE);
+	}
 	//向きで描画
 	//左向き
 	if (PlayerFlg != 0) {
@@ -458,6 +499,10 @@ void Player::life()
 		pBoxY = playerY + 32;
 		pBoxX2 = pBoxX + 50;
 		pBoxY2 = pBoxY + 32;
+
+		SplashAnimCount = 0;
+
+		Time = 0;
 	}
 	else if(PlayerFlg == 0 && Life == 0)
 	{

@@ -18,7 +18,11 @@ private:
 	int add;
 	int fBoxY;
 public:
-	static int Life;
+	static int Time; // 待機時間
+	static int Splashimg[4]; // 水しぶき
+	static int SplashAnimCount;		//水しぶきのアニメーションのカウント
+	static int SplashAnim;		//アニメーションの添字
+	static int Life;	// 残機
 	static int PlayerFlg; //地面の状態を0　空中なら1をいれる
 	int HitFlg = 0;	//横に触れていたら0 触れていなかったら１
 	//プレイヤーコリジョン
