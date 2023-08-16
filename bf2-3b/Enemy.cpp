@@ -231,6 +231,7 @@ void Enemy::Update() {
 	if (enemyFlg == 0) {
 		enemy[0].type == 0;
 		enemy[0].flg = 0;
+		enemyFlg = 0;
 	}
 	
 
@@ -458,7 +459,7 @@ void Enemy::Death() {
 		}
 		else {
 			enemy[0].flg = 0;
-			
+			enemyFlg = 0;
 		}
 
 	}
