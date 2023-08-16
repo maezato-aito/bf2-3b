@@ -13,7 +13,7 @@ private:
 	float Speed, SpeedY;
 	float Gvy;
 
-	float eSpeed[3] = { 0.5, 1.0, 1.5 };		// 敵のスピード
+	float eSpeed[3] = { 0.3, 0.6, 0.9 };		// 敵のスピード
 	float eSpeed2[3] = { 1.0, 1.5, 2.0 };		// 敵のスピード（回避）
 
 	int EnemyPScore[3] = { 500, 1000, 750 };	// 敵のスコア
@@ -33,7 +33,6 @@ private:
 	int vx, vy;
 	float UpNum;
 	int UpFlg;
-	float a;
 
 	// 敵の構造体
 	static struct ENEMY
@@ -66,6 +65,7 @@ public:
 	void EnemyStart();	// 初期状態処理
 	void Parachute();	// パラシュート処理
 	void Death();		// 死亡処理
+	void Backlash();	// 反発処理
 
 	static int St_x, St_y;	// スタート時の座標
 	static int Pr_x, Pr_y;	// パラシュート時の座標

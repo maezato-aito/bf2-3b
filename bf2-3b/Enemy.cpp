@@ -60,17 +60,25 @@ void Enemy::Update() {
 
 	UpFlg = 0;
 
-	if (1 < Gvy)
-	{
-		Gvy = 1;
+	if (enemy[0].flg != 4) {
+		if (1 < Gvy)
+		{
+			Gvy = 1;
+		}
 	}
+
 	
+	// d—Í‚Ì‰ÁZ
 	enemy[0].y += (Gvy - UpNum);
 
 	// d—Í
-	if (enemy[0].flg == 2 || enemy[0].flg == 3 || enemy[0].flg == 4)
+	if (enemy[0].flg == 2 || enemy[0].flg == 3 )
 	{
 		Gvy += 0.01;
+	}
+	else if (enemy[0].flg == 4)
+	{
+		Gvy += 0.04;
 	}
 
 	// ¶‰EˆÚ“®
@@ -84,7 +92,7 @@ void Enemy::Update() {
 	{
 		if (ebBoxY > 0)
 		{
-			UpNum = 1.5;
+			UpNum = 1.4;
 			UpFlg = 1;
 		}
 		else
@@ -146,10 +154,14 @@ void Enemy::Update() {
 	}
 
 	
-	
 	// ‰E’n–Ê
 	if ((S1_Landright_X <= enemy[0].x + 32 && S1_Landright_Width >= enemy[0].x) && S1_Landright_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
 		
+		if (enemy[0].flg == 2) {
+			UpNum = 1.5;
+			UpFlg = 1;
+		}
+
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
@@ -163,16 +175,19 @@ void Enemy::Update() {
 		}
 	}
 	// ‰E’n–Ê¶‘¤–Ê
-	else if (S1_Landright_X <= enemy[0].x + 64 && S1_Landright_Y < enemy[0].y + 64) {
-		/*vx -= vx*e;*/
-		/*Gvy = 1;
-		
-		enemy[0].y += Gvy;*/
+	else if (S1_Landright_X <= enemy[0].x + 64 && S1_Landright_Y < enemy[0].y + 64 && S1_Landright_Width >= eBoxX && S1_Landright_height >= ebBoxY) {
+		HitFlg = 2;
+		Backlash();
 	}
 
 	//¶’n–Ê
 	else if (S1_Landleft_X <= enemy[0].x + 64 && S1_Landleft_Width >= enemy[0].x + 64 && S1_Landleft_Y <= enemy[0].y + 64 && enemy[0].flg != 4) {
 		
+		if (enemy[0].flg == 2) {
+			UpNum = 1.5;
+			UpFlg = 1;
+		}
+
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 10;
@@ -186,15 +201,19 @@ void Enemy::Update() {
 		}
 	}
 	// ¶’n–Ê‰E‘¤–Ê
-	else if (S1_Landleft_Width >= enemy[0].x && S1_Landleft_Y < enemy[0].h) {
-		
-	/*	enemy[0].x = Gvy;		
-		enemy[0].y += Gvy;*/
+	else if (S1_Landleft_Width >= enemy[0].x && S1_Landleft_Y < enemy[0].y + 64 && S1_Flooting_X <= eBoxX2 && S1_Flooting_height >= eBoxY) {
+		HitFlg = 1;
+		Backlash();
 	}
 
 	//‹ó’†°
 	else if (S1_Flooting_X <= enemy[0].x + 32 && S1_Flooting_Width >= enemy[0].x + 32 && S1_Flooting_Y <= enemy[0].y + 64 && S1_Flooting_Y + 20 >= enemy[0].y && enemy[0].flg != 4) {
 		
+		if (enemy[0].flg == 2) {
+			UpNum = 2;
+			UpFlg = 1;
+		}
+
 		if (enemy[0].flg == 3) {
 			enemy[0].flg = 1;
 			Count = 15;
@@ -206,12 +225,23 @@ void Enemy::Update() {
 			EnemyStart();
 		}
 	}
-	
-	
-	
-	
+	// ‹ó’†°¶‘¤–Ê
+	if (S1_Flooting_X <= eBoxX2 && S1_Flooting_Width >= eBoxX &&S1_Flooting_Y + 1 < eBoxY2 && S1_Flooting_height - 1 >= eBoxY && Speed > 0.5) {
+		HitFlg = 2;
+		Backlash();
+	}
+	// ‹ó’†°‰E‘¤–Ê
+	if (S1_Flooting_X <= eBoxX2 && S1_Flooting_Width >= eBoxX && S1_Flooting_Y + 1 < eBoxY2 && S1_Flooting_height - 1 >= eBoxY && Speed < -0.5) {
+		HitFlg = 2;
+		Backlash();
+	}
+	// ‹ó’†°‰º
+	if (S1_Flooting_X <= eBoxX2 && S1_Flooting_Width >= eBoxX && S1_Flooting_height - 1 < eBoxY && S1_Flooting_height >= eBoxY) {
+		Gvy += 0.02;
+	}
 
-	// ŠC
+
+	// ŠC‚É—‚¿‚½‚ç€–S
 	if (480 <= enemy[0].y) {
 		enemy[0].flg = 0;
 		enemyFlg = 0;
@@ -228,6 +258,46 @@ void Enemy::Update() {
 		enemy[0].x = -10;
 
 	}
+
+	// “G‚Ì¶‘¤‚É“–‚½‚Á‚½‚Æ‚«
+	// “G‚Ì”¼•ª‚æ‚èã‚É“–‚½‚Á‚½‚Æ‚«
+	if (Player::pBoxX2 == ebBoxX && Player::pBoxY + 7 <= eBoxY + 7 && Player::pBoxY2 <= ebBoxY/* && Player::playerLR == 2*/) {
+		HitFlg = 2;
+		Backlash();
+	}
+	// “G‚Ì”¼•ª‚æ‚è‰º‚É“–‚½‚Á‚½‚Æ‚«
+	if (Player::pBoxX2 == ebBoxX && Player::pBoxY + 7 >= eBoxY + 7 && Player::pBoxY2 >= ebBoxY/* && Player::playerLR == 2*/) {
+		HitFlg = 2;
+		Backlash();
+	}
+	// “G‚Æ‚‚³‚ª“¯‚¶
+	if (Player::pBoxX2 == ebBoxX && Player::bBoxY == ebBoxY && Player::pBoxY2 == eBoxY2/* && Player::playerLR == 2*/) {
+		HitFlg = 2;
+		Backlash();
+	}
+	// “G‚Ì‰E‘¤‚É“–‚½‚Á‚½‚Æ‚«
+	// “G‚Ì”¼•ª‚æ‚èã‚É“–‚½‚Á‚½‚Æ‚«
+	if (Player::pBoxX == ebBoxX2 && Player::pBoxY + 7 <= eBoxY + 7 && Player::pBoxY2 <= ebBoxY/* && playerLR == 1*/) {
+		HitFlg = 1;
+		Backlash();
+	}
+	// “G‚Ì”¼•ª‚æ‚è‰º‚É“–‚½‚Á‚½‚Æ‚«
+	if (Player::pBoxX == ebBoxX2 && Player::pBoxY + 7 >= eBoxY + 7 && Player::bBoxY >= eBoxY2/* && playerLR == 1*/) {
+		HitFlg = 1;
+		Backlash();
+	}
+	// “G‚Æ‚‚³‚ª“¯‚¶
+	if (Player::pBoxX == ebBoxX2 && Player::bBoxY == ebBoxY && Player::pBoxY2 == eBoxY2) {
+		HitFlg = 1;
+		Backlash();
+	}
+	// ”½”­
+	
+	//if (HitFlg == 1 || HitFlg == 2 && Speed > -0.5 && Speed < 0.5) {
+	//	Gvy = 0.98f;
+	//	Speed *= 0.8;
+	//}
+
 
 	// •—‘D‚ğŠ„‚ç‚ê‚½‚Æ‚«
 	if (Player::pBoxX < ebBoxX2 && Player::pBoxX2 > ebBoxX && Player::pBoxY < ebBoxY2 && Player::pBoxY2 > ebBoxY && enemy[0].flg == 2/* && ebBoxY && enemy[0].flg != 4*/) {
@@ -345,9 +415,8 @@ void Enemy::Draw() const {
 #if _DEBUG
 	DrawFormatString(100, 100, 0xffffff, "%d", enemy[0].flg, TRUE);
 	DrawFormatString(200, 150, 0xffffff, "%d", enemyFlg, TRUE);
-	DrawFormatString(200, 170, 0xffffff, "UpNum:%d", UpNum, TRUE);
-	DrawFormatString(200, 190, 0xffffff, "Gvy:%f", Gvy, TRUE);
-	DrawFormatString(200, 210, 0xffffff, "a:%f", a, TRUE);
+	DrawFormatString(200, 170, 0xffffff, "%f", Speed, TRUE);
+	
 #endif _DEBUG
 }
 
@@ -368,7 +437,19 @@ void Enemy::EnemyInit() {
 	Speed = 0;
 	SpeedY = 0;
 	Pr_y = 0;
-	a = 0;
+	
+}
+
+// ”½”­ˆ—
+void Enemy::Backlash() {
+	// ¶‘¤‚ÉG‚ê‚½
+	if (HitFlg == 1 && Speed < -0.5) {
+		Speed *= -0.8;
+	}
+	// ‰E‘¤‚ÉG‚ê‚½
+	if (HitFlg == 2 && Speed > 0.5) {
+		Speed += -0.8;
+	}
 }
 
 // ‰Šúó‘Ô
