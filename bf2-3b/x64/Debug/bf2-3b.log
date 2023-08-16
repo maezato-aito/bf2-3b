@@ -1,29 +1,36 @@
-﻿  Player.cpp
+﻿  Enemy.cpp
 C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(26,12): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(37,9): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(70,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(71,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(76,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(77,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(122,17): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(152,21): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(193,21): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(282,37): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(298,35): warning C4305: '=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(445,13): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(452,23): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(452,14): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(457,27): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(457,18): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(460,28): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(460,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(461,28): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(461,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(475,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(479,16): warning C4305: '*=': 'double' から 'float' へ切り詰めます。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(492,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(493,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(498,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\PG\bf2-3b\bf2-3b\Player.cpp(499,19): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(60,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(61,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(62,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(63,23): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(66,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(67,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(68,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(69,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(164,16): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(226,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(227,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(259,33): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(259,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(261,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(261,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(262,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(262,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(282,33): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(282,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(284,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(284,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(285,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(285,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(305,33): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(305,21): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(307,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(307,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(308,39): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PG\bf2-3b\bf2-3b\Enemy.cpp(308,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Splash.cpp
+C:\PG\bf2-3b\bf2-3b\Enemy.h(38): warning C4091: 'static ': 変数が何も宣言されていないときは、'Enemy::ENEMY' の左辺を無視します。
+C:\PG\bf2-3b\bf2-3b\Splash.cpp(51,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  コードを生成中...
   bf2-3b.vcxproj -> C:\PG\bf2-3b\bf2-3b\x64\Debug\bf2-3b.exe

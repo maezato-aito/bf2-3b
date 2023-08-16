@@ -4,7 +4,7 @@
 class Player : public AbstractScene
 {
 private:
-	float playerX, playerY;
+	
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
@@ -17,11 +17,12 @@ private:
 	int AnimCount;
 	int add;
 	int fBoxY;
+	int death;
 public:
+	static float playerX, playerY;
 	static int Time; // 待機時間
-	static int Splashimg[4]; // 水しぶき
-	static int SplashAnimCount;		//水しぶきのアニメーションのカウント
-	static int SplashAnim;		//アニメーションの添字
+	
+	
 	static int Life;	// 残機
 	static int PlayerFlg; //地面の状態を0　空中なら1をいれる
 	int HitFlg = 0;	//横に触れていたら0 触れていなかったら１
@@ -62,4 +63,6 @@ public:
 	void backlash();
 
 	void life();
+
+	void balloon();
 };

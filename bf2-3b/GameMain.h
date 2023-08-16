@@ -8,6 +8,7 @@
 #include"fish.h"
 #include "UI.h"
 #include"GameOver.h"
+#include"Splash.h"
 class GameMain :
     public AbstractScene
 {
@@ -20,7 +21,7 @@ private:
     Fish* fish;
     UI* ui;
     GameOver* gameover;
-
+    Splash* splash;
 public:
     //コンストラクタ
     GameMain();

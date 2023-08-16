@@ -4,6 +4,7 @@
 #include"common.h"
 #include"Enemy.h"
 #include"fish.h"
+#include"Splash.h"
 
  int Player::pBoxX;
  int Player::pBoxY;
@@ -16,11 +17,9 @@
  int Player::bBoxY2;
  int Player::PlayerFlg;
  int Player::Life;
- int Player::Splashimg[4];
- int Player::SplashAnimCount;
- int Player::SplashAnim;
  int Player::Time;
-
+ float Player::playerX;
+ float Player::playerY;
 Player::Player()
 {
 	Gvy = 0.98;
@@ -37,7 +36,7 @@ Player::Player()
 	e = 0.8;		//反発係数
 
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
-	LoadDivGraph("images/Stage/Stage_SplashAnimation.png", 4, 4, 1, 64, 32, Splashimg);//プレイヤー画像
+	
 
 
 	AnimCount = 0;
@@ -52,10 +51,10 @@ Player::Player()
 
 	Life = 2;
 
-	SplashAnimCount = 0;
-	SplashAnim = 0;
-
+	
 	Time = 0; // 待機時間
+
+	death = 0; // 死んだとき
 }
 Player::~Player()
 {
@@ -65,30 +64,30 @@ AbstractScene* Player::Update()
 {
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
 
+	//風船のボックス情報
+	bBoxX = playerX + 6;
+	bBoxY = playerY + 12;
+	bBoxX2 = bBoxX + 50;
+	bBoxY2 = bBoxY + 22;
+
+	//プレイヤーのボックス情報
+	pBoxX = playerX + 6;
+	pBoxY = playerY + 32;
+	pBoxX2 = pBoxX + 50;
+	pBoxY2 = pBoxY + 32;
+	//敵のボックス
+	eBoxX = Enemy::eBoxX;
+	eBoxY = Enemy::eBoxY;
+	eBoxX2 = Enemy::eBoxX2;
+	eBoxY2 = Enemy::eBoxY2;
+	// 敵の風船のボックス
+	ebBoxX = Enemy::ebBoxX;
+	ebBoxY = Enemy::ebBoxY;
+	ebBoxX2 = Enemy::ebBoxX2;
+	ebBoxY2 = Enemy::ebBoxY2;
+
 	if (PlayerFlg == 1 || PlayerFlg == 2 || PlayerFlg == 3) {
-		//風船のボックス情報
-		bBoxX = playerX + 6;
-		bBoxY = playerY + 12;
-		bBoxX2 = bBoxX + 50;
-		bBoxY2 = bBoxY + 22;
-
-		//プレイヤーのボックス情報
-		pBoxX = playerX + 6;
-		pBoxY = playerY + 32;
-		pBoxX2 = pBoxX + 50;
-		pBoxY2 = pBoxY + 32;
-		//敵のボックス
-		eBoxX = Enemy::eBoxX;
-		eBoxY = Enemy::eBoxY;
-		eBoxX2 = Enemy::eBoxX2;
-		eBoxY2 = Enemy::eBoxY2;
-		// 敵の風船のボックス
-		ebBoxX = Enemy::ebBoxX;
-		ebBoxY = Enemy::ebBoxY;
-		ebBoxX2 = Enemy::ebBoxX2;
-		ebBoxY2 = Enemy::ebBoxY2;
-
-
+		
 		UpFlg = 0;
 
 		if (1 < Gvy)
@@ -399,27 +398,13 @@ AbstractScene* Player::Update()
 	}
 
 	if (PlayerFlg == 4) {
-		playerY += 4.0f;
+		playerY += 3.0f;
 	}
 
-	// 水しぶきのアニメーション
-	if (bBoxY > 480) {
-		SplashAnimCount++;
-		if (SplashAnimCount >= 0 && SplashAnimCount < 3) {
-			SplashAnim = 0;
-		}
-		if (SplashAnimCount >= 3 && SplashAnimCount < 6) {
-			SplashAnim = 1;
-		}
-		if (SplashAnimCount >= 6 && SplashAnimCount < 9) {
-			SplashAnim = 2;
-		}
-		if (SplashAnimCount >= 9 && SplashAnimCount < 12) {
-			SplashAnim = 3;
-		}
-		if (SplashAnim >= 12) {
-			SplashAnimCount = 0;
-		}
+	
+	if (PlayerFlg == 4)
+	{
+		balloon();
 	}
 	return this;
 }
@@ -427,7 +412,7 @@ AbstractScene* Player::Update()
 void Player::Draw() const
 {
 #if _DEBUG
-	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
+	DrawFormatString(0, 0, 0xffffff,"%d",death, TRUE);
 	DrawFormatString(0, 20, 0xffffff, "Speed:%5.2f", Speed, TRUE);
 	DrawFormatString(0, 40, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
 	DrawFormatString(0, 60, 0xffffff, "%f", Gvy, TRUE);
@@ -441,9 +426,7 @@ void Player::Draw() const
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
 
 #endif _DEBUG
-	if (bBoxY > 448 && PlayerFlg == 0 && SplashAnimCount < 12) {
-		DrawGraph(playerX, 412, Splashimg[SplashAnim], TRUE);
-	}
+	
 	//向きで描画
 	//左向き
 	if (PlayerFlg != 0) {
@@ -500,12 +483,42 @@ void Player::life()
 		pBoxX2 = pBoxX + 50;
 		pBoxY2 = pBoxY + 32;
 
-		SplashAnimCount = 0;
+		
 
 		Time = 0;
 	}
 	else if(PlayerFlg == 0 && Life == 0)
 	{
 		
+	}
+}
+void Player::balloon()
+{
+	if (PlayerFlg == 4) {
+		death++;
+		if (death >= 0 && death < 3)
+		{
+			Image = 27;
+		}
+		if (death >= 3 && death < 6)
+		{
+			Image = 28;
+		}
+		if (death >= 6 && death < 9)
+		{
+			Image = 29;
+		}
+		if (death >= 9 && death < 12)
+		{
+			Image = 28;
+		}
+		if (12 < death)
+		{
+			death = 0;
+		}
+		if (bBoxY > 480)
+		{
+			PlayerFlg = 0;
+		}
 	}
 }
