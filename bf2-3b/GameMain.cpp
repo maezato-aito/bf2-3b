@@ -48,7 +48,7 @@ AbstractScene* GameMain::Update()
 
 void GameMain::Draw() const
 {
-	/*Thunder->D_thunder();*/
+	Thunder->D_thunder();
 	fish->Draw();
 	PlayChar->Draw();
 	EnemyChar->Draw();
