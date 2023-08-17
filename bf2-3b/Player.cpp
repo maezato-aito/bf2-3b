@@ -55,7 +55,7 @@ Player::Player()
 
 	Time = 0; // ‘Ò‹@ŽžŠÔ
 
-	a = 0;
+	death = 0; // Ž€‚ñ‚¾‚Æ‚«
 }
 Player::~Player()
 {
@@ -478,7 +478,7 @@ void Player::life()
 		pBoxY = playerY + 32;
 		pBoxX2 = pBoxX + 50;
 		pBoxY2 = pBoxY + 32;
-
+		
 		
 		Time = 0;
 	}
