@@ -12,6 +12,7 @@ private:
 	int InputX = 0, InputY = 0;
 	float Speed, SpeedY;
 	float Gvy;
+	float MoveX;
 
 	float eSpeed[3] = { 0.3, 0.6, 0.9 };		// 敵のスピード
 	float eSpeed2[3] = { 1.0, 1.5, 2.0 };		// 敵のスピード（回避）
@@ -26,13 +27,15 @@ private:
 	float Count;
 	int Counter;
 	int AnimImg;	// アニメーション画像用
-
+	float AnimCount;
+	int EnemyLR;
 	int rand;		// 乱数用
 	int e;			// 反発係数
 	int HitFlg;
 	int vx, vy;
 	float UpNum;
 	int UpFlg;
+	int Time;
 
 	// 敵の構造体
 	static struct ENEMY
