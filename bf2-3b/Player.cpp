@@ -144,14 +144,14 @@ AbstractScene* Player::Update()
 		{
 			//地面に立っているとか
 			if (//左の床
-				(S1_Landleft_X-2 <= pBoxX2 && S1_Landleft_Width+2 >= pBoxX &&
-					S1_Landleft_Y-2 <= pBoxY2) ||
+				(S1_Landleft_X - 2 <= pBoxX2 && S1_Landleft_Width + 2 >= pBoxX &&
+					S1_Landleft_Y - 2 <= pBoxY2) ||
 				//右の床
-				(S1_Landright_X-2 <= pBoxX2 && S1_Landright_Width+2 >= pBoxX &&
-					S1_Landright_Y-2 <= pBoxY2) ||
+				(S1_Landright_X - 2 <= pBoxX2 && S1_Landright_Width + 2 >= pBoxX &&
+					S1_Landright_Y - 2 <= pBoxY2) ||
 				//空中の床
-				(S1_Flooting_X-2 <= pBoxX2 && S1_Flooting_Width+2 >= pBoxX &&
-					S1_Flooting_Y-2 <= pBoxY2 && S1_Flooting_height+2 >= pBoxY)
+				(S1_Flooting_X - 2 <= pBoxX2 && S1_Flooting_Width + 2 >= pBoxX &&
+					S1_Flooting_Y - 2 <= pBoxY2 && S1_Flooting_height + 2 >= pBoxY)
 				)
 			{
 
@@ -293,7 +293,7 @@ AbstractScene* Player::Update()
 						if (UpFlg == 1 && Speed > -2.9)
 						{
 							Speed -= 0.1f;
-							if (Speed < -2.9) 
+							if (Speed < -2.9)
 							{
 								Speed = -2.9;
 							}
@@ -328,25 +328,27 @@ AbstractScene* Player::Update()
 				HitFlg = 0;
 			}
 			//左地面壁
-			if (S1_LEinSide_X <= pBoxX && S1_LEinSide_Width >= pBoxX &&
-				S1_LEinSide_height >= bBoxY && S1_LEinSide_Y + 1 < pBoxY2) {
+			if ((S1_LEinSide_X <= pBoxX && S1_LEinSide_Width >= pBoxX &&
+				S1_LEinSide_height >= bBoxY && S1_LEinSide_Y + 1 < pBoxY2) ||
+
+				//空中床右側
+				(S1_FinSide_X <= pBoxX && S1_FinSide_W >= pBoxX &&
+					S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed < -0.5)
+				) {
 				HitFlg = 1;
 			}
-			// 右地面壁
-			if (S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX2 &&
-				S1_LIinSide_height>= bBoxY && S1_LIinSide_Y + 1 < pBoxY2) {
+				// 右地面壁
+			if( (S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX2 &&
+				S1_LIinSide_height >= bBoxY && S1_LIinSide_Y + 1 < pBoxY2) ||
+
+				//空中床左側
+				(S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX2 &&
+					S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed > 0.5))
+			
+			{
 				HitFlg = 2;
 			}
-			//空中床左壁
-			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX2 &&
-				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed > 0.5) {
-				HitFlg = 2;
-			}
-			// 空中床右壁
-			if (S1_FinSide_X <= pBoxX && S1_FinSide_W >= pBoxX &&
-				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed < -0.5) {
-				HitFlg = 1;
-			}
+			//空中床にしたから当たると
 			if (S1_Flooting_X <= bBoxX && S1_Flooting_Width >= bBoxX2 &&
 				S1_Flooting_height >= bBoxY && S1_Flooting_Y<=bBoxY) {
 				UpNum = 0;
@@ -510,7 +512,7 @@ void Player::life()
 	}
 	else if(PlayerFlg == 0 && Life == 0)
 	{
-		
+
 	}
 }
 
