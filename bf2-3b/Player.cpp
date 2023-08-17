@@ -65,28 +65,29 @@ AbstractScene* Player::Update()
 {
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
 
-	if (PlayerFlg == 1 || PlayerFlg == 2 || PlayerFlg == 3) {
-		//風船のボックス情報
-		bBoxX = playerX + 6;
-		bBoxY = playerY + 12;
-		bBoxX2 = bBoxX + 50;
-		bBoxY2 = bBoxY + 22;
+	//風船のボックス情報
+	bBoxX = playerX + 6;
+	bBoxY = playerY + 12;
+	bBoxX2 = bBoxX + 50;
+	bBoxY2 = bBoxY + 22;
 
-		//プレイヤーのボックス情報
-		pBoxX = playerX + 6;
-		pBoxY = playerY + 32;
-		pBoxX2 = pBoxX + 50;
-		pBoxY2 = pBoxY + 32;
-		//敵のボックス
-		eBoxX = Enemy::eBoxX;
-		eBoxY = Enemy::eBoxY;
-		eBoxX2 = Enemy::eBoxX2;
-		eBoxY2 = Enemy::eBoxY2;
-		// 敵の風船のボックス
-		ebBoxX = Enemy::ebBoxX;
-		ebBoxY = Enemy::ebBoxY;
-		ebBoxX2 = Enemy::ebBoxX2;
-		ebBoxY2 = Enemy::ebBoxY2;
+	//プレイヤーのボックス情報
+	pBoxX = playerX + 6;
+	pBoxY = playerY + 32;
+	pBoxX2 = pBoxX + 50;
+	pBoxY2 = pBoxY + 32;
+	//敵のボックス
+	eBoxX = Enemy::eBoxX;
+	eBoxY = Enemy::eBoxY;
+	eBoxX2 = Enemy::eBoxX2;
+	eBoxY2 = Enemy::eBoxY2;
+	// 敵の風船のボックス
+	ebBoxX = Enemy::ebBoxX;
+	ebBoxY = Enemy::ebBoxY;
+	ebBoxX2 = Enemy::ebBoxX2;
+	ebBoxY2 = Enemy::ebBoxY2;
+	if (PlayerFlg == 1 || PlayerFlg == 2 || PlayerFlg == 3) {
+		
 
 
 		UpFlg = 0;
@@ -398,9 +399,10 @@ AbstractScene* Player::Update()
 	}
 
 	if (PlayerFlg == 4) {
+		balloon();
 		playerY += 3.0f;
 	}
-
+	
 	
 	return this;
 }
@@ -483,5 +485,36 @@ void Player::life()
 	else if(PlayerFlg == 0 && Life == 0)
 	{
 		
+	}
+}
+
+void Player::balloon()
+{
+	if (PlayerFlg == 4) {
+		death++;
+		if (death >= 0 && death < 3)
+		{
+			Image = 27;
+		}
+		if (death >= 3 && death < 6)
+		{
+			Image = 28;
+		}
+		if (death >= 6 && death < 9)
+		{
+			Image = 29;
+		}
+		if (death >= 9 && death < 12)
+		{
+			Image = 28;
+		}
+		if (12 < death)
+		{
+			death = 0;
+		}
+		if (bBoxY > 480)
+		{
+			PlayerFlg = 0;
+		}
 	}
 }

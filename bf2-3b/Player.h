@@ -17,7 +17,7 @@ private:
 	int AnimCount;
 	int add;
 	int fBoxY;
-
+	int death;
 	float a;
 public:
 	static float playerX, playerY;
@@ -63,4 +63,6 @@ public:
 	void backlash();
 
 	void life();
+
+	void balloon();
 };
