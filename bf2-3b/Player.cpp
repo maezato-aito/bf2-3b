@@ -28,7 +28,7 @@ Player::Player()
 	playerX = 100;
 	playerY = 240;
 
-	PlayerFlg = 4;
+	PlayerFlg = 1;
 	HitFlg = 1;		
 	vx = 0.5;
 	vy = 0.5;
@@ -55,6 +55,7 @@ Player::Player()
 
 	Time = 0; // ‘Ò‹@ŽžŠÔ
 
+	a = 0;
 	death = 0; // Ž€‚ñ‚¾‚Æ‚«
 }
 Player::~Player()
@@ -393,8 +394,9 @@ AbstractScene* Player::Update()
 	}
 
 	if (PlayerFlg == 4) {
-		balloon();
+		
 		playerY += 3.0f;
+		balloon();
 	}
 	
 	
