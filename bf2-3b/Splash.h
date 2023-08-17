@@ -7,6 +7,7 @@ private:
     
     int SplashAnim;		//アニメーションの添字
     int Splashimg[4];
+    int SESplash;
 public:
     static int SplashAnimCount;		//水しぶきのアニメーションのカウント
     //コンストラクタ

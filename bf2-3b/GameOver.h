@@ -8,6 +8,7 @@ private:
 	Player* player;
 	int Gameover;
 	int pBoxX, pBoxY, pBoxX2, pBoxY2;
+	int SEGameOver;
 public:
 
 	

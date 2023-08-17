@@ -36,6 +36,7 @@ AbstractScene* GameMain::Update()
 	fish->Update();
 	ui->Update();
 	splash->Update();
+	gameover->Update();
 	return this;
 }
 

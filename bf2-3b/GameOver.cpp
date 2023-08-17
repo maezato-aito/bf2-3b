@@ -4,7 +4,7 @@
 
 GameOver::GameOver()
 {
-	
+	SEGameOver = LoadSoundMem("sound/SE_GameOver.wav");
 }
 
 GameOver::~GameOver()
@@ -14,7 +14,10 @@ GameOver::~GameOver()
 
 void GameOver::Update()
 {
-	
+	// ゲームオーバーのSE
+	if (Player::PlayerFlg == 0 && Player::Life == 0) {
+		
+	}
 }
 
 void GameOver::Draw()
