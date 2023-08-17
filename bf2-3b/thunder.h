@@ -1,6 +1,6 @@
 #pragma once
 #include "AbstractScene.h"
-#define S1_Thunder_X (400)
+#define S1_Thunder_X (350)
 #define S1_Thunder_Y (100)
 
 class thunder
@@ -40,6 +40,13 @@ private:
 	int centerx;
 	int centery;
 	int MoveAmount;
+	int indFlg;
+	int Ballx;
+	int Bally;
+	int Movex;
+	int Movey;
+	float Ball_Angle;
+	float rod;
 public:
 
 	// コンストラクタ
@@ -57,6 +64,8 @@ public:
 	void Ball();
 
 	void ChangeAngle();
+
+	void ChangeAngle2();
 
 	//描画処理
 	void D_thunder();
