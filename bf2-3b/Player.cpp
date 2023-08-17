@@ -56,6 +56,8 @@ Player::Player()
 	Time = 0; // 待機時間
 
 	a = 0;
+
+	Count = 0;
 }
 Player::~Player()
 {
@@ -72,9 +74,9 @@ AbstractScene* Player::Update()
 	bBoxY2 = bBoxY + 22;
 
 	//プレイヤーのボックス情報
-	pBoxX = playerX + 6;
+	pBoxX = playerX + 16;
 	pBoxY = playerY + 32;
-	pBoxX2 = pBoxX + 50;
+	pBoxX2 = pBoxX + 30;
 	pBoxY2 = pBoxY + 32;
 	//敵のボックス
 	eBoxX = Enemy::eBoxX;
@@ -250,27 +252,29 @@ AbstractScene* Player::Update()
 			//地面に立っていなければ
 			else
 			{
-				if (0 <= AnimCount)
-				{
-					Image = 17;
-				}
-				if (5 <= AnimCount)
-				{
-					Image = 18;
-				}
-				if (10 <= AnimCount)
-				{
-					Image = 19;
-				}
-				if (15 <= AnimCount)
-				{
-					Image = 18;
-				}
-				if (19 <= AnimCount)
-				{
-					AnimCount = 0;
-				}
 
+				if (UpFlg != 0) {
+					if (0 <= AnimCount)
+					{
+						Image = 17;
+					}
+					if (5 <= AnimCount)
+					{
+						Image = 18;
+					}
+					if (10 <= AnimCount)
+					{
+						Image = 19;
+					}
+					if (15 <= AnimCount)
+					{
+						Image = 18;
+					}
+					if (19 <= AnimCount)
+					{
+						AnimCount = 0;
+					}
+				}
 				if (playerX + 64 > 0)
 				{
 					//左移動
@@ -307,26 +311,25 @@ AbstractScene* Player::Update()
 				PlayerFlg = 1;
 				HitFlg = 0;
 			}
-			//左地面壁
-			if (S1_LEinSide_X <= pBoxX2 && S1_LEinSide_Width >= pBoxX &&
-				S1_LEinSide_height >= bBoxY && S1_LEinSide_Y + 1 < pBoxY2) {
+				//左地面側面
+			if ((S1_LEinSide_X <= pBoxX2 && S1_LEinSide_Width >= pBoxX &&
+				S1_LEinSide_height >= bBoxY && S1_LEinSide_Y + 1 < pBoxY2)|| 
+				//空中床右側面
+				(S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed < -0.5))
+			{
 				HitFlg = 1;
 			}
-			// 右地面壁
-			if (S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX &&
-				S1_LIinSide_height>= bBoxY && S1_LIinSide_Y + 1 < pBoxY2) {
+				// 右地面側面
+			if ((S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX &&
+				S1_LIinSide_height>= bBoxY && S1_LIinSide_Y + 1 < pBoxY2) || 
+				//空中床右側面
+				(S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+					S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed > 0.5)){
 				HitFlg = 2;
 			}
-			//空中床左壁
-			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
-				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed > 0.5) {
-				HitFlg = 2;
-			}
-			// 空中床右壁
-			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
-				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed < -0.5) {
-				HitFlg = 1;
-			}
+			
+			
 			if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
 				S1_Flooting_height == bBoxY) {
 				Gvy *= 0.8f;
@@ -370,9 +373,9 @@ AbstractScene* Player::Update()
 			playerX += Speed;
 
 
-			if (playerX < -64)	// 左から右
+			if (playerX < -32)	// 左から右
 			{
-				playerX = 576;
+				playerX = 608;
 
 			}
 			if (playerX > 620)	// 右から左
@@ -410,7 +413,7 @@ void Player::Draw() const
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
 
-	DrawFormatString(0, 160, 0xffffff, "%d", AnimCount, TRUE);
+	DrawFormatString(0, 160, 0xffffff, "%d", Count, TRUE);
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
@@ -435,21 +438,34 @@ void Player::Draw() const
 	}
 }
 
-void Player::pUP()
-{
-	UpNum = 4;
-	UpFlg = 1;
-}
-
 void Player::backlash()
 {
 	// 左側に触れたとき
 	if (HitFlg == 1 && Speed < -0.5) {
 		Speed *= -0.8;
+		
+		if (Count < 200)
+		{
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
+		
 	}
 	// 右側に触れたとき
 	if (HitFlg == 2 && Speed > 0.5) {
 		Speed *= -0.8;
+
+		if (Count < 200)
+		{
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
 	}
 }
 

@@ -19,6 +19,8 @@ private:
 	int fBoxY;
 	int death;
 	float a;
+
+	int Count;
 public:
 	static float playerX, playerY;
 	static int Time; // ‘Ò‹@ŠÔ
@@ -57,8 +59,6 @@ public:
 
 	//•`‰æˆ—
 	void Draw() const override;
-
-	void pUP();
 
 	void backlash();
 
