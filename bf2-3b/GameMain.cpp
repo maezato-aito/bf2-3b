@@ -37,6 +37,12 @@ AbstractScene* GameMain::Update()
 	ui->Update();
 	splash->Update();
 	gameover->Update();
+	if (Enemy::enemyFlg == 0) {
+		WaitTimer(2000);
+		Stage::NowStage += 1;
+		EnemyChar->EnemyInit();
+	}
+
 	return this;
 }
 
@@ -46,7 +52,28 @@ void GameMain::Draw() const
 	fish->Draw();
 	PlayChar->Draw();
 	EnemyChar->Draw();
-	stage->Stage1();
+	switch (Stage::NowStage)
+	{
+	case 1:
+		stage->Stage1();
+		break;
+	case 2:
+		stage->Stage2();
+		break;
+	case 3:
+		stage->Stage3();
+		break;
+	case 4:
+		stage->Stage4();
+		break;
+	case 5:
+		stage->Stage5();
+		break;
+	case 6:
+		Stage::NowStage = 1;
+		stage->Stage1();
+		break;
+	}
 	splash->Draw();
 	
 	bubble->Draw();
