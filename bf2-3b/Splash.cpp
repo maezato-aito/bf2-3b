@@ -8,6 +8,7 @@ Splash::Splash()
 	LoadDivGraph("images/Stage/Stage_SplashAnimation.png", 4, 4, 1, 64, 32, Splashimg);//ƒvƒŒƒCƒ„[‰æ‘œ
 	SplashAnimCount = 0;
 	SplashAnim = 0;
+	SESplash = LoadSoundMem("sound/SE_Splash.wav");
 }
 
 Splash::~Splash()
@@ -22,7 +23,11 @@ void Splash::Update()
 	if (Player::bBoxY > 480 || Enemy::enemyFlg == 0) {
 
 		SplashAnimCount++;
+		
 		if (SplashAnimCount >= 0 && SplashAnimCount < 3) {
+			if (Player::bBoxY > 480) {
+				PlaySoundMem(SESplash, DX_PLAYTYPE_BACK, TRUE);
+			}
 			SplashAnim = 0;
 		}
 		if (SplashAnimCount >= 3 && SplashAnimCount < 6) {

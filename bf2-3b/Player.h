@@ -8,7 +8,7 @@ private:
 	int InputX = 0, InputY = 0;
 	int Playerimg[30];
 	int Image;
-	
+	int BGM;
 	float vx, vy;		//ƒxƒNƒgƒ‹
 	float e;			// ”½”­ŒW”
 	int eBoxX, eBoxY, eBoxX2, eBoxY2; //“G‚Ì”»’è

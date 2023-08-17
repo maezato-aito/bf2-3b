@@ -28,6 +28,8 @@ Fish::Fish()
 	Anim = 0;
 	rand = 100;
 	count = 0;
+	// ‹›‚ÌSE
+	SEfish = LoadSoundMem("sound/SE_Eatable.wav");
 }
 
 Fish::~Fish()
@@ -85,6 +87,7 @@ void Fish::Update()
 				fBoxX = pBoxX;
 				fBoxX2 = pBoxX2;
 				Anim = 6;
+				PlaySoundMem(SEfish, DX_PLAYTYPE_BACK, TRUE);
 				Player::PlayerFlg = 0;
 			}
 			else if (ChangeAnim >= 20 && ChangeAnim < 30) {

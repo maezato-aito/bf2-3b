@@ -36,7 +36,8 @@ Player::Player()
 	e = 0.8;		//反発係数
 
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
-	
+	// サウンド読込
+	BGM = LoadSoundMem("sound/BGM_Trip.wav");
 
 
 	AnimCount = 0;
@@ -58,12 +59,18 @@ Player::Player()
 }
 Player::~Player()
 {
-
+	StopSoundMem(BGM);
+	DeleteSoundMem(BGM);
 }
 AbstractScene* Player::Update()
 {
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
 
+	if (CheckSoundMem(BGM) == 0) {
+		PlaySoundMem(BGM, DX_PLAYTYPE_BACK,TRUE);
+	}
+	
+	
 	//風船のボックス情報
 	bBoxX = playerX + 6;
 	bBoxY = playerY + 12;
