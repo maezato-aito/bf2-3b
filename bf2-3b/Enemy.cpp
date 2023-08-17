@@ -416,8 +416,8 @@ void Enemy::Draw() const {
 		}
 
 		// ìñÇΩÇËîªíËÇÃîÕàÕ
-		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
-		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
+		/*DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
+		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);*/
 	}
 
 	// ìGÅióŒÅjÇÃï`âÊ
@@ -441,8 +441,8 @@ void Enemy::Draw() const {
 		}
 
 		// ìñÇΩÇËîªíËÇÃîÕàÕ
-		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
-		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
+		/*DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
+		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);*/
 
 		if (enemy[0].flg == 3) {
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyGScore[0], TRUE);
@@ -476,8 +476,8 @@ void Enemy::Draw() const {
 		}
 
 		// ìñÇΩÇËîªíËÇÃîÕàÕ
-		DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
-		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);
+		/*DrawBox(eBoxX, eBoxY, eBoxX2, eBoxY2, 0xffffff, FALSE);
+		DrawBox(ebBoxX, ebBoxY, ebBoxX2, ebBoxY2, 0xff2255, FALSE);*/
 
 		if (enemy[0].flg == 3) {
 			DrawFormatString(Pr_x + 20, Pr_y - 10, 0xff0000, "%d", EnemyRScore[0], TRUE);

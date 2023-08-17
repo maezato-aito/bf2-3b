@@ -209,13 +209,14 @@ void Fish::Update()
 
 void Fish::Draw()
 {
-	DrawBox(fBoxX, fBoxY, fBoxX2, fBoxY2, 0xff2255, FALSE);//プレイヤーのbox
-	DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xffff55, FALSE); // 魚の行動範囲
-	/*DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xff2255, FALSE);*/
+	
 	DrawExtendGraph(fBoxX, fBoxY, fBoxX2, fBoxY2, fishImg[Anim], TRUE);
 #if _DEBUG
 	DrawFormatString(0, 350, 0xffffff, "状態 %d", count, TRUE);
 	DrawFormatString(0, 380, 0xffffff, "確率 %d", rand, TRUE);
+	DrawBox(fBoxX, fBoxY, fBoxX2, fBoxY2, 0xff2255, FALSE);//プレイヤーのbox
+	DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xffff55, FALSE); // 魚の行動範囲
+	/*DrawBox(fishBoxX, fishBoxY, fishBoxX2, fishBoxY2, 0xff2255, FALSE);*/
 #endif _DEBUG
 }
 
