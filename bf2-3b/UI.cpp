@@ -32,6 +32,7 @@ void UI::Update() {
 void UI::Draw() const {
 	/*SetFontSize(30);*/
 	DrawGraph(60, 14, Iimg, TRUE);
+	SetFontSize(24);
 	DrawFormatString(85, 8, 0xffffff, "%06d", NowScore, TRUE);
 	DrawGraph(240, 14, Topimg, TRUE);
 	DrawFormatString(285, 8, 0xffffff, "%06d", BestScore, TRUE);
