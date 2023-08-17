@@ -12,7 +12,7 @@ thunder::thunder()
 	A_ThunderImg = 0;
 	C_AnimImg = 0;
 	Time = 0;
-	pointFlg = 3;
+	pointFlg = 4;
 	countFlg = 0;
 	AnimFlg = 0b0000;
 	A_nimFlg = 0b0000;
