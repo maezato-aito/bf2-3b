@@ -4,7 +4,14 @@
 class Title : public AbstractScene
 {
 private:
-	int Titleimage;	// タイトル画像
+	int TitleLogoimage;	// タイトルロゴ画像
+	int TitleOimage;	// options（選択肢）
+	int TitleNOCimage; //name of company（社名)
+
+	int TitleBimage[4];//タイトルの風船
+
+	int bCount;
+	int animImage;
 
 public:
 

@@ -3,6 +3,10 @@
 #define SCREEN_WIDTH (640)
 #define SCREEN_HEIGHT (480)
 
+//プレイヤーの向き
+#define P_RIGHT (100)
+#define P_LEFT (200)
+
 // 地面の高さ
 #define Land (410)
 

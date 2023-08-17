@@ -119,13 +119,19 @@ AbstractScene* Player::Update()
 		{
 			if (bBoxY > 0)
 			{
-
-				UpNum = 3;
+				if (UpNum < 2.9)
+				{
+					UpNum += 0.5;
+				}
+				
 				UpFlg = 1;
 			}
 			else
 			{
-				UpNum = 0;
+				if (0 < UpNum) {
+					UpNum *= 0.5f;
+				}
+				
 			}
 		}
 		else
@@ -183,7 +189,7 @@ AbstractScene* Player::Update()
 							AnimCount = 0;
 						}
 
-						playerLR = 1;
+						playerLR = P_LEFT;
 						/*playerY += 6;*/
 					}
 				}
@@ -220,7 +226,7 @@ AbstractScene* Player::Update()
 						{
 							AnimCount = 0;
 						}
-						playerLR = 2;
+						playerLR = P_RIGHT;
 					}
 				}
 
@@ -289,10 +295,13 @@ AbstractScene* Player::Update()
 						if (UpFlg == 1 && Speed > -2.9)
 						{
 							Speed -= 0.5f;
-							if (Speed > -2.9)Speed = -2.9;
+							if (Speed > -2.9) 
+							{
+								Speed = -2.9;
+							}
 						}
 
-						playerLR = 1;
+						playerLR = P_LEFT;
 						/*playerY += 6;*/
 					}
 				}
@@ -305,41 +314,48 @@ AbstractScene* Player::Update()
 						if (UpFlg == 1 && Speed < 2.9)
 						{
 							Speed += 0.5f;
-							if (Speed > 2.9)Speed = 2.9;
+							if (Speed > 2.9)
+							{
+								Speed = 2.9;
+							}
 						}
 
 
-						playerLR = 2;
+						playerLR = P_RIGHT;
 						/*playerY += 6;*/
 					}
+				}
+				if ((Speed > 0 && playerLR == P_LEFT) || (Speed < 0 && playerLR == P_RIGHT))
+				{
+					Speed *= 0.96;
 				}
 				Gvy += 0.1f;
 				PlayerFlg = 1;
 				HitFlg = 0;
 			}
 			//左地面壁
-			if (S1_LEinSide_X <= pBoxX2 && S1_LEinSide_Width >= pBoxX &&
+			if (S1_LEinSide_X <= pBoxX && S1_LEinSide_Width >= pBoxX &&
 				S1_LEinSide_height >= bBoxY && S1_LEinSide_Y + 1 < pBoxY2) {
 				HitFlg = 1;
 			}
 			// 右地面壁
-			if (S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX &&
+			if (S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX2 &&
 				S1_LIinSide_height>= bBoxY && S1_LIinSide_Y + 1 < pBoxY2) {
 				HitFlg = 2;
 			}
 			//空中床左壁
-			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX2 &&
 				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed > 0.5) {
 				HitFlg = 2;
 			}
 			// 空中床右壁
-			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+			if (S1_FinSide_X <= pBoxX && S1_FinSide_W >= pBoxX &&
 				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed < -0.5) {
 				HitFlg = 1;
 			}
-			if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
-				S1_Flooting_height == bBoxY) {
-				Gvy *= 0.8f;
+			if (S1_Flooting_X <= bBoxX && S1_Flooting_Width >= bBoxX2 &&
+				S1_Flooting_height >= bBoxY && S1_Flooting_Y<=bBoxY) {
+				UpNum = 0;
 			}
 
 			// 敵の左側に当たったとき
@@ -415,7 +431,7 @@ AbstractScene* Player::Update()
 void Player::Draw() const
 {
 #if _DEBUG
-	DrawFormatString(0, 40, 0xffffff, "Speed:%5.2f", Speed, TRUE);
+	DrawFormatString(0, 40, 0xffffff, "Speed:%5.2f", UpNum, TRUE);
 	DrawFormatString(0, 60, 0xffffff, "%f", a, TRUE);
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
@@ -431,7 +447,7 @@ void Player::Draw() const
 	//向きで描画
 	//左向き
 	if (PlayerFlg != 0) {
-		if (playerLR == 1)
+		if (playerLR == P_LEFT)
 		{
 			DrawGraph(playerX, playerY, Playerimg[Image], TRUE);
 		}
