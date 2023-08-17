@@ -40,7 +40,7 @@ void GameMain::Draw() const
 {
 	/*Thunder->D_thunder();*/
 	fish->Draw();
-	PlayChar->Draw();
+	
 	stage->Stage1();
 	
 	EnemyChar->Draw();
@@ -49,5 +49,7 @@ void GameMain::Draw() const
 	ui->Draw();
 	DrawFormatString(640, 360, 0xffffff, "GameMain");
 	gameover->Draw();
+
+	PlayChar->Draw();
 }
 
