@@ -16,9 +16,8 @@
  int Player::bBoxY2;
  int Player::PlayerFlg;
  int Player::Life;
- int Player::Splashimg[4];
- int Player::SplashAnimCount;
- int Player::SplashAnim;
+ float Player::playerX;
+ float Player::playerY;
  int Player::Time;
 
 Player::Player()
@@ -37,7 +36,8 @@ Player::Player()
 	e = 0.8;		//反発係数
 
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
-	LoadDivGraph("images/Stage/Stage_SplashAnimation.png", 4, 4, 1, 64, 32, Splashimg);//プレイヤー画像
+	// サウンド読込
+	BGM = LoadSoundMem("sound/BGM_Trip.wav");
 
 
 	AnimCount = 0;
@@ -52,51 +52,64 @@ Player::Player()
 
 	Life = 2;
 
-	SplashAnimCount = 0;
-	SplashAnim = 0;
+	
 
 	Time = 0; // 待機時間
+
+	a = 0;
+	death = 0; // 死んだとき
+
+	Count = 0;
 }
 Player::~Player()
 {
-
+	StopSoundMem(BGM);
+	DeleteSoundMem(BGM);
 }
 AbstractScene* Player::Update()
 {
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
 
-	if (PlayerFlg == 1 || PlayerFlg == 2 || PlayerFlg == 3) {
-		//風船のボックス情報
-		bBoxX = playerX + 6;
-		bBoxY = playerY + 12;
-		bBoxX2 = bBoxX + 50;
-		bBoxY2 = bBoxY + 22;
+	if (CheckSoundMem(BGM) == 0) {
+		PlaySoundMem(BGM, DX_PLAYTYPE_BACK,TRUE);
+	}
+	
+	
+	//風船のボックス情報
+	bBoxX = playerX + 6;
+	bBoxY = playerY + 12;
+	bBoxX2 = bBoxX + 50;
+	bBoxY2 = bBoxY + 22;
 
-		//プレイヤーのボックス情報
-		pBoxX = playerX + 6;
-		pBoxY = playerY + 32;
-		pBoxX2 = pBoxX + 50;
-		pBoxY2 = pBoxY + 32;
-		//敵のボックス
-		eBoxX = Enemy::eBoxX;
-		eBoxY = Enemy::eBoxY;
-		eBoxX2 = Enemy::eBoxX2;
-		eBoxY2 = Enemy::eBoxY2;
-		// 敵の風船のボックス
-		ebBoxX = Enemy::ebBoxX;
-		ebBoxY = Enemy::ebBoxY;
-		ebBoxX2 = Enemy::ebBoxX2;
-		ebBoxY2 = Enemy::ebBoxY2;
+	//プレイヤーのボックス情報
+	pBoxX = playerX + 16;
+	pBoxY = playerY + 32;
+	pBoxX2 = pBoxX + 30;
+	pBoxY2 = pBoxY + 32;
+	//敵のボックス
+	eBoxX = Enemy::eBoxX;
+	eBoxY = Enemy::eBoxY;
+	eBoxX2 = Enemy::eBoxX2;
+	eBoxY2 = Enemy::eBoxY2;
+	// 敵の風船のボックス
+	ebBoxX = Enemy::ebBoxX;
+	ebBoxY = Enemy::ebBoxY;
+	ebBoxX2 = Enemy::ebBoxX2;
+	ebBoxY2 = Enemy::ebBoxY2;
+	if (PlayerFlg == 1 || PlayerFlg == 2 || PlayerFlg == 3) {
+		
 
 
 		UpFlg = 0;
 
-		if (1 < Gvy)
+		if (2 <= Gvy)
 		{
-			Gvy = 1;
+			Gvy = 2;
 		}
 		//重力の加算
-		playerY += (Gvy - UpNum);
+		playerY += a;
+
+		a = Gvy - UpNum;
 
 		if ((0.1 > Gvy - UpNum) && 45 > bBoxY)
 		{
@@ -107,7 +120,7 @@ AbstractScene* Player::Update()
 			if (bBoxY > 0)
 			{
 
-				UpNum = 2;
+				UpNum = 3;
 				UpFlg = 1;
 			}
 			else
@@ -127,14 +140,14 @@ AbstractScene* Player::Update()
 		{
 			//地面に立っているとか
 			if (//左の床
-				(S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
-					S1_Landleft_Y <= pBoxY2) ||
+				(S1_Landleft_X-2 <= pBoxX2 && S1_Landleft_Width+2 >= pBoxX &&
+					S1_Landleft_Y-2 <= pBoxY2) ||
 				//右の床
-				(S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
-					S1_Landright_Y <= pBoxY2) ||
+				(S1_Landright_X-2 <= pBoxX2 && S1_Landright_Width+2 >= pBoxX &&
+					S1_Landright_Y-2 <= pBoxY2) ||
 				//空中の床
-				(S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-					S1_Flooting_Y <= pBoxY2 && S1_Flooting_height >= pBoxY)
+				(S1_Flooting_X-2 <= pBoxX2 && S1_Flooting_Width+2 >= pBoxX &&
+					S1_Flooting_Y-2 <= pBoxY2 && S1_Flooting_height+2 >= pBoxY)
 				)
 			{
 
@@ -144,19 +157,15 @@ AbstractScene* Player::Update()
 					if (InputX < -1)
 					{
 
-						if (Speed > -3.5)
+						if (Speed > -2.9)
 						{
 							Speed -= 0.05f;
 							if (-1.0 > Speed)
 							{
 								Speed -= 0.3;
 							}
-							if (Speed < -0.1 && 100 < InputX)
-							{
-								Speed *= 0.5f;
-							}
 						}
-
+						//アニメーション
 						if (0 <= AnimCount)
 						{
 							Image = 8;
@@ -185,7 +194,7 @@ AbstractScene* Player::Update()
 					if (InputX > 1)
 					{
 
-						if (Speed < 3.5)
+						if (Speed < 2.9)
 						{
 							Speed += 0.05f;
 							if (1.0 < Speed)
@@ -194,6 +203,7 @@ AbstractScene* Player::Update()
 							}
 						}
 
+						//アニメーション
 						if (0 <= AnimCount)
 						{
 							Image = 8;
@@ -214,7 +224,7 @@ AbstractScene* Player::Update()
 					}
 				}
 
-				if (InputX == 0)
+				if (InputX == 0 && a < 0.1)
 				{
 					//慣性の作成
 					Speed *= 0.9f;
@@ -276,10 +286,10 @@ AbstractScene* Player::Update()
 					//左移動
 					if (InputX < -1)
 					{
-						if (UpFlg == 1 && Speed > -3.2)
+						if (UpFlg == 1 && Speed > -2.9)
 						{
-							Speed -= 1.1f;
-							if (Speed > -3.2)Speed = -3.2;
+							Speed -= 0.5f;
+							if (Speed > -2.9)Speed = -2.9;
 						}
 
 						playerLR = 1;
@@ -292,10 +302,10 @@ AbstractScene* Player::Update()
 					//右移動
 					if (InputX > 1)
 					{
-						if (UpFlg == 1 && Speed < 3.2)
+						if (UpFlg == 1 && Speed < 2.9)
 						{
-							Speed += 1.1f;
-							if (Speed > 3.2)Speed = 3.2;
+							Speed += 0.5f;
+							if (Speed > 2.9)Speed = 2.9;
 						}
 
 
@@ -303,34 +313,28 @@ AbstractScene* Player::Update()
 						/*playerY += 6;*/
 					}
 				}
-
-				if (InputX == 0 || UpFlg == 0)
-				{
-					//慣性の作成
-					Speed *= 0.96f;
-				}
-				Gvy += 0.01f;
+				Gvy += 0.1f;
 				PlayerFlg = 1;
 				HitFlg = 0;
 			}
 			//左地面壁
-			if (S1_Landleft_X <= pBoxX2 && S1_Landleft_Width >= pBoxX &&
-				S1_Landleft_height >= bBoxY && S1_Landleft_Y + 1 < pBoxY2) {
+			if (S1_LEinSide_X <= pBoxX2 && S1_LEinSide_Width >= pBoxX &&
+				S1_LEinSide_height >= bBoxY && S1_LEinSide_Y + 1 < pBoxY2) {
 				HitFlg = 1;
 			}
 			// 右地面壁
-			if (S1_Landright_X <= pBoxX2 && S1_Landright_Width >= pBoxX &&
-				S1_Landright_height >= bBoxY && S1_Landright_Y + 1 < pBoxY2) {
+			if (S1_LIinSide_X <= pBoxX2 && S1_LIinSide_Width >= pBoxX &&
+				S1_LIinSide_height>= bBoxY && S1_LIinSide_Y + 1 < pBoxY2) {
 				HitFlg = 2;
 			}
 			//空中床左壁
-			if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-				S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed > 0.5) {
+			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed > 0.5) {
 				HitFlg = 2;
 			}
 			// 空中床右壁
-			if (S1_Flooting_X <= pBoxX2 && S1_Flooting_Width >= pBoxX &&
-				S1_Flooting_Y + 1 < pBoxY2 && S1_Flooting_height - 1 >= bBoxY && Speed < -0.5) {
+			if (S1_FinSide_X <= pBoxX2 && S1_FinSide_W >= pBoxX &&
+				S1_FinSide_Y + 1 < pBoxY2 && S1_FinSide_H - 1 >= bBoxY && Speed < -0.5) {
 				HitFlg = 1;
 			}
 			if (S1_Flooting_X <= bBoxX2 && S1_Flooting_Width >= bBoxX &&
@@ -376,9 +380,9 @@ AbstractScene* Player::Update()
 			playerX += Speed;
 
 
-			if (playerX < -64)	// 左から右
+			if (playerX < -32)	// 左から右
 			{
-				playerX = 576;
+				playerX = 608;
 
 			}
 			if (playerX > 620)	// 右から左
@@ -399,51 +403,31 @@ AbstractScene* Player::Update()
 	}
 
 	if (PlayerFlg == 4) {
-		playerY += 4.0f;
+		
+		playerY += 3.0f;
+		balloon();
 	}
-
-	// 水しぶきのアニメーション
-	if (bBoxY > 480) {
-		SplashAnimCount++;
-		if (SplashAnimCount >= 0 && SplashAnimCount < 3) {
-			SplashAnim = 0;
-		}
-		if (SplashAnimCount >= 3 && SplashAnimCount < 6) {
-			SplashAnim = 1;
-		}
-		if (SplashAnimCount >= 6 && SplashAnimCount < 9) {
-			SplashAnim = 2;
-		}
-		if (SplashAnimCount >= 9 && SplashAnimCount < 12) {
-			SplashAnim = 3;
-		}
-		if (SplashAnim >= 12) {
-			SplashAnimCount = 0;
-		}
-	}
+	
+	
 	return this;
 }
 
 void Player::Draw() const
 {
 #if _DEBUG
-	DrawFormatString(0, 0, 0xffffff,"%d",InputX, TRUE);
-	DrawFormatString(0, 20, 0xffffff, "Speed:%5.2f", Speed, TRUE);
-	DrawFormatString(0, 40, 0xffffff, "左右:%d　1:左　2:右", playerLR, TRUE);
-	DrawFormatString(0, 60, 0xffffff, "%f", Gvy, TRUE);
+	DrawFormatString(0, 40, 0xffffff, "Speed:%5.2f", Speed, TRUE);
+	DrawFormatString(0, 60, 0xffffff, "%f", a, TRUE);
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
 	DrawFormatString(0, 100, 0xffffff, "プレイヤーの状態 %d　0:地面　1:空中", PlayerFlg, TRUE);
-	DrawFormatString(0, 130, 0xffffff, "プレイヤーの状態 %d　0:触れていない　1:左側に触れている　2:右側に触れている　", HitFlg, TRUE);
+
 	DrawFormatString(0, 160, 0xffffff, "%d", AnimCount, TRUE);
 
 	DrawBox(pBoxX, pBoxY, pBoxX2, pBoxY2, 0xff2255, FALSE);//プレイヤーのbox
 	DrawBox(bBoxX, bBoxY, bBoxX2, bBoxY2, 0xff2255, FALSE);//風船のbox
 
 #endif _DEBUG
-	if (bBoxY > 448 && PlayerFlg == 0 && SplashAnimCount < 12) {
-		DrawGraph(playerX, 412, Splashimg[SplashAnim], TRUE);
-	}
+	
 	//向きで描画
 	//左向き
 	if (PlayerFlg != 0) {
@@ -462,21 +446,32 @@ void Player::Draw() const
 	}
 }
 
-void Player::pUP()
-{
-	UpNum = 4;
-	UpFlg = 1;
-}
 
 void Player::backlash()
 {
 	// 左側に触れたとき
 	if (HitFlg == 1 && Speed < -0.5) {
 		Speed *= -0.8;
+		if (Count < 200)
+		{
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
 	}
 	// 右側に触れたとき
 	if (HitFlg == 2 && Speed > 0.5) {
 		Speed *= -0.8;
+		if (Count < 200)
+		{
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
 	}
 }
 
@@ -499,13 +494,43 @@ void Player::life()
 		pBoxY = playerY + 32;
 		pBoxX2 = pBoxX + 50;
 		pBoxY2 = pBoxY + 32;
-
-		SplashAnimCount = 0;
-
+		
+		
 		Time = 0;
 	}
 	else if(PlayerFlg == 0 && Life == 0)
 	{
 		
+	}
+}
+
+void Player::balloon()
+{
+	if (PlayerFlg == 4) {
+		death++;
+		if (death >= 0 && death < 3)
+		{
+			Image = 27;
+		}
+		if (death >= 3 && death < 6)
+		{
+			Image = 28;
+		}
+		if (death >= 6 && death < 9)
+		{
+			Image = 29;
+		}
+		if (death >= 9 && death < 12)
+		{
+			Image = 28;
+		}
+		if (12 < death)
+		{
+			death = 0;
+		}
+		if (bBoxY > 480)
+		{
+			PlayerFlg = 0;
+		}
 	}
 }

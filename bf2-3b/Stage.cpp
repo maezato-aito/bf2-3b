@@ -73,6 +73,7 @@ void Stage::Stage1() {
 	// ãÛíÜè∞ÇÃï`âÊ
 	DrawGraph(S1_Flooting_X, S1_Flooting_Y, FlootingImg[0], TRUE);
 	DrawBox(S1_Flooting_X, S1_Flooting_Y, S1_Flooting_Width, S1_Flooting_height, 0xff2255, FALSE);
+	DrawBox(S1_FinSide_X, S1_FinSide_Y, S1_FinSide_W, S1_FinSide_H, 0xff2255, FALSE);
 	// äCÇÃï`âÊ
 	DrawGraph(Searight_X, Searight_Y, SeaImg, TRUE);
 	DrawGraph(Sealeft_X, Sealeft_Y, SeaImg, TRUE);
@@ -80,8 +81,11 @@ void Stage::Stage1() {
 	// ínñ ÇÃï`âÊ
 	DrawGraph(S1_Landright_X, S1_Landright_Y, LandImg[0], TRUE);
 	DrawBox(S1_Landright_X, S1_Landright_Y, S1_Landright_Width, S1_Landright_height, 0xff2255, FALSE);
+	DrawBox(S1_LIinSide_X, S1_LIinSide_Y, S1_LIinSide_Width, S1_LIinSide_height, 0xff2255, FALSE);
+
 	DrawGraph(S1_Landleft_X, S1_Landleft_Y, LandImg[2], TRUE);
 	DrawBox(S1_Landleft_X, S1_Landleft_Y, S1_Landleft_Width, S1_Landleft_height, 0xff2255, FALSE);
+	DrawBox(S1_LEinSide_X, S1_LEinSide_Y, S1_LEinSide_Width, S1_LEinSide_height, 0xff2255, FALSE);
 }
 
 void Stage::Stage2() {

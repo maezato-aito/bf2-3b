@@ -18,6 +18,7 @@ private:
 	int enemy;
 	int enemyFlg;
 	int count;
+	int SEfish;
 public:
 
 	static int fBoxY, fBoxY2;
