@@ -119,17 +119,15 @@ AbstractScene* Player::Update()
 		{
 			if (bBoxY > 0)
 			{
-				if (UpNum < 2.9)
-				{
-					UpNum += 0.5;
-				}
+				UpNum = 3;
 				
 				UpFlg = 1;
 			}
 			else
 			{
-				if (0 < UpNum) {
-					UpNum *= 0.5f;
+				if (0.1 < UpNum)
+				{
+					UpNum -= 0.5;
 				}
 				
 			}
@@ -294,8 +292,8 @@ AbstractScene* Player::Update()
 					{
 						if (UpFlg == 1 && Speed > -2.9)
 						{
-							Speed -= 0.5f;
-							if (Speed > -2.9) 
+							Speed -= 0.1f;
+							if (Speed < -2.9) 
 							{
 								Speed = -2.9;
 							}
@@ -313,7 +311,7 @@ AbstractScene* Player::Update()
 					{
 						if (UpFlg == 1 && Speed < 2.9)
 						{
-							Speed += 0.5f;
+							Speed += 0.1f;
 							if (Speed > 2.9)
 							{
 								Speed = 2.9;
@@ -324,10 +322,6 @@ AbstractScene* Player::Update()
 						playerLR = P_RIGHT;
 						/*playerY += 6;*/
 					}
-				}
-				if ((Speed > 0 && playerLR == P_LEFT) || (Speed < 0 && playerLR == P_RIGHT))
-				{
-					Speed *= 0.96;
 				}
 				Gvy += 0.1f;
 				PlayerFlg = 1;
@@ -431,7 +425,7 @@ AbstractScene* Player::Update()
 void Player::Draw() const
 {
 #if _DEBUG
-	DrawFormatString(0, 40, 0xffffff, "Speed:%5.2f", UpNum, TRUE);
+	DrawFormatString(0, 40, 0xffffff, "Speed:%5.2f", Speed, TRUE);
 	DrawFormatString(0, 60, 0xffffff, "%f", a, TRUE);
 	DrawFormatString(0, 80, 0xffffff, "プレイヤー座標 X0:%d Y0:%d X1:%d Y1:%d",pBoxX,pBoxY,pBoxX2,pBoxY2, TRUE);
 
