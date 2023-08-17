@@ -57,6 +57,8 @@ Player::Player()
 
 	a = 0;
 	death = 0; // 死んだとき
+
+	Count = 0;
 }
 Player::~Player()
 {
@@ -73,9 +75,9 @@ AbstractScene* Player::Update()
 	bBoxY2 = bBoxY + 22;
 
 	//プレイヤーのボックス情報
-	pBoxX = playerX + 6;
+	pBoxX = playerX + 16;
 	pBoxY = playerY + 32;
-	pBoxX2 = pBoxX + 50;
+	pBoxX2 = pBoxX + 30;
 	pBoxY2 = pBoxY + 32;
 	//敵のボックス
 	eBoxX = Enemy::eBoxX;
@@ -371,9 +373,9 @@ AbstractScene* Player::Update()
 			playerX += Speed;
 
 
-			if (playerX < -64)	// 左から右
+			if (playerX < -32)	// 左から右
 			{
-				playerX = 576;
+				playerX = 608;
 
 			}
 			if (playerX > 620)	// 右から左
@@ -437,21 +439,32 @@ void Player::Draw() const
 	}
 }
 
-void Player::pUP()
-{
-	UpNum = 4;
-	UpFlg = 1;
-}
 
 void Player::backlash()
 {
 	// 左側に触れたとき
 	if (HitFlg == 1 && Speed < -0.5) {
 		Speed *= -0.8;
+		if (Count < 200)
+		{
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
 	}
 	// 右側に触れたとき
 	if (HitFlg == 2 && Speed > 0.5) {
 		Speed *= -0.8;
+		if (Count < 200)
+		{
+			Count++;
+		}
+		else
+		{
+			Count = 0;
+		}
 	}
 }
 
