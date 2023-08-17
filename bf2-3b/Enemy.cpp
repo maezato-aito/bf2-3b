@@ -78,7 +78,7 @@ void Enemy::Update() {
 	}
 	else if (enemy[0].flg == 4)
 	{
-		Gvy += 0.05;
+		Gvy += 0.03;
 	}
 
 	// パラシュート状態の左右移動
