@@ -28,7 +28,7 @@ Player::Player()
 	playerX = 100;
 	playerY = 240;
 
-	PlayerFlg = 4;
+	PlayerFlg = 1;
 	HitFlg = 1;		
 	vx = 0.5;
 	vy = 0.5;
@@ -38,8 +38,9 @@ Player::Player()
 	LoadDivGraph("images/Player/Player_Animation.png",32,8,4,64,64,Playerimg);//プレイヤー画像
 	// サウンド読込
 	BGM = LoadSoundMem("sound/BGM_Trip.wav");
-
-
+	SERestart = LoadSoundMem("sound/SE_Restart.wav");
+	SEJump = LoadSoundMem("sound/SE_PlayerJump.wav");
+	SEWalk = LoadSoundMem("sound/SE_PlayerWalk.wav");
 	AnimCount = 0;
 
 	Image = 0;
@@ -52,25 +53,28 @@ Player::Player()
 
 	Life = 2;
 
-	
+	SEcount = 0;
+
 	Time = 0; // 待機時間
 
 	death = 0; // 死んだとき
 }
 Player::~Player()
 {
-	StopSoundMem(BGM);
-	DeleteSoundMem(BGM);
+	
+	
 }
 AbstractScene* Player::Update()
 {
 	GetJoypadAnalogInput(&InputX, &InputY, DX_INPUT_PAD1);
 
-	if (CheckSoundMem(BGM) == 0) {
+	/*if (Life == 2) {
 		PlaySoundMem(BGM, DX_PLAYTYPE_BACK,TRUE);
+	}*/
+	
+	if (Life == 1) {
+
 	}
-	
-	
 	//風船のボックス情報
 	bBoxX = playerX + 6;
 	bBoxY = playerY + 12;
@@ -110,6 +114,20 @@ AbstractScene* Player::Update()
 		}
 		if ((PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) || (PAD_INPUT::OnButton(XINPUT_BUTTON_A)))
 		{
+			// Aボタンを押したときのSE
+			if (PAD_INPUT::OnPressed(XINPUT_BUTTON_A)) {
+				PlaySoundMem(SEJump, DX_PLAYTYPE_BACK, TRUE);
+			}
+			// Bボタン押したときのSE
+			if (PAD_INPUT::OnPressed(XINPUT_BUTTON_B)) {
+				SEcount++;
+				if (SEcount >= 0 &&SEcount < 3) {
+					PlaySoundMem(SEJump, DX_PLAYTYPE_BACK, TRUE);
+				}
+				if (SEcount > 10) {
+					SEcount = 0;
+				}
+			}
 			if (bBoxY > 0)
 			{
 
@@ -149,7 +167,7 @@ AbstractScene* Player::Update()
 					//左移動
 					if (InputX < -1)
 					{
-
+						
 						if (Speed > -3.5)
 						{
 							Speed -= 0.05f;
@@ -190,7 +208,8 @@ AbstractScene* Player::Update()
 					//右移動
 					if (InputX > 1)
 					{
-
+						
+						
 						if (Speed < 3.5)
 						{
 							Speed += 0.05f;
@@ -279,9 +298,11 @@ AbstractScene* Player::Update()
 
 				if (playerX + 64 > 0)
 				{
+					
 					//左移動
 					if (InputX < -1)
 					{
+						
 						if (UpFlg == 1 && Speed > -3.2)
 						{
 							Speed -= 1.1f;
@@ -298,6 +319,7 @@ AbstractScene* Player::Update()
 					//右移動
 					if (InputX > 1)
 					{
+						
 						if (UpFlg == 1 && Speed < 3.2)
 						{
 							Speed += 1.1f;
@@ -490,13 +512,13 @@ void Player::life()
 		pBoxX2 = pBoxX + 50;
 		pBoxY2 = pBoxY + 32;
 
-		
+		PlaySoundMem(SERestart, DX_PLAYTYPE_BACK, TRUE);
 
 		Time = 0;
 	}
 	else if(PlayerFlg == 0 && Life == 0)
 	{
-		
+		StopSoundMem(BGM);
 	}
 }
 void Player::balloon()

@@ -18,6 +18,10 @@ private:
 	int add;
 	int fBoxY;
 	int death;
+	int SERestart;// リスタートBGM
+	int SEJump; // ジャンプSE
+	int SEcount; 
+	int SEWalk; // 歩くSE
 public:
 	static float playerX, playerY;
 	static int Time; // 待機時間
