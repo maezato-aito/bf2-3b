@@ -30,7 +30,7 @@ void UI::Update() {
 }
 
 void UI::Draw() const {
-	/*SetFontSize(30);*/
+	SetFontSize(30);
 	DrawGraph(60, 14, Iimg, TRUE);
 	DrawFormatString(85, 8, 0xffffff, "%06d", NowScore, TRUE);
 	DrawGraph(240, 14, Topimg, TRUE);
