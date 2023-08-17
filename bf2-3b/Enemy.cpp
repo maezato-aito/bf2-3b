@@ -78,7 +78,7 @@ void Enemy::Update() {
 	}
 	else if (enemy[0].flg == 4)
 	{
-		Gvy += 0.08;
+		Gvy += 0.05;
 	}
 
 	// パラシュート状態の左右移動
@@ -281,7 +281,7 @@ void Enemy::Update() {
 	}
 	// 空中床右側面
 	if (S1_Flooting_X <= eBoxX2 && S1_Flooting_Width >= eBoxX && S1_Flooting_Y + 1 < eBoxY2 && S1_Flooting_height - 1 >= eBoxY && Speed < -eSpeed[Lv]) {
-		HitFlg = 2;
+		HitFlg = 1;
 		Backlash();
 	}
 	// 空中床下
@@ -535,12 +535,14 @@ void Enemy::EnemyInit() {
 void Enemy::Backlash() {
 	// 左側に触れた時
 	if (HitFlg == 1 && Speed < -eSpeed[Lv]) {
-		Speed *= -0.8;
+		Speed *= -1.0;
 	}
+	
 	// 右側に触れた時
 	if (HitFlg == 2 && Speed > eSpeed[Lv]) {
-		Speed += -0.8;
+		Speed += -1.0;
 	}
+	
 }
 
 // 初期状態
